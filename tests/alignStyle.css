@@ -1,0 +1,24 @@
+header #title{
+text-align: center;
+font-size: 1.8em;
+}
+#global{
+	margin:10% 10%;
+	display: table;
+}
+
+ #global #step_to_step{
+	display: table-cell;
+		width: 60%
+
+
+}
+
+ #global #formulaire{
+	 display: table-cell;
+	width: 20%;
+}
+#button{
+display: block;
+  margin: auto;
+}
