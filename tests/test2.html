@@ -32,24 +32,27 @@
 	</div>
 
 	<div id="formulaire">
-	<select id="type" onChange = "choix(this)">
-	<option value="protein">Protein</option><br/>
-	<option value="nucleic">Nucleic</option><br/>
-	</select>
 	<p>
-<input type="text" placeholder="entrer une sequence" name="sequence1" id ="sequence1"> <br>
-
-<input type="text" placeholder="entrer une sequence" name="sequence2" id ="sequence2"> <br>
+		<form name=form   method="post" action="DOM_modif.js">
+			<p></p>
+		proteine	<input type="checkbox" name="proteine" value="proteine" id ="proteine" onClick="validate()"><br>
+		nucleotide	<input type="checkbox" name="nucleotide" value="nucleotide" onClick="interface.validate()" ><br>
+<label for="sequence1"> sequence 1</label>
+<input type="sequence1" placeholder="entrer une sequence" name="sequence1" id ="sequence1" required> <br>
+<label for="sequence2"> sequence 2</label>
+<input type="text" placeholder="entrer une sequence" name="sequence2" id ="sequence2" required> <br>
 </p>
 <input type="valeur" placeholder="choisissez la penalité de gap" name=""> <br>
 <select id="choix_matrice" onChange = "choix2(this)">
 	<option value=""></option><br/>
 	<option value=""></option><br/>
-	</select>
+	</select><br>
+	<button id ="submit" onclick="submit">submit</button>  
+	</form>
 </div>
 </div>
-<div id="button">
-	<button id ="submit">submit</button>  
+<div id="button1">
+	
 	<button id ="suivant">suivant</button>
 	<button id ="precedent">precedent</button>    
 	<button id ="final">final</button>  
