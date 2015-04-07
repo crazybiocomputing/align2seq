@@ -4,7 +4,7 @@
 	<meta charset='utf-8'>
 
 	<link rel="stylesheet" type="text/css" href="alignStyle.css">
-	<script type="text/javascript" src="DOM_modif"></script>
+	<script type="text/javascript" src="DOM_modif.js"></script>
 	</head>
 <body>
 	<header>
@@ -32,20 +32,18 @@
 	</div>
 
 	<div id="formulaire">
-	<p>
-		<form name=form   method="post" action="DOM_modif.js">
+
+		<form name=form   method="post" action="DOM_modif.js" id="form">
 			<p></p>
-		proteine	<input type="checkbox" name="proteine" value="proteine" id ="proteine" onClick="validate()"><br>
-		nucleotide	<input type="checkbox" name="nucleotide" value="nucleotide" onClick="interface.validate()" ><br>
+		proteine	<input type="radio" name="type_seq" value="proteine" id ="proteine" onClick="chooseMatrice()"><br>
+		nucleotide	<input type="radio" name="type_seq" value="nucleotide" id="nucleotide" onClick="chooseMatrice()" ><br>
 <label for="sequence1"> sequence 1</label>
 <input type="sequence1" placeholder="entrer une sequence" name="sequence1" id ="sequence1" required> <br>
 <label for="sequence2"> sequence 2</label>
 <input type="text" placeholder="entrer une sequence" name="sequence2" id ="sequence2" required> <br>
-</p>
+<label for="penalité de gap"> pénalité de gap </label>
 <input type="valeur" placeholder="choisissez la penalité de gap" name=""> <br>
-<select id="choix_matrice" onChange = "choix2(this)">
-	<option value=""></option><br/>
-	<option value=""></option><br/>
+<select id="choix_matrice" name="choix_matrice" >
 	</select><br>
 	<button id ="submit" onclick="submit">submit</button>  
 	</form>
