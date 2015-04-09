@@ -50,9 +50,20 @@ function chooseMatrice(){
 		console.log((document.forms['form'].elements.value));
 		}
 
+function show_matrice(){
+	var s1=seq1.split("");
+	var s2=seq2.split("");
+	var len1= seq1.length;
+	var len2=seq2.length;
+matrice=document.getElementById("matrice");
+for (var i=0;i<len1+2;i++){
+	matrice.innnerHtml="<tr id="i"></tr>";
+	if (i==0){
+		for (j in s2){
+			document.getElementById(i). innerHtml="<th>"j"<th>"
+		}
 
-
-
-
-
-
+	}
+}
+	1
+}
