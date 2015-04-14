@@ -1,8 +1,8 @@
-// var score=require('/score');
-// var chemin=require('./code_nouveau/chemin');
-// var infos = require('./code_nouveau/dom_modif.js');
+require(["./smithwater"], function() {
+var smithwaterman=require("./smithwater");;
+});
 
-window.onload=function matrices(){
+function algorithm(){
 	var len1,len2;
 	var l1,l2,mat1,mat2;
 	var s1,s2;
@@ -41,7 +41,7 @@ window.onload=function matrices(){
 			place++;
 		}
 	}
-	var result=alignment(matchemin,matscore1,s1,s2,len1,len2,len2);
+	var result=smithwaterman.alignment(matchemin,matscore1,s1,s2,len1,len2,len2);
 	document.getElementById('matrices').innerHTML +='Alignement 1:'+result[0]+'<br>';
 	document.getElementById('matrices').innerHTML +='Alignement 2:'+result[1]+'<br><br>';
 	document.getElementById('matrices').innerHTML +='Matrice séquences :'+ matscore+'<br>';
@@ -94,53 +94,5 @@ function score(matscore1,matchemin,l1,l2,lengthseq,place){
 			matchemin[place]=3;	} 
 	}
 }
-
-function alignment(matchemin,matscore1,s1,s2,len1,len2,lengthseq){
-	var val,elem,dep,valmaxpos;
-	var valmax=0;
-	var compt=0;
-	var l=[];
-	var align1=[];
-	var align2=[];
-	for (val in matscore1){
-		valmaxpos=matscore1[val];
-		valmax=Math.max(valmax,valmaxpos);
-	}
-
-	for (elem in matscore1){
-		if (matscore1[elem]===valmax){
-			l.push(elem);
-		}
-	}
-	for (dep in l){
-		deppos=l[dep];
-		while (true){
-			if (matscore1[deppos]===0){
-				align1.unshift(s1[len1]);
-				align2.unshift(s2[len2]);
-				break;
-			}
-			if (matchemin[deppos]===1){
-				deppos=deppos-1;
-				align1.unshift("-");
-				align2.unshift(s2[len2]);
-				len2--;
-			} 
-			else if (matchemin[deppos]===2){
-				deppos=deppos-(lengthseq+2);
-				align1.unshift(s1[len1]);
-				align2.unshift(s2[len2]);
-				len1--;
-				len2--;
-			}		
-			else{
-				deppos=deppos-(lengthseq+1);
-				align1.unshift(s1[len1]);
-				align2.unshift("-");
-				len1--;
-			} 
-		}
-	}
-	var result=[align1,align2];
-	return result;
-}
+algorithm();
+exports.algorithm=algo;
