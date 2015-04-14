@@ -1,4 +1,8 @@
-exports.alignment = function alignment(matchemin,matscore1,s1,s2,len1,len2,lengthseq){
+var sw = new Algo();
+
+sw=function(){
+
+function alignment(matchemin,matscore1,s1,s2,len1,len2,lengthseq){
 	var val,elem,dep,valmaxpos;
 	var valmax=0;
 	var compt=0;
