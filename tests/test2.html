@@ -2,12 +2,26 @@
 <html>
 <head>
 	<title>ceci est un test</title>
-	<meta charset='utf-8'>
-	<meta type=>
+	<meta charset="utf-8">
+	
 	<link rel="stylesheet" type="text/css" href="alignStyle.css">
-	<script type="text/javascript" src="DOM_modif.js"></script>
+	
+	<script type="text/javascript" src="../src/DOM_modif.js"></script>
+	<script type="text/javascript" src="../src/smithWaterman.js"></script>
+	<script type="text/javascript" src="../src/needlemanWunsch.js"></script>
+	<!--
+	<script type="text/javascript" src="../dist/align2seq.js"></script>
+	<script type="text/javascript" src="../dist/align2seq-min.js"></script>
+	-->
+	<script>
+		function initAlign2seq() {
+			algo = new Algorithm();
+			db = new DataBase();
+			
+		}
+	</script>
 </head>
-<body>
+<body onload="initAlign2seq()">
 	<header>
 		<h1 class="title">Outils d'alignement de séquences</h1>
 	</header>
@@ -21,7 +35,7 @@
 
 	<div id="formulaire">
 
-		<form name=form   method="get" action="serveur.js" id="form">
+	<form name=form   method="get" action="serveur.js" id="form">
 		<label>Needleman et Wunsch</label> <input type="radio" name="algorithme" value="needleman_wunsch" id="needleman_wunsch"><br>
 		<label>Smith et Waterman</label>	<input type="radio" name="algorithme" value="smith_waterman" id="smith_waterman"><br>
 			<p></p>
