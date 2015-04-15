@@ -1,50 +1,46 @@
 function algorithm(){
-	var len1,len2;
-	var l1,l2,mat1,mat2;
-	var s1,s2;
-	var matseq,matscore,matpath;
-	var i,j;
-	var seq1="ACVHFFTCA"; var seq2="AGFTCDFGA";
-	var add;
-	s1=[];
-	s2=[];
-	matseq=[];
-	matpath=[];
-	matscore=[];
-	len1=seq1.length;
-	len2=seq2.length;
-	seqlength=Math.min(len1,len2);
-	maxi=Math.max(len1,len2);
-	matseq[0]="-";
-	s1=seq1.split("");
-	for (var elems1=0;elems1<=len1;elems1++){
-		matseq.push(s1[elems1]);
+	this.seq1="ACVHFFTCA";this.seq2="AGFTCDFGA";
+	this.len1=this.seq1.length;this.len2=this.seq2.length;
+	this.l1;this.l2;this.mat1;this.mat2;
+	this.s1=[];this.s2=[];
+	this.matseq= [];this.matscore=[];this.matpath=[];
+	this.i;this.j;
+	this.add;
+	this.seqlength=Math.min(this.len1,this.len2);
+	this.maxi=Math.max(this.len1,this.len2);
+	this.algo="sw";
+	this.matseq[0]="-";
+	s1=this.seq1.split("");
+	for (var elems1=0;elems1<=this.len1;elems1++){
+		this.matseq.push(s1[elems1]);
 	}
-	matseq[len1+1]="-";
-	s2=seq2.split("");
+	this.matseq[this.len1+1]="-";
+	s2=this.seq2.split("");
 	// if (ajout!==0 && longueur==len2){
 	// 	for (var indent2=0;indent2<ajout;indent2++){
 	// 		s2.push("-");}}
-	for (var elems2=0;elems2<len2;elems2++){
-		matseq.push(s2[elems2]);
+	for (var elems2=0;elems2<this.len2;elems2++){
+		this.matseq.push(s2[elems2]);
+		this.place=0;
 	}
-
-	var place=0;
-	for(i=0;i<=len1;i++){
-		for(j=len1+1;j<=((len1+len2)+1);j++){
-			score(matscore,matpath,matseq[i],matseq[j],len2,place);
-			place++;
+	for(i=0;i<=this.len1;i++){
+		for(j=this.len1+1;j<=((this.len1+this.len2)+1);j++){
+			algorithm.prototype.score(this.matscore,this.matpath,this.matseq[i],this.matseq[j],this.len2,this.place);
+			this.place++;
 		}
 	}
-	var result=alignment(matpath,matscore,s1,s2,len1,len2,len2);
-	document.getElementById('matrices').innerHTML +='Alignement 1:'+result[0]+'<br>';
-	document.getElementById('matrices').innerHTML +='Alignement 2:'+result[1]+'<br><br>';
-	document.getElementById('matrices').innerHTML +='Matrice séquences :'+ matseq+'<br>';
-	document.getElementById('matrices').innerHTML +='Matrice scores :'+ matscore+'<br>';
-	document.getElementById('matrices').innerHTML +='Matrice chemins :'+ matpath+'<br>';
-};
+	// if (this.algo=="sw"){
+	// 	var result=smithwaterman.prototype.alignment(matpath,matscore,s1,s2,len1,len2,len2);
+	// }
 
-function score(matscore,matpath,l1,l2,lengthseq,place){
+	// document.getElementById('matrices').innerHTML +='Alignement 1:'+result[0]+'<br>';
+	// document.getElementById('matrices').innerHTML +='Alignement 2:'+result[1]+'<br><br>';
+	document.getElementById('matrices').innerHTML +='Matrice séquences :'+ this.matseq+'<br>';
+	document.getElementById('matrices').innerHTML +='Matrice scores :'+ this.matscore+'<br>';
+	document.getElementById('matrices').innerHTML +='Matrice chemins :'+ this.matpath+'<br>';
+
+	}
+	algorithm.prototype.score=function(matscore,matpath,l1,l2,lengthseq,place){
 	var match=10;
 	var mismatch=-5;
 	var gap=2;
@@ -89,6 +85,7 @@ function score(matscore,matpath,l1,l2,lengthseq,place){
 			matpath[place]=3;	} 
 	}
 }
+
 
 // function alignment(matpath,matscore,s1,s2,len1,len2,lengthseq){
 // 	var val,elem,start,valmaxpos;
@@ -140,4 +137,4 @@ function score(matscore,matpath,l1,l2,lengthseq,place){
 // }
 
 
-algorithm();
+// algorithm();
