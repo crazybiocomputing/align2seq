@@ -1,0 +1,30 @@
+{
+  "name": "align2seq",
+  "version": "0.0.0",
+  "description": "make nucleic and proteic sequence alignment",
+  "main": "test2.html",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/crazybiocomputing/align2seq.git"
+  },
+  "keywords": [
+    "sequence",
+    "alignment",
+    "Needlman et Wunsch",
+    "Smith et Waterman"
+  ],
+  "author": "Anne Rudy",
+  "author":"Beliard Aurelien ",
+  "author":"Duquenne Emeline ",
+  "author":"perdriau Aurore",
+  "license": "GNU",
+  "bugs": {
+    "url": "https://github.com/crazybiocomputing/align2seq/issues"
+  }
+}
