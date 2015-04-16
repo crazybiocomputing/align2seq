@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>test</title>
+		<meta charset='utf-8'>
+		<link rel="stylesheet" type="text/css" href="alignStyle.css">
+		<script type="text/javascript" src="form.js"></script>
+		<!--<script type="text/javascript" src="DOM_modif3.js"></script>-->
+		<script type="text/javascript" src="algo.js"></script>
+		<script type="text/javascript" src="needlewunsch.js"></script>
+		<script type="text/javascript" src="smithwater.js"></script>
+	</head>
+	<body>
+		<header>
+			<h1 id="title">Outils d'alignement de séquences</h1>
+		</header>
+		<div id="global">
+			<div id="step_to_step">
+				<table id="matrix2">
+				</table>
+			</div>
+			<div id="formulaire">
+				
+					<ul id="onglets">
+						<li id="algo"><a href="#algo">Algorithmes</a>
+							<label class="elem_form"> Needleman et Wunsch </label> <input type="radio" name="algorithm" value="needleman_wunsch" id="needleman_wunsch"><br>
+							<label class="elem_form"> Smith et Waterman </label> <input type="radio" name="algorithm" value="smith_waterman" id="smith_waterman"><br>
+						</li>
+						<li id="seq"><a href="#seq">Séquences</a>
+							<label class="elem_form">Proteines</label><input type="radio" name="type_seq" value="protein" id ="protein" onClick="choose_matrix()"><br>
+							<label class="elem_form">Nucleotides</label> <input type="radio" name="type_seq" value="nucleotide" id="nucleotide" onClick="choose_matrix()" ><br>
+							<label class="elem_form" for="sequence1">Séquence 1</label>
+							<input type="text" name="sequence1" value="sequence1" id="sequence1" required> <br>
+							<label class="elem_form" for="sequence2">Séquence 2</label>
+							<input type="text" name="sequence2" value="sequence2" id ="sequence2" required> <br>
+						</li>
+						<li id="opt"><a href="#opt">Options</a>
+							<label class="elem_form" for="penalité_de_gap"> Pénalité de gap </label>
+							<input type="number" placeholder="choisissez la penalité de gap" name="gap penality" value ="0"> <br>
+							<label class="elem_form">Matrices</label>
+							<select id="choice_matrix" name="choice_matrix" >
+							</select>
+						</li>
+					</ul>
+					<button  id="submit_button"onclick="get_value()">envoyer</button>
+				
+			</div>
+			<div id="button1">
+				<button id ="suivant" onClick="algorithm()" >Suivant</button>
+				<button id ="precedent">Précédent</button>
+				<button id ="final">Final</button>
+			</div>
+<!--  -->
+		</div>
+		<footer>
+		</footer>
+	</body>
+</html>
