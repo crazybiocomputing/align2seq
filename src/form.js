@@ -50,7 +50,11 @@ function get_value(){
 	var matrix=document.getElementById("choice_matrix").options[document.getElementById('choice_matrix').selectedIndex].value;
 
 console.log(algo,type_seq,seq1,seq2,matrix);
-	return(seq1,seq2,matrix,type_seq,algo);
+init(seq1,seq2,matrix,type_seq,algo);
+}
 
-
+function init(seq1,seq2,matrix,type_seq,algo){
+	algorithm(seq1,seq2,matrix,type_seq,algo);
+	display();
+	
 }

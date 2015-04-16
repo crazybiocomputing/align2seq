@@ -1,7 +1,8 @@
-function algorithm()
+function algorithm(sequence1,sequence2,matrix,type_seq,algo)
 {
-	this.seq1 = "GATTACA";
-	this.seq2 = "GCATGCU";
+	this.seq1 = sequence1;
+	this.seq2 = sequence2;
+	console.log(this.seq1);
 	this.len1 = this.seq1.length;
 	this.len2 = this.seq2.length;
 	this.l1;
@@ -20,7 +21,7 @@ function algorithm()
 	this.add;
 	this.seqlength = Math.min(this.len1, this.len2);
 	this.maxi = Math.max(this.len1, this.len2);
-	this.algo = "nw";
+	this.algo = algo;
 	this.matseq[0] = "-";
 	s1 = this.seq1.split("");
 	for (var elems1 = 0; elems1 <= this.len1; elems1++) {
@@ -32,10 +33,9 @@ function algorithm()
 		this.matseq.push(s2[elems2]);
 		this.place = 0;
 	}
-	console.log(len1,len2,seqlength)
 	for (i = 0; i <= this.len1; i++) {
 		for (j = this.len1 + 1; j <= ((this.len1 + this.len2) + 1); j++) {
-			if (this.algo=="sw"){
+			if (this.algo=="smith_waterman"){
 				smithwaterman.prototype.score(this.matscore, this.matpath, this.matseq[i], this.matseq[j], this.len2, this.place);
 			}
 			else{
@@ -44,7 +44,7 @@ function algorithm()
 			this.place++;
 		}
 	}
-	if (this.algo == "sw") {
+	if (this.algo == "smith_waterman") {
 		var result = smithwaterman.prototype.alignment(matpath, matscore, s1, s2, len1, len2, len2);
 	}
 	else{
@@ -72,7 +72,7 @@ function display(){
 		var column = matrix1[i].cells; //On a autant de cellule par ligne
 		
 		for (var j = 0; j < column.length ; j++) {
-		 if(j % 2 == 0)//si la clé est paire
+/*		 if(j % 2 == 0)//si la clé est paire
         {
             matrix1[j].style.backgroundColor = "#bdcbf5";
         }
@@ -80,7 +80,7 @@ function display(){
         {
             matrix1[j].style.backgroundColor = "#829eeb";
         }
-      
+      */
 
 			if (i>=2 && j===0){ 
 				for(var column in s1){
@@ -114,9 +114,9 @@ function display(){
 }
 
 
-window.addEventListener("load", function ()
+/*window.addEventListener("load", function ()
 {
-	algorithm();
+	algorithm(seq1,seq2,matrix,type_seq,algo);
 	display();
-}, true);
+}, true);*/
 
