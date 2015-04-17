@@ -42,8 +42,8 @@ function algorithm(sequence1,sequence2,matrix,type_seq,algo)
 	this.matpath = [];
 	this.i;
 	this.j;
-	this.taille1=len1+1;
-	this.taille2=len2+2;
+	this.size1=len1+1;
+	this.size2=len2+2;
 	this.add;
 	this.seqlength = Math.min(this.len1, this.len2);
 	this.maxi = Math.max(this.len1, this.len2);
@@ -79,64 +79,6 @@ function algorithm(sequence1,sequence2,matrix,type_seq,algo)
 
 	console.log (matscore)
 	console.log (matpath)
-}
-
-function display(){
-	var matrix=document.getElementById("matrix2");
-
-	for (var i =0;i<=taille1;i++){
-		matrix.insertRow(i);
-		for(var j=0;j<=(taille2-1);j++){
-			matrix.rows[i].insertCell(j);
-		}
-	}
-
-	var matrix1=document.getElementById("matrix2").rows;//création des lignes
-
-	for (var i = 0 ; i < matrix1.length; i++) {
-
-		var column = matrix1[i].cells; //On a autant de cellule par ligne
-		
-		for (var j = 0; j < column.length ; j++) {
-/*		 if(j % 2 == 0)//si la clé est paire
-        {
-            matrix1[j].style.backgroundColor = "#bdcbf5";
-        }
-        else //elle est impaire
-        {
-            matrix1[j].style.backgroundColor = "#829eeb";
-        }
-      */
-
-			if (i>=2 && j===0){ 
-				for(var column in s1){
-					matrix2.rows[i].cells[j].innerHTML=s1[column];	
-					i++;	
-				}
-			};
-
-			if (i===0 && j>=2) { //Remplir la première ligne à partir de la seconde case
-				for (var ligne in s2) {
-					matrix2.rows[i].cells[j].innerHTML=s2[ligne];
-					j++;
-
-				}
-			};
-
-			if(i>=1 && j===1){
-				for (scoring in matscore){
-					matrix2.rows[i].cells[j].innerHTML=matscore[scoring];
-					j++;
-					if(j%taille2==0){
-						i++;
-						j=1;
-					}
-				}
-			i=1;
-			} 
-		}
-	}
-
 }
 
 
