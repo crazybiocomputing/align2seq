@@ -28,6 +28,7 @@
 	<head>
 		<title>Pairwise alignement</title>
 		<meta charset='utf-8'>
+		<link rel="stylesheet" href="font-awesome.css">
 		<link rel="stylesheet" type="text/css" href="alignStyle.css">
 		<script type="text/javascript" src="form.js"></script>
 		<script type="text/javascript" src="algorithm.js"></script>
@@ -68,13 +69,11 @@
 							</select>
 						</li>
 					</ul>
-					<button  id="submit_button"onclick="get_value()">Send</button>
+					<button  id="submit_button"onclick="get_value()"><i class="fa fa-play"></i>Send</button>
+					<button id ="suivant" onClick="algorithm()"><i class="fa fa-step-forward"></i>Next</button>
+					<button id ="precedent"><i class="fa fa-step-backward"></i>Previous</button>
+					<button id ="final"><i class="fa fa-stop"></i>Final</button>
 				
-			</div>
-			<div id="button1">
-				<button id ="suivant" onClick="algorithm()">Next</button>
-				<button id ="precedent">Previous</button>
-				<button id ="final">Final</button>
 			</div>
 <!--  -->
 		</div>
