@@ -81,6 +81,106 @@ function algorithm(sequence1,sequence2,matrix,type_seq,algo)
 	console.log (matpath)
 }
 
+// function display(){
+
+// 	//Affichage de la matrice de score
+
+// 	var matrixs=document.getElementById("matrixscore");
+
+// 	for (var i =0;i<=size1;i++){
+// 		matrixs.insertRow(i);
+// 		for(var j=0;j<=(size2-1);j++){
+// 			matrixs.rows[i].insertCell(j);
+// 		}
+// 	}
+
+// 	var matrix1=document.getElementById("matrixscore").rows;
+
+// 	for (var i = 0 ; i < matrix1.length; i++) {
+
+// 		var column = matrix1[i].cells; 
+		
+// 		for (var j = 0; j < column.length ; j++) {
+
+// 			if (i>=2 && j===0){ 
+// 				for(var column in s1){
+// 					matrixscore.rows[i].cells[j].innerHTML=s1[column];	
+// 					i++;	
+// 				}
+// 			};
+
+// 			if (i===0 && j>=2) {
+// 				for (var ligne in s2) {
+// 					matrixscore.rows[i].cells[j].innerHTML=s2[ligne];
+// 					j++;
+
+// 				}
+// 			};
+
+// 			if(i>=1 && j===1){
+// 				for (scoring in matscore){
+// 					matrixscore.rows[i].cells[j].innerHTML=matscore[scoring];
+// 					j++;
+// 					if(j%size2==0){
+// 						i++;
+// 						j=1;
+// 					}
+// 				}
+// 			i=1;
+// 			} 
+// 		}
+// 	}
+
+// 	//Affichage de la matrice de chemin
+
+// 	var matrixp=document.getElementById("matrixpath");
+
+// 	for (var i =0;i<=size1;i++){
+// 		matrixp.insertRow(i);
+// 		for(var j=0;j<=(size2-1);j++){
+// 			matrixp.rows[i].insertCell(j);
+// 		}
+// 	}
+
+// 	var matrix2=document.getElementById("matrixpath").rows;//création des lignes
+
+// 	for (var i = 0 ; i < matrix2.length; i++) {
+
+// 		var column = matrix2[i].cells; //On a autant de cellule par ligne
+		
+// 		for (var j = 0; j < column.length ; j++) {
+
+// 			if (i>=2 && j===0){ 
+// 				for(var column in s1){
+// 					matrixpath.rows[i].cells[j].innerHTML=s1[column];	
+// 					i++;	
+// 				}
+// 			};
+
+// 			if (i===0 && j>=2) { //Remplir la première ligne à partir de la seconde case
+// 				for (var ligne in s2) {
+// 					matrixpath.rows[i].cells[j].innerHTML=s2[ligne];
+// 					j++;
+
+// 				}
+// 			};
+
+// 			if(i>=1 && j===1){
+// 				for (path in matpath){
+// 					matrixpath.rows[i].cells[j].innerHTML=matpath[path];
+// 					j++;
+// 					if(j%size2==0){
+// 						i++;
+// 						j=1;
+// 					}
+// 				}
+// 			i=1;
+// 			} 
+// 		}
+// 	}
+
+// }
+
 
 /*window.addEventListener("load", function ()
 {
