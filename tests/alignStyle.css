@@ -24,38 +24,70 @@
  * Aurore Perdriau
  */
 
-header .title{
-text-align: center;
-font-size: 1.8em;
-}
-#global{
-	margin:5% 5%;
-	display: table;
-}
+ *{
+ 	background-color:#CFE3FF;
+ }
+
+ #title{
+ 	text-align: center;
+ 	font-size: 2em;
+	border: 1px solid #71ACFD;
+	background-color: #71ACFD;
+ }
+ #global{
+ 	margin:5% 5%;
+ 	display: table;
+ }
 
  #global #step_to_step{
-	display: table-cell;
-		width: 60%
+ 	display: table-cell;
+ 	width: 60%;
+ 	margin:auto;
+ }
 
-
-}
 
  #global #formulaire{
-	 display: table-cell;
-	width: 20%;
-}
-#button1{
-display: block;
-  margin: auto;
-  text-align:center;
-}
+ 	display: table-cell;
+ 	width: 20%;
+	border: 1px solid #71ACFD;
+ 	padding: 25px;
+ 	padding-top: 10px;
+ 	text-align: center;
+ }
 
-table
-{
-	border-collapse: collapse;
-}
+#formulaire li{
+	list-style-type:none;}
+ #button1{
+ 	display: block;
+ 	margin: auto;
+ 	text-align:center;
+ }
 
-td,th
-{
-	border : 1px solid black;
-}
+ table
+ {
+ 	border-collapse: collapse;
+ }
+
+ td,th
+ {
+ 	border : 1px solid black;
+ 	min-width:25px;
+ 	max-width:50px;
+ }
+
+
+/* i.fa-circle-thin{
+ 	background-color: red;
+ }
+
+ i.fa-arrow-left{
+ 	background-color: yellow;
+ }
+
+ i.fa-arrow-up{
+ 	background-color: orange;
+ }
+
+ i.fa-gavel{
+ 	background-color: green;
+ }*/
