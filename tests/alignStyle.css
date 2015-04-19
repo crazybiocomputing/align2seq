@@ -24,38 +24,92 @@
  * Aurore Perdriau
  */
 
-header .title{
-text-align: center;
-font-size: 1.8em;
-}
-#global{
-	margin:5% 5%;
-	display: table;
-}
+ *{
+ 	background-color:#CFE3FF;
+ }
+
+ #title{
+ 	text-align: center;
+ 	font-size: 2em;
+	border: 1px solid #71ACFD;
+	background-color: #71ACFD;
+ }
+ #global{
+ 	margin:5% 5%;
+ 	display: table;
+ }
 
  #global #step_to_step{
-	display: table-cell;
-		width: 60%
+ 	display: table-cell;
+ 	width: 60%;
+ 	margin:auto;
+ }
 
-
-}
 
  #global #formulaire{
-	 display: table-cell;
-	width: 20%;
-}
-#button1{
-display: block;
-  margin: auto;
-  text-align:center;
-}
+ 	display: table-cell;
+ 	width: 20%;
+	border: 1px solid #71ACFD;
+ 	padding: 25px;
+ 	text-align: center;
+ }
 
-table
-{
-	border-collapse: collapse;
-}
+#formulaire li{
+	list-style-type:none;}
+ #button1{
+ 	display: block;
+ 	margin: auto;
+ 	text-align:center;
+ }
 
-td,th
-{
-	border : 1px solid black;
-}
+ table
+ {
+ 	border-collapse: collapse;
+ }
+
+ td,th
+ {
+ 	border : 1px solid black;
+ 	min-width:25px;
+ 	max-width:50px;
+ }
+
+ .onglet
+ {
+ 	display:inline-block;
+ 	margin-left:3px;
+ 	margin-right:3px;
+ 	padding:3px;
+ 	border:1px solid black;
+ 	cursor:pointer;
+ }
+ .onglet_0
+ {
+ 	background:#bbbbbb;
+ 	border-bottom:1px solid black;
+ }
+ .onglet_1
+ {
+ 	background:#dddddd;
+ 	border-bottom:0px solid black;
+ 	padding-bottom:4px;
+ }
+ .contenu_onglet
+ {
+ 	background-color:#dddddd;
+ 	border:1px solid black;
+ 	margin-top:-1px;
+ 	padding:5px;
+ 	display:none;
+ }
+ ul
+ {
+ 	margin-top:0px;
+ 	margin-bottom:0px;
+ 	margin-left:-10px
+ }
+ h1
+ {
+ 	margin:0px;
+ 	padding:0px;
+ }
