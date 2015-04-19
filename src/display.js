@@ -110,6 +110,18 @@
 
 			if(i>=1 && j===1){
 				for (path in matpath){
+/*					if (matpath[path]===0){
+						matrixpath.rows[i].cells[j].innerHTML="<i class=\"fa fa-circle-thin\"></i>";
+					}
+					else if (matpath[path]===1){
+						matrixpath.rows[i].cells[j].innerHTML="<i class=\"fa fa-arrow-left\"></i>";
+					}
+					else if (matpath[path]===2){
+						matrixpath.rows[i].cells[j].innerHTML="<i class=\"fa fa-gavel\"></i>";
+					}
+					else if (matpath[path]===3){
+						matrixpath.rows[i].cells[j].innerHTML="<i class=\"fa fa-arrow-up\"></i>";
+					}*/
 					matrixpath.rows[i].cells[j].innerHTML=matpath[path];
 					j++;
 					if(j%size2==0){
