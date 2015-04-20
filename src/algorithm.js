@@ -24,7 +24,7 @@
  * Aurore Perdriau
  */
 
-function algorithm(sequence1,sequence2,matrix,type_seq,algo)
+function algorithm(sequence1,sequence2,matrix,type_seq,algo,gap)
 {
 	this.seq1 = sequence1;
 	this.seq2 = sequence2;
@@ -47,6 +47,7 @@ function algorithm(sequence1,sequence2,matrix,type_seq,algo)
 	this.size1=len1+1;
 	this.size2=len2+2;
 	this.add;
+	this.gap=gap;
 	this.seqlength = Math.min(this.len1, this.len2);
 	this.maxi = Math.max(this.len1, this.len2);
 	this.algo = algo;
@@ -64,10 +65,10 @@ function algorithm(sequence1,sequence2,matrix,type_seq,algo)
 	for (i = 0; i <= this.len1; i++) {
 		for (j = this.len1 + 1; j <= ((this.len1 + this.len2) + 1); j++) {
 			if (this.algo=="smith_waterman"){
-				smithwaterman.prototype.score(this.matscore, this.matpath, this.matsumdia, this.matsumvert, this.matsumhor, this.matseq[i], this.matseq[j], this.len2, this.place);
+				smithwaterman.prototype.score(this.matscore, this.matpath, this.matsumdia, this.matsumvert, this.matsumhor, this.matseq[i], this.matseq[j], this.len2, this.place,this.gap);
 			}
 			else{
-				needlemanwunsch.prototype.score(this.matscore, this.matpath, this.matsumdia, this.matsumvert, this.matsumhor, this.matseq[i], this.matseq[j], this.len2, this.place,this.i);
+				needlemanwunsch.prototype.score(this.matscore, this.matpath, this.matsumdia, this.matsumvert, this.matsumhor, this.matseq[i], this.matseq[j], this.len2, this.place,this.i,this.gap);
 			}
 			this.place++;
 		}

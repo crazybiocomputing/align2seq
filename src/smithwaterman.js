@@ -34,7 +34,7 @@ function smithwaterman()
 smithwaterman.prototype.score = function (matscore, matpath, matsumdia, matsumvert, matsumhor,l1, l2, lengthseq, place) {
 	var match = 10;
 	var mismatch = -5;
-	var gap = 2;
+	var gap=-1;
 	var currentscore;
 	var scorevert, scorehor, scoredia;
 	var sumvert, sumhor, sumdia;
@@ -60,6 +60,7 @@ smithwaterman.prototype.score = function (matscore, matpath, matsumdia, matsumve
 		}
 		else if (l1 === "-" || l2 === "-" || (l1 === "-" && l2 === "-")) {
 			currentscore = gap;
+			console.log(gap);
 		}
 		else if (l1 != l2) {
 			currentscore = mismatch;
