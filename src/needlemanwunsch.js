@@ -47,6 +47,9 @@ needlemanwunsch.prototype.score = function (matscore, matpath, matsumdia, matsum
 		scorevert = 0;
 		scorehor = 0;
 		scoredia = 0;
+		matsumdia[place]=0;
+		matsumvert[place]=0;
+		matsumhor[place]=0;	
 	}
 	else if (place%(lengthseq+1)===0 ){
 		matscore[place]=gap*i;
@@ -54,6 +57,9 @@ needlemanwunsch.prototype.score = function (matscore, matpath, matsumdia, matsum
 		scorevert = 0;
 		scorehor = 0;
 		scoredia = 0;
+		matsumdia[place]=0;
+		matsumvert[place]=0;
+		matsumhor[place]=0;	
 	}
 	else{
 		scorevert=matscore[placevert];

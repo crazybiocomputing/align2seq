@@ -26,6 +26,56 @@
 
  function display(){
 
+ 	//Affichage de la matrice de somme
+
+ 	var matrixsum=document.getElementById("matrixsomme");
+
+	for (var i =0;i<=size1;i++){
+		matrixsum.insertRow(i);
+		for(var j=0;j<=(size2-1);j++){
+			matrixsum.rows[i].insertCell(j);
+		}
+	}
+
+	var matrix1=document.getElementById("matrixsomme").rows;
+
+	for (var i = 0 ; i < matrix1.length; i++) {
+
+		var column = matrix1[i].cells; 
+		
+		for (var j = 0; j < column.length ; j++) {
+
+			if (i>=2 && j===0){ 
+				for(var column in s1){
+					matrixsomme.rows[i].cells[j].innerHTML=s1[column];	
+					i++;	
+				}
+			};
+
+			if (i===0 && j>=2) {
+				for (var ligne in s2) {
+					matrixsomme.rows[i].cells[j].innerHTML=s2[ligne];
+					j++;
+
+				}
+			};
+
+			if(i>=1 && j===1){
+				for (scoring in matsumdia){
+					matrixsomme.rows[i].cells[j].innerHTML=matsumdia[scoring]+"<br>";
+					matrixsomme.rows[i].cells[j].innerHTML+=matsumvert[scoring]+"<br>";
+					matrixsomme.rows[i].cells[j].innerHTML+=matsumhor[scoring];
+					j++;
+					if(j%size2==0){
+						i++;
+						j=1;
+					}
+				}
+			i=1;
+			} 
+		}
+	}
+
 	//Affichage de la matrice de score
 
 	var matrixs=document.getElementById("matrixscore");
@@ -37,11 +87,11 @@
 		}
 	}
 
-	var matrix1=document.getElementById("matrixscore").rows;
+	var matrix2=document.getElementById("matrixscore").rows;
 
-	for (var i = 0 ; i < matrix1.length; i++) {
+	for (var i = 0 ; i < matrix2.length; i++) {
 
-		var column = matrix1[i].cells; 
+		var column = matrix2[i].cells; 
 		
 		for (var j = 0; j < column.length ; j++) {
 
@@ -85,11 +135,11 @@
 		}
 	}
 
-	var matrix2=document.getElementById("matrixpath").rows;//création des lignes
+	var matrix3=document.getElementById("matrixpath").rows;//création des lignes
 
-	for (var i = 0 ; i < matrix2.length; i++) {
+	for (var i = 0 ; i < matrix3.length; i++) {
 
-		var column = matrix2[i].cells; //On a autant de cellule par ligne
+		var column = matrix3[i].cells; //On a autant de cellule par ligne
 		
 		for (var j = 0; j < column.length ; j++) {
 
