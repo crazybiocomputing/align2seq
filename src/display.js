@@ -122,7 +122,7 @@
 					else if (matpath[path]===3){
 						matrixpath.rows[i].cells[j].innerHTML="<i class=\"fa fa-arrow-up\"></i>";
 					}
-					/*matrixpath.rows[i].cells[j].innerHTML=matpath[path];*/
+					// matrixpath.rows[i].cells[j].innerHTML=matpath[path];
 					j++;
 					if(j%size2==0){
 						i++;

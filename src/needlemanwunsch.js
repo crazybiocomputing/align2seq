@@ -31,7 +31,7 @@ function needlemanwunsch()
 	}
 }
 
-needlemanwunsch.prototype.score = function (matscore, matpath, l1, l2, lengthseq, place,i) {
+needlemanwunsch.prototype.score = function (matscore, matpath, matsumdia, matsumvert, matsumhor,l1, l2, lengthseq, place,i) {
 	var match=1;
 	var mismatch=-1;
 	var gap=-1;
@@ -71,6 +71,9 @@ needlemanwunsch.prototype.score = function (matscore, matpath, l1, l2, lengthseq
 		sumdia=scoredia+currentscore;
 		sumvert=scorevert+gap;
 		sumhor=scorehor+gap;
+		matsumdia[place]=sumdia;
+		matsumvert[place]=sumvert;
+		matsumhor[place]=sumhor;
 		var maxiscore=Math.max(sumvert,sumdia,sumhor);
 		matscore[place]=maxiscore;
 		if (maxiscore==(sumhor)){
