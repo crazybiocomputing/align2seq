@@ -40,9 +40,8 @@
  }
 
  #global #step_to_step{
- 	display: table-cell;
- 	width: 60%;
- 	margin:auto;
+ 	display: table-cell;  
+	width: 60%;
  }
 
 
@@ -73,10 +72,11 @@
  	border : 1px solid black;
  	min-width:25px;
  	max-width:50px;
+ 	text-align: center; vertical-align: middle;
  }
 
 
-/* i.fa-circle-thin{
+ i.fa-circle-thin{
  	background-color: red;
  }
 
@@ -90,4 +90,4 @@
 
  i.fa-gavel{
  	background-color: green;
- }*/
+ }

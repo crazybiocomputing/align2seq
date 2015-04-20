@@ -31,7 +31,7 @@ function smithwaterman()
 	}
 }
 
-smithwaterman.prototype.score = function (matscore, matpath, l1, l2, lengthseq, place) {
+smithwaterman.prototype.score = function (matscore, matpath, matsumdia, matsumvert, matsumhor,l1, l2, lengthseq, place) {
 	var match = 10;
 	var mismatch = -5;
 	var gap = 2;
@@ -47,6 +47,9 @@ smithwaterman.prototype.score = function (matscore, matpath, l1, l2, lengthseq, 
 		scorevert = 0;
 		scorehor = 0;
 		scoredia = 0;
+		matsumdia[place]=0;
+		matsumvert[place]=0;
+		matsumhor[place]=0;		
 	}
 	else {
 		scorevert = matscore[placevert];
@@ -64,6 +67,9 @@ smithwaterman.prototype.score = function (matscore, matpath, l1, l2, lengthseq, 
 		sumdia = scoredia + currentscore;
 		sumvert = scorevert + gap;
 		sumhor = scorehor + gap;
+		matsumdia[place]=sumdia;
+		matsumvert[place]=sumvert;
+		matsumhor[place]=sumhor;
 		var maxiscore = Math.max(sumvert, sumdia, sumhor);
 		matscore[place] = maxiscore;
 		if (maxiscore == (sumhor)) {

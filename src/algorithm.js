@@ -39,6 +39,9 @@ function algorithm(sequence1,sequence2,matrix,type_seq,algo)
 	this.matseq = [];
 	this.matscore = [];
 	this.matpath = [];
+	this.matsumdia=[];
+	this.matsumhor=[];
+	this.matsumvert=[];
 	this.i;
 	this.j;
 	this.size1=len1+1;
@@ -61,10 +64,10 @@ function algorithm(sequence1,sequence2,matrix,type_seq,algo)
 	for (i = 0; i <= this.len1; i++) {
 		for (j = this.len1 + 1; j <= ((this.len1 + this.len2) + 1); j++) {
 			if (this.algo=="smith_waterman"){
-				smithwaterman.prototype.score(this.matscore, this.matpath, this.matseq[i], this.matseq[j], this.len2, this.place);
+				smithwaterman.prototype.score(this.matscore, this.matpath, this.matsumdia, this.matsumvert, this.matsumhor, this.matseq[i], this.matseq[j], this.len2, this.place);
 			}
 			else{
-				needlemanwunsch.prototype.score(this.matscore, this.matpath, this.matseq[i], this.matseq[j], this.len2, this.place,this.i);
+				needlemanwunsch.prototype.score(this.matscore, this.matpath, this.matsumdia, this.matsumvert, this.matsumhor, this.matseq[i], this.matseq[j], this.len2, this.place,this.i);
 			}
 			this.place++;
 		}
