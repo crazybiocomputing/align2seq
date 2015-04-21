@@ -24,25 +24,64 @@
  * Aurore Perdriau
  */
 function timelapse(){
-	step_score();
+	// step_score();
 	step_sum();
-	step_path();
+	// step_path();
 }
 
-function step_score(){
+// function step_score(){
 
-}
+// 	var matrixsc=document.getElementById("matrixtime");
+// 	var test = 0;
+// 	test ++;
+// 	for (var i =0;i<=size1;i++){
+// 		matrixsc.insertRow(i);
+// 		for(var j=0;j<=(size2-1);j++){
+// 			matrixsc.rows[i].insertCell(j);
+// 		}
+// 	}
+// 	var matrix1=document.getElementById("matrixtime").rows;
+
+// 	for (var i = 0 ; i < matrix1.length; i++) {
+
+// 		var column = matrix1[i].cells; 
+		
+// 		for (var j = 0; j < column.length ; j++) {
+
+// 			if (i>=2 && j===0){ 
+// 				for(var column in s1){
+// 					matrixtime.rows[i].cells[j].innerHTML=s1[column];	
+// 					i++;	
+// 				}
+// 			}
+
+// 			if (i===0 && j>=2) {
+// 				for (var ligne in s2) {
+// 					matrixtime.rows[i].cells[j].innerHTML=s2[ligne];
+// 					j++;
+
+// 				}
+// 			}
+
+// 			if(i>=1 && j===1){
+// 				for (scoring in matscore){
+// 					document.getElementById("next").innerHTML = test;
+// 					matrixtime.rows[i].cells[j].innerHTML=matscore[scoring];
+// 					j++;
+// 					if(j%size2==0){
+// 						i++;
+// 						j=1;
+// 					}
+// 				}
+// 				i=1;
+// 			} 
+// 		}
+// 	}	
+// }
 
 function step_sum(){
-
-}	
-
-function step_path(){
-
-}	
-	//Création et remplissage du tableau
-	var matrixs=document.getElementById("matrixstep");
-
+	var matrixs=document.getElementById("matrixtime");
+	
 	for (var i =0;i<=size1;i++){
 		matrixs.insertRow(i);
 		for(var j=0;j<=(size2-1);j++){
@@ -50,32 +89,34 @@ function step_path(){
 		}
 	}
 
-	var matrix1=document.getElementById("matrixstep").rows;
+	var matrix1=document.getElementById("matrixtime").rows;
 
 	for (var i = 0 ; i < matrix1.length; i++) {
-		document.getElementsByTagName('td');
+
 		var column = matrix1[i].cells; 
 		
 		for (var j = 0; j < column.length ; j++) {
-			document.style.visibility = (j == v - 1 ? "visible" : "hidden");
+
 			if (i>=2 && j===0){ 
 				for(var column in s1){
-					matrixstep.rows[i].cells[j].innerHTML=s1[column];	
+					matrixtime.rows[i].cells[j].innerHTML=s1[column];	
 					i++;	
 				}
-			};
+			}
 
 			if (i===0 && j>=2) {
 				for (var ligne in s2) {
-					matrixstep.rows[i].cells[j].innerHTML=s2[ligne];
+					matrixtime.rows[i].cells[j].innerHTML=s2[ligne];
 					j++;
 
 				}
-			};
-
+			}
+			
 			if(i>=1 && j===1){
+				
 				for (scoring in matscore){
-					matrixstep.rows[i].cells[j].innerHTML=matscore[scoring];
+					matrixtime.rows[i].cells[j].setAttribute("id",j);
+					matrixtime.rows[i].cells[j].innerHTML=matscore[scoring];
 					j++;
 					if(j%size2==0){
 						i++;
@@ -83,10 +124,51 @@ function step_path(){
 					}
 				}
 				i=1;
-			} 
+				//ça masque la première cellule.
+				document.getElementById(j).style.visibility="hidden";
+			}
+
 		}
+
 	}
-}
 
 
+}	
+
+//document.getElementById(j).style.display=="none";
+		
+// function step_path(){
+// 	var matrixp=document.getElementById("matrixtime");
+
+// 	for (var i =0;i<=size1;i++){
+// 		matrixp.insertRow(i);
+// 		for(var j=0;j<=(size2-1);j++){
+// 			matrixp.rows[i].insertCell(j);
+// 		}
+// 	}
+// 	var matrix1=document.getElementById("matrixtime").rows;
+
+// 	for (var i = 0 ; i < matrix1.length; i++) {
+
+// 		var column = matrix1[i].cells; 
+		
+// 		for (var j = 0; j < column.length ; j++) {
+
+// 			if (i>=2 && j===0){ 
+// 				for(var column in s1){
+// 					matrixtime.rows[i].cells[j].innerHTML=s1[column];	
+// 					i++;	
+// 				}
+// 			}
+
+// 			if (i===0 && j>=2) {
+// 				for (var ligne in s2) {
+// 					matrixtime.rows[i].cells[j].innerHTML=s2[ligne];
+// 					j++;
+
+// 				}
+// 			}
+// 		}
+// 	}		
+// }	
 
