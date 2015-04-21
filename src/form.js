@@ -73,7 +73,8 @@ function get_value(){
 	}
 	var seq1=document.getElementById("sequence1").value;
 	var seq2=document.getElementById("sequence2").value;
-	var matrix=document.getElementById("choice_matrix").options[document.getElementById('choice_matrix').selectedIndex].value;
+	// var matrix=document.getElementById("choice_matrix").options[document.getElementById('choice_matrix').selectedIndex].value;
+	var matrix=matrices.blosum62;
 	var gap=document.getElementById("gap_penality").value;
 	var gap=parseInt(gap); 
 

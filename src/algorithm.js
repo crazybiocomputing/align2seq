@@ -30,6 +30,7 @@ function algorithm(sequence1,sequence2,matrix,type_seq,algo,gap)
 	this.seq2 = sequence2;
 	this.len1 = this.seq1.length;
 	this.len2 = this.seq2.length;
+	this.matrix = matrix;
 	this.l1;
 	this.l2;
 	this.mat1;
@@ -65,10 +66,10 @@ function algorithm(sequence1,sequence2,matrix,type_seq,algo,gap)
 	for (i = 0; i <= this.len1; i++) {
 		for (j = this.len1 + 1; j <= ((this.len1 + this.len2) + 1); j++) {
 			if (this.algo=="smith_waterman"){
-				smithwaterman.prototype.score(this.matscore, this.matpath, this.matsumdia, this.matsumvert, this.matsumhor, this.matseq[i], this.matseq[j], this.len2, this.place,this.gap);
+				smithwaterman.prototype.score(this.matrix,this.matscore, this.matpath, this.matsumdia, this.matsumvert, this.matsumhor, this.matseq[i], this.matseq[j], this.len2, this.place,this.gap);
 			}
 			else{
-				needlemanwunsch.prototype.score(this.matscore, this.matpath, this.matsumdia, this.matsumvert, this.matsumhor, this.matseq[i], this.matseq[j], this.len2, this.place,this.i,this.gap);
+				needlemanwunsch.prototype.score(this.matrix,this.matscore, this.matpath, this.matsumdia, this.matsumvert, this.matsumhor, this.matseq[i], this.matseq[j], this.len2, this.place,this.i,this.gap);
 			}
 			this.place++;
 		}

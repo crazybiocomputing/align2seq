@@ -31,12 +31,12 @@ function needlemanwunsch()
 	}
 }
 
-needlemanwunsch.prototype.score = function (matscore, matpath, matsumdia, matsumvert, matsumhor,l1, l2, lengthseq, place,i,gap) {
-	var match=1;
-	var mismatch=-1;
+needlemanwunsch.prototype.score = function (matrix,matscore, matpath, matsumdia, matsumvert, matsumhor,l1, l2, lengthseq, place,i,gap) {
+	var letters=["A","R","N","D","C","Q","E","G","H","I","L","K","M","F","P","S","T","W","Y","V","B","Z","X"];
 	var currentscore;
 	var scorevert,scorehor,scoredia;
 	var sumvert,sumdia,sumhor;
+	var pos1,pos2;
 	var placevert=place-(lengthseq+1);
 	var placehor=place-1;
 	var placedia=place-(lengthseq+2);
@@ -64,19 +64,28 @@ needlemanwunsch.prototype.score = function (matscore, matpath, matsumdia, matsum
 		scorevert=matscore[placevert];
 		scorehor=matscore[placehor];
 		scoredia=matscore[placedia];
-		if (l1===l2){
-			currentscore=match;
+		for (var l in letters){
+			if (l1 === letters[l]){
+				pos1=l;
+			}
+			if (l2 === letters[l]){
+				pos2=l
+			}
 		}
-		else if (l1==="-" || l2==="-" ||(l1==="-" && l2==="-" )){
-			currentscore=gap;
-		}
-		else if (l1!=l2){
-			currentscore=mismatch;
-		}
+		currentscore=matrix[(lengthseq*pos1)+pos2];
+		console.log(currentscore);
+		// if (l1===l2){
+		// 	currentscore=match;
+		// }
+		// else if (l1==="-" || l2==="-" ||(l1==="-" && l2==="-" )){
+		// 	currentscore=gap;
+		// }
+		// else if (l1!=l2){
+		// 	currentscore=mismatch;
+		// }
 		sumdia=scoredia+currentscore;
 		sumvert=scorevert+gap;
 		sumhor=scorehor+gap;
-		console.log(gap,sumdia,sumhor,sumvert);
 		matsumdia[place]=sumdia;
 		matsumvert[place]=sumvert;
 		matsumhor[place]=sumhor;
