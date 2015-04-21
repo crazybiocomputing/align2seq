@@ -28,57 +28,57 @@
 
  	//Affichage de la matrice de somme
 
- 	var matrixsum=document.getElementById("summatrix");
+ // 	var matrixsum=document.getElementById("summatrix");
 
-	for (var i =0;i<=size1;i++){
-		matrixsum.insertRow(i);
-		for(var j=0;j<=(size2-1);j++){
-			matrixsum.rows[i].insertCell(j);
-		}
-	}
+	// for (var i =0;i<=size1;i++){
+	// 	matrixsum.insertRow(i);
+	// 	for(var j=0;j<=(size2-1);j++){
+	// 		matrixsum.rows[i].insertCell(j);
+	// 	}
+	// }
 
-	var matrix1=document.getElementById("summatrix").rows;
+	// var matrix1=document.getElementById("summatrix").rows;
 
-	for (var i = 0 ; i < matrix1.length; i++) {
+	// for (var i = 0 ; i < matrix1.length; i++) {
 
-		var column = matrix1[i].cells; 
+	// 	var column = matrix1[i].cells; 
 		
-		for (var j = 0; j < column.length ; j++) {
+	// 	for (var j = 0; j < column.length ; j++) {
 
-			if (i>=2 && j===0){ 
-				for(var column in s1){
-					summatrix.rows[i].cells[j].innerHTML=s1[column];	
-					i++;	
-				}
-			};
+	// 		if (i>=2 && j===0){ 
+	// 			for(var column in s1){
+	// 				summatrix.rows[i].cells[j].innerHTML=s1[column];	
+	// 				i++;	
+	// 			}
+	// 		};
 
-			if (i===0 && j>=2) {
-				for (var ligne in s2) {
-					summatrix.rows[i].cells[j].innerHTML=s2[ligne];
-					j++;
+	// 		if (i===0 && j>=2) {
+	// 			for (var ligne in s2) {
+	// 				summatrix.rows[i].cells[j].innerHTML=s2[ligne];
+	// 				j++;
 
-				}
-			};
+	// 			}
+	// 		};
 
-			if(i>=1 && j===1){
-				for (scoring in matsumdia){
-					summatrix.rows[i].cells[j].innerHTML=matsumdia[scoring]+"<br>";
-					summatrix.rows[i].cells[j].innerHTML+=matsumvert[scoring]+"<br>";
-					summatrix.rows[i].cells[j].innerHTML+=matsumhor[scoring];
-					j++;
-					if(j%size2==0){
-						i++;
-						j=1;
-					}
-				}
-			i=1;
-			} 
-		}
-	}
+	// 		if(i>=1 && j===1){
+	// 			for (scoring in matsumdia){
+	// 				summatrix.rows[i].cells[j].innerHTML=matsumdia[scoring]+"<br>";
+	// 				summatrix.rows[i].cells[j].innerHTML+=matsumvert[scoring]+"<br>";
+	// 				summatrix.rows[i].cells[j].innerHTML+=matsumhor[scoring];
+	// 				j++;
+	// 				if(j%size2==0){
+	// 					i++;
+	// 					j=1;
+	// 				}
+	// 			}
+	// 		i=1;
+	// 		} 
+	// 	}
+	// }
 
 	//Affichage de la matrice de score
 
-	var matrixs=document.getElementById("matrixscore");
+	var matrixs=document.getElementById("matrixsum");
 
 	for (var i =0;i<=size1;i++){
 		matrixs.insertRow(i);
@@ -87,7 +87,7 @@
 		}
 	}
 
-	var matrix2=document.getElementById("matrixscore").rows;
+	var matrix2=document.getElementById("matrixsum").rows;
 
 	for (var i = 0 ; i < matrix2.length; i++) {
 
@@ -97,14 +97,14 @@
 
 			if (i>=2 && j===0){ 
 				for(var column in s1){
-					matrixscore.rows[i].cells[j].innerHTML=s1[column];	
+					matrixsum.rows[i].cells[j].innerHTML=s1[column];	
 					i++;	
 				}
 			};
 
 			if (i===0 && j>=2) {
 				for (var ligne in s2) {
-					matrixscore.rows[i].cells[j].innerHTML=s2[ligne];
+					matrixsum.rows[i].cells[j].innerHTML=s2[ligne];
 					j++;
 
 				}
@@ -112,7 +112,7 @@
 
 			if(i>=1 && j===1){
 				for (scoring in matscore){
-					matrixscore.rows[i].cells[j].innerHTML=matscore[scoring];
+					matrixsum.rows[i].cells[j].innerHTML=matscore[scoring];
 					j++;
 					if(j%size2==0){
 						i++;
