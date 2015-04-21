@@ -74,12 +74,14 @@ function get_value(){
 	var seq1=document.getElementById("sequence1").value;
 	var seq2=document.getElementById("sequence2").value;
 	var matrix=document.getElementById("choice_matrix").options[document.getElementById('choice_matrix').selectedIndex].value;
+	var gap=document.getElementById("gap_penality").value;
+	var gap=parseInt(gap); 
 
-init(seq1,seq2,matrix,type_seq,algo);
+init(seq1,seq2,matrix,type_seq,algo,gap);
 }
 
-function init(seq1,seq2,matrix,type_seq,algo){
-	algorithm(seq1,seq2,matrix,type_seq,algo);
+function init(seq1,seq2,matrix,type_seq,algo,gap){
+	algorithm(seq1,seq2,matrix,type_seq,algo,gap);
 	display();
 	
 }

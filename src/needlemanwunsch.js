@@ -31,10 +31,9 @@ function needlemanwunsch()
 	}
 }
 
-needlemanwunsch.prototype.score = function (matscore, matpath, matsumdia, matsumvert, matsumhor,l1, l2, lengthseq, place,i) {
+needlemanwunsch.prototype.score = function (matscore, matpath, matsumdia, matsumvert, matsumhor,l1, l2, lengthseq, place,i,gap) {
 	var match=1;
 	var mismatch=-1;
-	var gap=-1
 	var currentscore;
 	var scorevert,scorehor,scoredia;
 	var sumvert,sumdia,sumhor;
@@ -77,7 +76,7 @@ needlemanwunsch.prototype.score = function (matscore, matpath, matsumdia, matsum
 		sumdia=scoredia+currentscore;
 		sumvert=scorevert+gap;
 		sumhor=scorehor+gap;
-		console.log(sumdia,sumvert,sumhor);
+		console.log(gap,sumdia,sumhor,sumvert);
 		matsumdia[place]=sumdia;
 		matsumvert[place]=sumvert;
 		matsumhor[place]=sumhor;
