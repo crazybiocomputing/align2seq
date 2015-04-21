@@ -28,7 +28,7 @@
 
  	//Affichage de la matrice de somme
 
- 	var matrixsum=document.getElementById("matrixsomme");
+ 	var matrixsum=document.getElementById("summatrix");
 
 	for (var i =0;i<=size1;i++){
 		matrixsum.insertRow(i);
@@ -37,7 +37,7 @@
 		}
 	}
 
-	var matrix1=document.getElementById("matrixsomme").rows;
+	var matrix1=document.getElementById("summatrix").rows;
 
 	for (var i = 0 ; i < matrix1.length; i++) {
 
@@ -47,14 +47,14 @@
 
 			if (i>=2 && j===0){ 
 				for(var column in s1){
-					matrixsomme.rows[i].cells[j].innerHTML=s1[column];	
+					summatrix.rows[i].cells[j].innerHTML=s1[column];	
 					i++;	
 				}
 			};
 
 			if (i===0 && j>=2) {
 				for (var ligne in s2) {
-					matrixsomme.rows[i].cells[j].innerHTML=s2[ligne];
+					summatrix.rows[i].cells[j].innerHTML=s2[ligne];
 					j++;
 
 				}
@@ -62,9 +62,9 @@
 
 			if(i>=1 && j===1){
 				for (scoring in matsumdia){
-					matrixsomme.rows[i].cells[j].innerHTML=matsumdia[scoring]+"<br>";
-					matrixsomme.rows[i].cells[j].innerHTML+=matsumvert[scoring]+"<br>";
-					matrixsomme.rows[i].cells[j].innerHTML+=matsumhor[scoring];
+					summatrix.rows[i].cells[j].innerHTML=matsumdia[scoring]+"<br>";
+					summatrix.rows[i].cells[j].innerHTML+=matsumvert[scoring]+"<br>";
+					summatrix.rows[i].cells[j].innerHTML+=matsumhor[scoring];
 					j++;
 					if(j%size2==0){
 						i++;
