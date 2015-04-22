@@ -75,6 +75,7 @@ function get_value(){
 	var seq2=document.getElementById("sequence2").value;
 	// var matrix=document.getElementById("choice_matrix").options[document.getElementById('choice_matrix').selectedIndex].value;
 	var matrix=matrices.blosum62;
+	console.log(matrix);
 	var gap=document.getElementById("gap_penality").value;
 	var gap=parseInt(gap); 
 
