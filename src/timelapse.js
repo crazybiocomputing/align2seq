@@ -80,10 +80,15 @@ function timelapse(){
 // }
 
 function step_sum(){
+
+	//Enlever le premier élément casse tout
+	document.getElementById("matrixtime").removeChild(matrixtime.childNodes[0]);
+	
+
 	var matrixs=document.getElementById("matrixtime");
 	
 	for (var i =0;i<=size1;i++){
-		matrixs.insertRow(i);
+		matrixs.insertRow(i).setAttribute("id",i);
 		for(var j=0;j<=(size2-1);j++){
 			matrixs.rows[i].insertCell(j);
 		}
@@ -124,18 +129,25 @@ function step_sum(){
 					}
 				}
 				i=1;
-				//ça masque la première cellule.
-				document.getElementById(j).style.visibility="hidden";
 			}
 
 		}
 
 	}
-
-
+document.getElementById("next").addEventListener("click",pass);	
+	
 }	
 
-//document.getElementById(j).style.display=="none";
+function pass(){
+		//tr est le père de td et display s'applique sur td
+		var y = document.getElementById("matrixtime").getElementsByTagName("td")[i];
+		console.log("test",y);
+		i++;
+		y.style.display="none";
+}
+// document.getElementById("matrixtime");
+// document.getElementsByTagName("tr")[i].style.display="none";
+// document.getElementsByTagName("td")[j].style.display="none";
 		
 // function step_path(){
 // 	var matrixp=document.getElementById("matrixtime");
