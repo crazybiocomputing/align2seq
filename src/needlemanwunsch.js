@@ -64,12 +64,22 @@ needlemanwunsch.prototype.score = function (matrix,matscore, matpath, matsumdia,
 		scoredia=matscore[placedia];
 		for (var l in letters){
 			if (l1 === letters[l]){
+				console.log(l);
 				pos1=parseInt(l);
 			}
 			if (l2 === letters[l]){
 				pos2=parseInt(l);
 			}
 		}
+		// if (pos1=="" || pos2 =="" || (pos1=="" && pos2=="")){
+		// 	if (pos1==""){
+		// 		pos1=parseInt(lengthmat);
+
+		// 	}
+		// 	if (pos2==""){
+		// 		pos2=parseInt(lengthmat);
+		// 	}
+		// }
 		var lengthmat=letters.length;
 		var posmatrix=(lengthmat*pos1)+pos2;
 		currentscore=parseInt(matrix[posmatrix]);
@@ -90,7 +100,6 @@ matsumdia[place]=sumdia;
 matsumvert[place]=sumvert;
 matsumhor[place]=sumhor;
 var maxiscore=Math.max(sumvert,sumdia,sumhor);
-// matscore[place]=maxiscore;
 if (maxiscore==(sumhor)){
 	matpath[place]=1; }
 	else if (maxiscore==(sumdia)){
