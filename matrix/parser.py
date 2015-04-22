@@ -72,6 +72,7 @@ PAM500=open("PAM/EPAM500.txt")
 
 
 mat=open ("matrix.json","w")
+mat.write("matrice")
 mat.write("{")
 def parser(matrix1):
 	name=""
@@ -83,17 +84,23 @@ def parser(matrix1):
 		for k in range(len(j)):
 			if j[0]=="#":
 				if re.match(r"blosum[0-9]{,4}\.iij", j[k])or re.match(r"blosum[0-9]{,4}\_[0-9]\.iij", j[k]) or re.match(r"blosumn", j[k]) :
-					name=j[k]
+					l=j[k].split(".")
+					
+					name=l[0]
 					
 				elif j[k]=="PAM" and re.match(r"[0-9]{,4}",j[k+1]):
 					name=j[k]+j[k+1]
 					
-		if j[0]!="#":
-			matrix.append(i.split(" +"))
+			if j[0]!="#":
+
+				if re.match(r"[-][0-9]",j[k]) or re.match(r"[0-9]",j[k]):
+					matrix.append(float(j[k]))
+			
+			
 	
 	matrix2=json.dumps(matrix)
 
-	print matrix2
+	
 
 	mat.write(name)
 	mat.write(":")
@@ -108,6 +115,8 @@ parser(blosum45)
 parser(blosum50)
 parser(blosum55)
 parser(blosum60)
+parser(blosum62)
+parser(blosum6212)
 parser(blosum65)
 parser(blosum70)
 parser(blosum75)
