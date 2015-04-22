@@ -72,7 +72,7 @@ PAM500=open("PAM/EPAM500.txt")
 
 
 mat=open ("matrixlist.json","w")
-mat.write("matrixlist")
+mat.write("matrixlist=")
 mat.write("{")
 def parser(matrix1):
 	name=""
