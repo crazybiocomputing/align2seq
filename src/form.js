@@ -71,10 +71,10 @@ function get_value(){
 			type_seq= seq_choice[j].value;
 		}
 	}
-	var seq1=document.getElementById("sequence1").value;
-	var seq2=document.getElementById("sequence2").value;
-	// var matrix=document.getElementById("choice_matrix").options[document.getElementById('choice_matrix').selectedIndex].value;
-	var matrix=matrices.blosum62;
+	var seq2=document.getElementById("sequence1").value;
+	var seq1=document.getElementById("sequence2").value;
+	var matrix=document.getElementById("choice_matrix").options[document.getElementById('choice_matrix').selectedIndex].value;
+	var matrix=matrices.matrix;
 	console.log(matrix);
 	var gap=document.getElementById("gap_penality").value;
 	var gap=parseInt(gap); 

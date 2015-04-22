@@ -32,7 +32,7 @@ function needlemanwunsch()
 }
 
 needlemanwunsch.prototype.score = function (matrix,matscore, matpath, matsumdia, matsumvert, matsumhor,l1, l2, lengthseq, place,i,gap) {
-	var letters=["A","R","N","D","C","Q","E","G","H","I","L","K","M","F","P","S","T","W","Y","V","B","Z","X"];
+	var letters=["A","R","N","D","C","Q","E","G","H","I","L","K","M","F","P","S","T","W","Y","V","B","Z","X", "*"];
 	var currentscore;
 	var scorevert,scorehor,scoredia;
 	var sumvert,sumdia,sumhor;
@@ -64,6 +64,8 @@ needlemanwunsch.prototype.score = function (matrix,matscore, matpath, matsumdia,
 		scorevert=matscore[placevert];
 		scorehor=matscore[placehor];
 		scoredia=matscore[placedia];
+
+
 		for (var l in letters){
 			if (l1 === letters[l]){
 				pos1=parseInt(l);
@@ -72,9 +74,11 @@ needlemanwunsch.prototype.score = function (matrix,matscore, matpath, matsumdia,
 				pos2=parseInt(l);
 			}
 		}
-		var posmatrix=(lengthseq*pos1)+pos2;
-		console.log(posmatrix);
+
+		var lengthmat=letters.length;
+		var posmatrix=(lengthmat*pos1)+pos2;
 		currentscore=parseInt(matrix[posmatrix]);
+		matscore[place]=currentscore;
 		// if (l1===l2){
 		// 	currentscore=match;
 		// }
@@ -91,7 +95,7 @@ needlemanwunsch.prototype.score = function (matrix,matscore, matpath, matsumdia,
 		matsumvert[place]=sumvert;
 		matsumhor[place]=sumhor;
 		var maxiscore=Math.max(sumvert,sumdia,sumhor);
-		matscore[place]=maxiscore;
+		// matscore[place]=maxiscore;
 
 		if (maxiscore==(sumhor)){
 			matpath[place]=1;	} 
