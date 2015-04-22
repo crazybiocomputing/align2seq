@@ -1,84 +1,84 @@
 <!--
- *  align2seq: Pairwise alignements algorithms in JavaScript, html5, and css3 
- *  Copyright (C) 2015  
- *
- *  This file is part of align2seq.
- *
- *  align2seq is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  align2seq is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with align2seq.  If not, see <http://www.gnu.org/licenses/>
- *
- * Authors:
- * Rudy Anne
- * Aurelien Beliard
- * Emeline Duquenne
- * Aurore Perdriau
+* align2seq: Pairwise alignements algorithms in JavaScript, html5, and css3
+* Copyright (C) 2015
+*
+* This file is part of align2seq.
+*
+* align2seq is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* align2seq is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with align2seq. If not, see <http://www.gnu.org/licenses/>
+*
+* Authors:
+* Rudy Anne
+* Aurelien Beliard
+* Emeline Duquenne
+* Aurore Perdriau
 -->
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Pairwise alignement</title>
-	<meta charset='utf-8'>
-	<link rel="stylesheet" href="font-awesome-4.3.0/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="alignStyle.css">
-	<script type="text/javascript" src=" ../src/form.js"></script>
-	<script type="text/javascript" src=" ../src/algorithm.js"></script>
-	<script type="text/javascript" src=" ../src/needlemanwunsch.js"></script>
-	<script type="text/javascript" src=" ../src/smithwaterman.js"></script>
-	<script type="text/javascript" src=" ../src/display.js"></script>
-	<script type="text/javascript" src=" ../matrix/blosum62.json"></script>
-	<body>
-		<header>
-			<h1 id="title">Tool for pairwise alignment</h1>
-		</header>
-		<div id="global">
-			<div id="step_by_step">
-				<table id="matrixsum">
-				</table>
-				<br>
-				<br>
-				<table id="matrixpath">
-				</table>
-			</div>
-			<div id="formulaire">
-				<li id="algo"><h3>Algorithms</h3>
-					<label class="elem_form"> Needleman and Wunsch </label> <input type="radio" name="algorithm" value="needleman_wunsch" id="needleman_wunsch" ><br>
-					<label class="elem_form"> Smith and Waterman </label> <input type="radio" name="algorithm" value="smith_waterman" id="smith_waterman"><br>
-				</li>
-				<li id="seq"><h3>Sequences</h3>
-					<label class="elem_form">Proteins</label><input type="radio" name="type_seq" value="protein" id ="protein" onClick="choose_matrix()" > 
-					<label class="elem_form">Nucleotides</label> <input type="radio" name="type_seq" value="nucleotide" id="nucleotide" onClick="choose_matrix()" ><br>
-					<label class="elem_form" for="sequence1">Sequence 1</label>
-					<input type="text" name="sequence1" value="sequence1" id="sequence1" required> <br>
-					<label class="elem_form" for="sequence2">Sequence 2</label>
-					<input type="text" name="sequence2" value="sequence2" id ="sequence2" required> <br>
-				</li>
-				<li id="opt"><h3>Options</h3>
-					<label class="elem_form" for="penalité_de_gap"> Gap penality </label>
-					<input type="number" placeholder="choisissez la penalité de gap" name="gap_penality" id="gap_penality" value ="0"> <br>
-					<label class="elem_form">Matrices</label>
-					<select id="choice_matrix" name="choice_matrix" >
-					</select>
-				</li>
-				<li id="commands"><h3>Results</h3></li>
-				<button id="submit_button"onclick="get_value()"><i class="fa fa-play"></i></button>
-				<button id ="suivant" onClick="algorithm()"><i class="fa fa-step-forward"></i></button> 
-				<button id ="precedent"><i class="fa fa-step-backward"></i></button> 
-				<button id ="final"><i class="fa fa-stop"></i></button> 
-				<li id="alignment"></li>
-			</div>
-		</div>
-	</div>
-	<footer>
-	</footer>
+<title>Pairwise alignement</title>
+<meta charset='utf-8'>
+<link rel="stylesheet" href="font-awesome-4.3.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="alignStyle.css">
+<script type="text/javascript" src=" ../src/form.js"></script>
+<script type="text/javascript" src=" ../src/algorithm.js"></script>
+<script type="text/javascript" src=" ../src/needlemanwunsch.js"></script>
+<script type="text/javascript" src=" ../src/smithwaterman.js"></script>
+<script type="text/javascript" src=" ../src/display.js"></script>
+<script type="text/javascript" src=" ../matrix/blosum62.json"></script>
+<body>
+<header>
+<h1 id="title">Tool for pairwise alignment</h1>
+</header>
+<div id="global">
+<div id="step_by_step">
+<table id="matrixsum">
+</table>
+<br>
+<br>
+<table id="matrixpath">
+</table>
+</div>
+<div id="formulaire">
+<li id="algo"><h3>Algorithms</h3>
+<label class="elem_form"> Needleman and Wunsch </label> <input type="radio" name="algorithm" value="needleman_wunsch" id="needleman_wunsch" ><br>
+<label class="elem_form"> Smith and Waterman </label> <input type="radio" name="algorithm" value="smith_waterman" id="smith_waterman"><br>
+</li>
+<li id="seq"><h3>Sequences</h3>
+<label class="elem_form">Proteins</label><input type="radio" name="type_seq" value="protein" id ="protein" onClick="choose_matrix()" >
+<label class="elem_form">Nucleotides</label> <input type="radio" name="type_seq" value="nucleotide" id="nucleotide" onClick="choose_matrix()" ><br>
+<label class="elem_form" for="sequence1">Sequence 1</label>
+<input type="text" name="sequence1" value="sequence1" id="sequence1" required> <br>
+<label class="elem_form" for="sequence2">Sequence 2</label>
+<input type="text" name="sequence2" value="sequence2" id ="sequence2" required> <br>
+</li>
+<li id="opt"><h3>Options</h3>
+<label class="elem_form" for="penalité_de_gap"> Gap penality </label>
+<input type="number" placeholder="choisissez la penalité de gap" name="gap_penality" id="gap_penality" value ="0"> <br>
+<label class="elem_form">Matrices</label>
+<select id="choice_matrix" name="choice_matrix" >
+</select>
+</li>
+<li id="commands"><h3>Results</h3></li>
+<button id="submit_button"onclick="get_value()"><i class="fa fa-play"></i></button>
+<button id ="suivant" onClick="algorithm()"><i class="fa fa-step-forward"></i></button>
+<button id ="precedent"><i class="fa fa-step-backward"></i></button>
+<button id ="final"><i class="fa fa-stop"></i></button>
+<li id="alignment"></li>
+</div>
+</div>
+</div>
+<footer>
+</footer>
 </body>
 </html>
