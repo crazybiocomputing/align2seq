@@ -116,12 +116,13 @@ function step_sum(){
 
 				}
 			}
-			
+			// document.getElementById("next").addEventListener("click",pass);	
 			if(i>=1 && j===1){
 				
 				for (scoring in matscore){
 					matrixtime.rows[i].cells[j].setAttribute("id",j);
 					matrixtime.rows[i].cells[j].innerHTML=matscore[scoring];
+					matrixtime.rows[i].cells[j].style.visibility="hidden";
 					j++;
 					if(j%size2==0){
 						i++;
@@ -139,16 +140,14 @@ document.getElementById("next").addEventListener("click",pass);
 }	
 
 function pass(){
-		//tr est le père de td et display s'applique sur td
-		var y = document.getElementById("matrixtime").getElementsByTagName("td")[i];
-		console.log("test",y);
-		i++;
-		y.style.display="none";
-}
-// document.getElementById("matrixtime");
-// document.getElementsByTagName("tr")[i].style.display="none";
-// document.getElementsByTagName("td")[j].style.display="none";
 		
+		var y = document.getElementById("matrixtime").getElementsByTagName("td")[i];
+		// console.log("test",y);
+		y.style.visibility="visible";
+		i++;
+		j++;
+}
+
 // function step_path(){
 // 	var matrixp=document.getElementById("matrixtime");
 
