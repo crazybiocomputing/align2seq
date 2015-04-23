@@ -26,55 +26,8 @@
 
  function display(){
 
- 	//Affichage de la matrice de somme
-
- // 	var matrixsum=document.getElementById("summatrix");
-
-	// for (var i =0;i<=size1;i++){
-	// 	matrixsum.insertRow(i);
-	// 	for(var j=0;j<=(size2-1);j++){
-	// 		matrixsum.rows[i].insertCell(j);
-	// 	}
-	// }
-
-	// var matrix1=document.getElementById("summatrix").rows;
-
-	// for (var i = 0 ; i < matrix1.length; i++) {
-
-	// 	var column = matrix1[i].cells; 
-		
-	// 	for (var j = 0; j < column.length ; j++) {
-
-	// 		if (i>=2 && j===0){ 
-	// 			for(var column in s1){
-	// 				summatrix.rows[i].cells[j].innerHTML=s1[column];	
-	// 				i++;	
-	// 			}
-	// 		};
-
-	// 		if (i===0 && j>=2) {
-	// 			for (var ligne in s2) {
-	// 				summatrix.rows[i].cells[j].innerHTML=s2[ligne];
-	// 				j++;
-
-	// 			}
-	// 		};
-
-	// 		if(i>=1 && j===1){
-	// 			for (scoring in matsumdia){
-	// 				summatrix.rows[i].cells[j].innerHTML=matsumdia[scoring]+"<br>";
-	// 				summatrix.rows[i].cells[j].innerHTML+=matsumvert[scoring]+"<br>";
-	// 				summatrix.rows[i].cells[j].innerHTML+=matsumhor[scoring];
-	// 				j++;
-	// 				if(j%size2==0){
-	// 					i++;
-	// 					j=1;
-	// 				}
-	// 			}
-	// 		i=1;
-	// 		} 
-	// 	}
-	// }
+	 	document.getElementById("matrixsum").removeChild(matrixsum.childNodes[0]);
+	 	document.getElementById("matrixpath").removeChild(matrixpath.childNodes[0]);
 
 	//Affichage de la matrice de score
 
@@ -86,7 +39,8 @@
 			matrixs.rows[i].insertCell(j);
 		}
 	}
-
+	
+ 	
 	var matrix2=document.getElementById("matrixsum").rows;
 
 	for (var i = 0 ; i < matrix2.length; i++) {
