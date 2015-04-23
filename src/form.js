@@ -50,9 +50,85 @@ function choose_matrix(){
 		}
 	}
 }
+
+function choose_gap_penalty(){
+	var seq1=document.getElementById("sequence1").value;
+	var seq2=document.getElementById("sequence2").value;
+	var enter_gap_penalty =document.getElementById("gap");
+	console.log(enter_gap_penalty);
+
+	// if (enter_gap_penalty.hasChildNodes()===true){
+		console.log(enter_gap_penalty.childNodes[0])
+		enter_gap_penalty.removeChild(enter_gap_penalty.childNodes);
+	if (document.getElementById('single').checked===true){
+		var enter_gap=document.createElement('input');
+		enter_gap.setAttribute("type","number");
+		enter_gap.setAttribute("id", "enter_gap_penalty");
+		enter_gap.setAttribute("value", "0");
+		enter_gap.setAttribute("size", 2);
+		enter_gap_penalty.appendChild(enter_gap);
+	}
+	if (document.getElementById('multiple').checked===true){
+		console.log("multiple");
+		
+
+		
+		if (seq1.length>=seq2.length){
+			for (var i =0; i <= seq1.length-1; i++) {
+
+				console.log("aha");
+				if (enter_gap_penalty.hasChildNodes==true){
+					var enter_gap=document.createElement('input');
+					enter_gap.insertBefore(enter_gap,enter_gap_penalty.lastChild);
+					
+					enter_gap.setAttribute("type","number");
+					enter_gap.setAttribute("id", "enter_gap_penalty"+i);
+					enter_gap.setAttribute("value", "0");
+				enter_gap.setAttribute("style", "width:2em");
+				}
+				else {
+					var enter_gap=document.createElement('input');
+					enter_gap_penalty.appendChild(enter_gap);
+					enter_gap.setAttribute("type","number");
+					enter_gap.setAttribute("id", "enter_gap_penalty"+i);
+					enter_gap.setAttribute("value", "0");
+					enter_gap.setAttribute("style", "width:2em");
+				}
+				
+			}
+		}
+		else if (seq2.length>seq1.length){
+			console.log("ahaha");
+			for (var i =0; i <= seq2.length-1 ; i++) {
+				console.log(i);
+				if (enter_gap_penalty.hasChildNodes==true){
+					var enter_gap=document.createElement('input');
+					enter_gap.insertBefore(enter_gap,enter_gap_penalty.lastChild);
+					enter_gap.setAttribute("type","number");
+					enter_gap.setAttribute("id", "enter_gap_penalty"+i);
+					enter_gap.setAttribute("value", "0");
+					enter_gap.setAttribute("style", "width:2em");
+				}
+				else {
+					var enter_gap=document.createElement('input');
+					enter_gap_penalty.appendChild(enter_gap);
+					enter_gap.setAttribute("type","number");
+					enter_gap.setAttribute("id", "enter_gap_penalty"+i);
+					enter_gap.setAttribute("value", "0");
+				enter_gap.setAttribute("style", "width:2em");
+				}
+		 }
+		}
+	}
+	
+}
+
+
+
 function get_value(){
 // event.preventDefault();
 var algo;
+console.log(algo);
 var type_seq;
 var algo_choice=document.getElementsByName("algorithm");
 for (var i=0;i<algo_choice.length;i++){
@@ -78,3 +154,13 @@ function init(seq1,seq2,matrix,type_seq,algo,gap){
 	algorithm(seq1,seq2,matrix,type_seq,algo,gap);
 	display();
 }
+
+// function verif(){
+
+// var checked=false
+// if algo != undefined{
+	
+
+// }
+
+// }

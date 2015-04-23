@@ -64,8 +64,12 @@
 					<input type="text" name="sequence2" value="sequence2" id ="sequence2" required> <br>
 				</li>
 				<li id="opt"><h3>Options</h3>
-					<label class="elem_form" for="penalité_de_gap"> Gap penality </label>
-					<input type="number" placeholder="choisissez la penalité de gap" name="gap_penality" id="gap_penality" value ="0"> <br>
+					<label class="elem_form" for="gap_penalty"> Gap penalty </label><br> 
+					<label class="elem_form"> single gap penalty </label><input type="radio" name="choose_gap_penalty" value="single" id="single" onClick="choose_gap_penalty()"><br>
+					<label class="elem_form"> multiple gap penalty </label><input type="radio" name="choose_gap_penalty" value="multiple" id="multiple" onClick="choose_gap_penalty()"><br>
+					<div id="gap" >
+						
+					 </div><br>
 					<label class="elem_form">Matrices</label>
 					<select id="choice_matrix" name="choice_matrix" >
 					</select>
