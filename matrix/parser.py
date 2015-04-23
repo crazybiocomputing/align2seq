@@ -1,6 +1,5 @@
 import json
 import re
-matrix=[]
 blosum30=open("Blosum/EBLOSUM30.txt")
 blosum35=open("Blosum/EBLOSUM35.txt")
 blosum40=open("Blosum/EBLOSUM40.txt")
@@ -75,8 +74,8 @@ mat=open ("matrixlist.json","w")
 mat.write("matrixlist=")
 mat.write("{")
 def parser(matrix1):
+	matrix=[]
 	name=""
-	
 	content= matrix1.read()
 	lines= content.split("\n")
 	for i in lines:
@@ -97,13 +96,14 @@ def parser(matrix1):
 			
 	
 	matrix2=json.dumps(matrix)
-
+	print matrix
 	
 
 	mat.write(name)
 	mat.write(":")
 	mat.write(matrix2)
 	mat.write(",\n")
+
 	
 
 parser(blosum30)

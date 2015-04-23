@@ -64,7 +64,6 @@ needlemanwunsch.prototype.score = function (matrix,matscore, matpath, matsumdia,
 		scoredia=matscore[placedia];
 		for (var l in letters){
 			if (l1 === letters[l]){
-				console.log(l);
 				pos1=parseInt(l);
 			}
 			if (l2 === letters[l]){

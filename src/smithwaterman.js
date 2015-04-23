@@ -31,12 +31,12 @@ function smithwaterman()
 	}
 }
 
-smithwaterman.prototype.score = function (matscore, matpath, matsumdia, matsumvert, matsumhor,l1, l2, lengthseq, place,gap) {
-	var match = 10;
-	var mismatch = -5;
+smithwaterman.prototype.score = function (matrix,matscore, matpath, matsumdia, matsumvert, matsumhor,l1, l2, lengthseq, place,gap) {
+	var letters=["A","R","N","D","C","Q","E","G","H","I","L","K","M","F","P","S","T","W","Y","V","B","Z","X", "*"];
 	var currentscore;
 	var scorevert, scorehor, scoredia;
 	var sumvert, sumhor, sumdia;
+	var pos1,pos2;
 	var placevert = place - (lengthseq + 1);
 	var placehor = place - 1;
 	var placedia = place - (lengthseq + 2);
@@ -50,38 +50,37 @@ smithwaterman.prototype.score = function (matscore, matpath, matsumdia, matsumve
 		matsumvert[place]=0;
 		matsumhor[place]=0;		
 	}
-	else {
-		scorevert = matscore[placevert];
-		scorehor = matscore[placehor];
-		scoredia = matscore[placedia];
-		if (l1 === l2) {
-			currentscore = match;
+	else{
+		scorevert=matscore[placevert];
+		scorehor=matscore[placehor];
+		scoredia=matscore[placedia];
+		for (var l in letters){
+			if (l1 === letters[l]){
+				pos1=parseInt(l);
+			}
+			if (l2 === letters[l]){
+				pos2=parseInt(l);
+			}
 		}
-		else if (l1 === "-" || l2 === "-" || (l1 === "-" && l2 === "-")) {
-			currentscore = gap;
-		}
-		else if (l1 != l2) {
-			currentscore = mismatch;
-		}
-		sumdia = scoredia + currentscore;
-		sumvert = scorevert + gap;
-		sumhor = scorehor + gap;
+		var lengthmat=letters.length;
+		var posmatrix=(lengthmat*pos1)+pos2;
+		currentscore=parseInt(matrix[posmatrix]);
+		matscore[place]=currentscore;
+		sumdia=scoredia+currentscore;
+		sumvert=scorevert+gap;
+		sumhor=scorehor+gap;
 		matsumdia[place]=sumdia;
 		matsumvert[place]=sumvert;
 		matsumhor[place]=sumhor;
-		var maxiscore = Math.max(sumvert, sumdia, sumhor);
-		matscore[place] = maxiscore;
-		if (maxiscore == (sumhor)) {
-			matpath[place] = 1;
-		}
-		else if (maxiscore == (sumdia)) {
-			matpath[place] = 2;
-		}
-		else {
-			matpath[place] = 3;
-		}
-	}
-};
+		var maxiscore=Math.max(sumvert,sumdia,sumhor);
+		if (maxiscore==(sumhor)){
+			matpath[place]=1; }
+			else if (maxiscore==(sumdia)){
+				matpath[place]=2;}
+				else{
+					matpath[place]=3; }
+				}
+			}
 
 smithwaterman.prototype.alignment = function (matpath, matscore, s1, s2, len1, len2, lengthseq) {
 	var val, elem, dep, valmaxpos;
