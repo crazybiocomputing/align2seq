@@ -26,58 +26,8 @@
 function timelapse(){
 	// step_score();
 	step_sum();
-	// step_path();
+	step_path();
 }
-
-// function step_score(){
-
-// 	var matrixsc=document.getElementById("matrixtime");
-// 	var test = 0;
-// 	test ++;
-// 	for (var i =0;i<=size1;i++){
-// 		matrixsc.insertRow(i);
-// 		for(var j=0;j<=(size2-1);j++){
-// 			matrixsc.rows[i].insertCell(j);
-// 		}
-// 	}
-// 	var matrix1=document.getElementById("matrixtime").rows;
-
-// 	for (var i = 0 ; i < matrix1.length; i++) {
-
-// 		var column = matrix1[i].cells; 
-		
-// 		for (var j = 0; j < column.length ; j++) {
-
-// 			if (i>=2 && j===0){ 
-// 				for(var column in s1){
-// 					matrixtime.rows[i].cells[j].innerHTML=s1[column];	
-// 					i++;	
-// 				}
-// 			}
-
-// 			if (i===0 && j>=2) {
-// 				for (var ligne in s2) {
-// 					matrixtime.rows[i].cells[j].innerHTML=s2[ligne];
-// 					j++;
-
-// 				}
-// 			}
-
-// 			if(i>=1 && j===1){
-// 				for (scoring in matscore){
-// 					document.getElementById("next").innerHTML = test;
-// 					matrixtime.rows[i].cells[j].innerHTML=matscore[scoring];
-// 					j++;
-// 					if(j%size2==0){
-// 						i++;
-// 						j=1;
-// 					}
-// 				}
-// 				i=1;
-// 			} 
-// 		}
-// 	}	
-// }
 
 function step_sum(){
 
@@ -116,11 +66,11 @@ function step_sum(){
 
 				}
 			}
-			// document.getElementById("next").addEventListener("click",pass);	
+			document.getElementById("next").addEventListener("click",pass);	
 			if(i>=1 && j===1){
 				
 				for (scoring in matscore){
-					matrixtime.rows[i].cells[j].setAttribute("id",j);
+					// matrixtime.rows[i].cells[j].setAttribute("id",j);
 					matrixtime.rows[i].cells[j].innerHTML=matscore[scoring];
 					matrixtime.rows[i].cells[j].style.visibility="hidden";
 					j++;
@@ -135,7 +85,7 @@ function step_sum(){
 		}
 
 	}
-document.getElementById("next").addEventListener("click",pass);	
+// document.getElementById("next").addEventListener("click",pass);	
 	
 }	
 
@@ -148,38 +98,78 @@ function pass(){
 		i++;
 }
 
-// function step_path(){
-// 	var matrixp=document.getElementById("matrixtime");
+function step_path(){
 
-// 	for (var i =0;i<=size1;i++){
-// 		matrixp.insertRow(i);
-// 		for(var j=0;j<=(size2-1);j++){
-// 			matrixp.rows[i].insertCell(j);
-// 		}
-// 	}
-// 	var matrix1=document.getElementById("matrixtime").rows;
+	document.getElementById("matrixtime2").removeChild(matrixtime2.childNodes[0]);
 
-// 	for (var i = 0 ; i < matrix1.length; i++) {
+	var matrixp=document.getElementById("matrixtime2");
 
-// 		var column = matrix1[i].cells; 
+	for (var i =0;i<=size1;i++){
+		matrixp.insertRow(i);
+		for(var j=0;j<=(size2-1);j++){
+			matrixp.rows[i].insertCell(j);
+		}
+	}
+	var matrix1=document.getElementById("matrixtime2").rows;
+
+	for (var i = 0 ; i < matrix1.length; i++) {
+
+		var column = matrix1[i].cells; 
 		
-// 		for (var j = 0; j < column.length ; j++) {
+		for (var j = 0; j < column.length ; j++) {
 
-// 			if (i>=2 && j===0){ 
-// 				for(var column in s1){
-// 					matrixtime.rows[i].cells[j].innerHTML=s1[column];	
-// 					i++;	
-// 				}
-// 			}
+			if (i>=2 && j===0){ 
+				for(var column in s1){
+					matrixtime2.rows[i].cells[j].innerHTML=s1[column];	
+					i++;	
+				}
+			}
 
-// 			if (i===0 && j>=2) {
-// 				for (var ligne in s2) {
-// 					matrixtime.rows[i].cells[j].innerHTML=s2[ligne];
-// 					j++;
+			if (i===0 && j>=2) {
+				for (var ligne in s2) {
+					matrixtime2.rows[i].cells[j].innerHTML=s2[ligne];
+					j++;
 
-// 				}
-// 			}
-// 		}
-// 	}		
-// }	
+				}
+			}
+			if(i>=1 && j===1){
+				for (path in matpath){
+					// matrixtime2.rows[i].cells[j].innerHTML=matpath[path];
+					
+					if (matpath[path]===0){
+						matrixtime2.rows[i].cells[j].innerHTML="<i class=\"fa fa-circle-thin\"></i>";
+						matrixtime2.rows[i].cells[j].style.visibility="hidden";
+					}
+					else if (matpath[path]===1){
+						matrixtime2.rows[i].cells[j].innerHTML="<i class=\"fa fa-arrow-left\"></i>";
+						matrixtime2.rows[i].cells[j].style.visibility="hidden";
+					}
+					else if (matpath[path]===2){
+						matrixtime2.rows[i].cells[j].innerHTML="<i class=\"fa fa-gavel\"></i>";
+						matrixtime2.rows[i].cells[j].style.visibility="hidden";
+					}
+					else if (matpath[path]===3){
+						matrixtime2.rows[i].cells[j].innerHTML="<i class=\"fa fa-arrow-up\"></i>";
+						matrixtime2.rows[i].cells[j].style.visibility="hidden";
+					}
+					j++;
+					if(j%size2==0){
+						i++;
+						j=1;
+					}
+				}
+				i=1;
+			}
+		}	
+	}	
+document.getElementById("next").addEventListener("click",pass2);	
+}	
 
+function pass2(){
+		
+		var y = document.getElementById("matrixtime2").getElementsByTagName("td")[i];
+		//Ne passe en visible qu'au moment du clique
+		y.style.visibility="visible";
+		document.getElementById("matrixtime2").getElementsByTagName("td")[i+1].style.visibility="visible";
+		i++;
+}
