@@ -24,6 +24,14 @@
  * Aurore Perdriau
  */
 
+/** First file executed after data treatment, creation of matrices for application of the chosen algorithm
+@constructor
+@param {string} sequence1 - The first sequence entered by the user, in the first line of the score matrix
+@param {string} sequence2 - The second sequence entered by the user, in the first column of the score matrix
+@param matrix - Substitution matrix chose by the user
+@param {string} type_seq - If the sequences are proteins or nucleotides
+@algo {string} - If the algorithm used is S&W or N&W (for the moment)
+@gap {number} - Gap penality */
 function algorithm(sequence1,sequence2,matrix,type_seq,algo,gap)
 {
 	this.seq1 = sequence1;
