@@ -141,11 +141,11 @@ document.getElementById("next").addEventListener("click",pass);
 
 function pass(){
 		
-		var y = document.getElementById("matrixtime").getElementsByTagName("td")[i];
-		// console.log("test",y);
+		var y = document.getElementById("matrixtime").getElementsByTagName("td")[i+2];
+		//Ne passe en visible qu'au moment du clique
 		y.style.visibility="visible";
+		document.getElementById("matrixtime").getElementsByTagName("td")[i+1].style.visibility="visible";
 		i++;
-		j++;
 }
 
 // function step_path(){
