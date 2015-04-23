@@ -1,5 +1,11 @@
+"This program will parse matrix files to convert them into objects usable by JS files"
+# libraries' imports for create the parser
+## librairy to create the json object
 import json
+## library for using regular expressions 
 import re
+
+# opening of all files, each containing a BLOSUM matrix
 blosum30=open("Blosum/EBLOSUM30.txt")
 blosum35=open("Blosum/EBLOSUM35.txt")
 blosum40=open("Blosum/EBLOSUM40.txt")
@@ -16,7 +22,7 @@ blosum80=open("Blosum/EBLOSUM80.txt")
 blosum85=open("Blosum/EBLOSUM85.txt")
 blosum90=open("Blosum/EBLOSUM90.txt")
 blosumn=open("Blosum/EBLOSUMN.txt")
-
+# opening of all files, each containing a PAM matrix
 PAM10=open("PAM/EPAM10.txt")
 PAM20=open("PAM/EPAM20.txt")
 PAM30=open("PAM/EPAM30.txt")
@@ -68,16 +74,19 @@ PAM480=open("PAM/EPAM480.txt")
 PAM490=open("PAM/EPAM490.txt")
 PAM500=open("PAM/EPAM500.txt")
 
-
-
+#opening of the file which will be writed
 mat=open ("matrixlist.json","w")
+#creation of the beginning of the file
 mat.write("matrixlist=")
 mat.write("{")
+
 def parser(matrix1):
+	#reading of the matrix file, line by line
 	matrix=[]
 	name=""
 	content= matrix1.read()
 	lines= content.split("\n")
+	#for each line, delete spaces, write the matrix name and, after, scores into the matrix
 	for i in lines:
 		j=i.split(" ")
 		for k in range(len(j)):
@@ -91,21 +100,16 @@ def parser(matrix1):
 					
 			if j[0]!="#":
 				if re.match(r"[-][0-9]",j[k]) or re.match(r"[0-9]",j[k]):
-					matrix.append(float(j[k]))
-			
-			
-	
+					matrix.append(float(j[k]))	
+	#convert the Python list in JSON object
 	matrix2=json.dumps(matrix)
-	print matrix
-	
-
+	#writing in the JSON document of the matrix
 	mat.write(name)
 	mat.write(":")
 	mat.write(matrix2)
 	mat.write(",\n")
 
-	
-
+#execution of the parser for all matrices 
 parser(blosum30)
 parser(blosum35)
 parser(blosum40)
@@ -122,8 +126,6 @@ parser(blosum80)
 parser(blosum85)
 parser(blosum90)
 parser(blosumn)
-
-
 parser(PAM10)
 parser(PAM20)
 parser(PAM30)
@@ -175,6 +177,7 @@ parser(PAM480)
 parser(PAM490)
 parser(PAM500)
 
+# closing of all matrix files, writinf the end of the JSON file et closing of this one
 blosum30.close()
 blosum35.close()
 blosum40.close()
