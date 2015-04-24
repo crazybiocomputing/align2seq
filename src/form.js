@@ -58,8 +58,8 @@ function choose_gap_penalty(){
 	console.log(enter_gap_penalty);
 
 	// if (enter_gap_penalty.hasChildNodes()===true){
-		console.log(enter_gap_penalty.childNodes[0])
-		enter_gap_penalty.removeChild(enter_gap_penalty.childNodes);
+		//console.log(enter_gap_penalty.childNodes[0])
+		//enter_gap_penalty.removeChild(enter_gap_penalty.childNodes);
 	if (document.getElementById('single').checked===true){
 		var enter_gap=document.createElement('input');
 		enter_gap.setAttribute("type","number");
@@ -146,7 +146,7 @@ var seq2=document.getElementById("sequence1").value;
 var seq1=document.getElementById("sequence2").value;
 var matrix=document.getElementById("choice_matrix").options[document.getElementById('choice_matrix').selectedIndex].value;
 var matrix=matrixlist[matrix];
-var gap=document.getElementById("gap_penality").value;
+var gap=document.getElementById("enter_gap_penalty").value;
 var gap=parseInt(gap);
 init(seq1,seq2,matrix,type_seq,algo,gap);
 }
