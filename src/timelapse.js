@@ -66,11 +66,12 @@ function step_sum(){
 
 				}
 			}
+			
 			document.getElementById("next").addEventListener("click",pass);	
 			if(i>=1 && j===1){
 				
 				for (scoring in matscore){
-					// matrixtime.rows[i].cells[j].setAttribute("id",j);
+					matrixtime.rows[i].cells[j].setAttribute("id",i+":"+j);
 					matrixtime.rows[i].cells[j].innerHTML=matscore[scoring];
 					matrixtime.rows[i].cells[j].style.visibility="hidden";
 					j++;
@@ -89,13 +90,33 @@ function step_sum(){
 	
 }	
 
-function pass(){
+function pass(id){
+
+	var matrix1=document.getElementById("matrixtime").rows;
+
+	for (var i = 0 ; i < matrix1.length; i++) {
+
+		var column = matrix1[i].cells; 
 		
-		var y = document.getElementById("matrixtime").getElementsByTagName("td")[i+2];
-		//Ne passe en visible qu'au moment du clique
-		y.style.visibility="visible";
-		document.getElementById("matrixtime").getElementsByTagName("td")[i+1].style.visibility="visible";
-		i++;
+		for (var j = 0; j < column.length ; j++) {
+
+			if (i===1 && j===1){
+				for(var x in matrixtime){
+					x=document.getElementById(i+":"+j).style.visibility="visible";
+					j++;
+					if(j%size2==0){
+						i++;
+						j=1;
+					}
+				}
+			}
+		}
+	}
+	
+
+	// if (document.getElementById("10:10"===true){
+	// 	step_path();
+	// }
 }
 
 function step_path(){
@@ -137,18 +158,22 @@ function step_path(){
 					// matrixtime2.rows[i].cells[j].innerHTML=matpath[path];
 					
 					if (matpath[path]===0){
+						matrixtime2.rows[i].cells[j].setAttribute("id",i+","+j);
 						matrixtime2.rows[i].cells[j].innerHTML="<i class=\"fa fa-circle-thin\"></i>";
 						matrixtime2.rows[i].cells[j].style.visibility="hidden";
 					}
 					else if (matpath[path]===1){
+						matrixtime2.rows[i].cells[j].setAttribute("id",i+","+j);
 						matrixtime2.rows[i].cells[j].innerHTML="<i class=\"fa fa-arrow-left\"></i>";
 						matrixtime2.rows[i].cells[j].style.visibility="hidden";
 					}
 					else if (matpath[path]===2){
+						matrixtime2.rows[i].cells[j].setAttribute("id",i+","+j);
 						matrixtime2.rows[i].cells[j].innerHTML="<i class=\"fa fa-gavel\"></i>";
 						matrixtime2.rows[i].cells[j].style.visibility="hidden";
 					}
 					else if (matpath[path]===3){
+						matrixtime2.rows[i].cells[j].setAttribute("id",i+","+j);
 						matrixtime2.rows[i].cells[j].innerHTML="<i class=\"fa fa-arrow-up\"></i>";
 						matrixtime2.rows[i].cells[j].style.visibility="hidden";
 					}
@@ -167,9 +192,5 @@ document.getElementById("next").addEventListener("click",pass2);
 
 function pass2(){
 		
-		var y = document.getElementById("matrixtime2").getElementsByTagName("td")[i];
-		//Ne passe en visible qu'au moment du clique
-		y.style.visibility="visible";
-		document.getElementById("matrixtime2").getElementsByTagName("td")[i+1].style.visibility="visible";
-		i++;
+		document.getElementById("10,10").style.visibility="visible";
 }
