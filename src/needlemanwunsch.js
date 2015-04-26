@@ -30,6 +30,7 @@ function needlemanwunsch()
 	}
 }
 needlemanwunsch.prototype.score = function (matrix,matscore, matpath, matsumdia, matsumvert, matsumhor,l1, l2, lengthseq, place,i,gap) {
+	console.log("gap ="+gap);
 	var letters=["A","R","N","D","C","Q","E","G","H","I","L","K","M","F","P","S","T","W","Y","V","B","Z","X", "*"];
 	var currentscore;
 	var scorevert,scorehor,scoredia;
@@ -70,76 +71,61 @@ needlemanwunsch.prototype.score = function (matrix,matscore, matpath, matsumdia,
 				pos2=parseInt(l);
 			}
 		}
-		// if (pos1=="" || pos2 =="" || (pos1=="" && pos2=="")){
-		// 	if (pos1==""){
-		// 		pos1=parseInt(lengthmat);
-
-		// 	}
-		// 	if (pos2==""){
-		// 		pos2=parseInt(lengthmat);
-		// 	}
-		// }
 		var lengthmat=letters.length;
 		var posmatrix=(lengthmat*pos1)+pos2;
 		currentscore=parseInt(matrix[posmatrix]);
 		matscore[place]=currentscore;
-// if (l1===l2){
-// currentscore=match;
-// }
-// else if (l1==="-" || l2==="-" ||(l1==="-" && l2==="-" )){
-// currentscore=gap;
-// }
-// else if (l1!=l2){
-// currentscore=mismatch;
-// }
-sumdia=scoredia+currentscore;
-sumvert=scorevert+gap;
-sumhor=scorehor+gap;
-matsumdia[place]=sumdia;
-matsumvert[place]=sumvert;
-matsumhor[place]=sumhor;
-var maxiscore=Math.max(sumvert,sumdia,sumhor);
-if (maxiscore==(sumhor)){
-	matpath[place]=1; }
-	else if (maxiscore==(sumdia)){
-		matpath[place]=2;}
+		sumdia=scoredia+currentscore;
+		sumvert=scorevert+gap;
+		sumhor=scorehor+gap;
+		matsumdia[place]=sumdia;
+		matsumvert[place]=sumvert;
+		matsumhor[place]=sumhor;
+		var maxiscore=Math.max(sumvert,sumdia,sumhor);
+		if (maxiscore==(sumhor)){
+			matpath[place]=1; 
+		}
+		else if (maxiscore==(sumdia)){
+			matpath[place]=2;
+		}
 		else{
-			matpath[place]=3; }
+			matpath[place]=3; 
 		}
 	}
-	needlemanwunsch.prototype.alignment = function (matpath, matscore, s1, s2, len1, len2, lengthseq) {
-		var val,elem,valmaxpos;
-		var dep=(matscore.length)-1;
-		var compt=0;
-		var l=[];
-		var align1=[];
-		var align2=[];
-		while (len1>=0 && len2>=0) {
-			if (matpath[dep] === 0) {
-				align1.unshift(s1[len1]);
-				align2.unshift(s2[len2]);
-				break;
-			}
-			if (matpath[dep] === 1) {
-				dep = dep - 1;
-				align1.unshift("-");
-				align2.unshift(s2[len2]);
-				len2--;
-			}
-			else if (matpath[dep] === 2) {
-				dep = dep - (lengthseq + 2);
-				align1.unshift(s1[len1]);
-				align2.unshift(s2[len2]);
-				len1--;
-				len2--;
-			}
-			else {
-				dep = dep - (lengthseq + 1);
-				align1.unshift(s1[len1]);
-				align2.unshift("-");
-				len1--;
-			}
+}
+needlemanwunsch.prototype.alignment = function (matpath, matscore, s1, s2, len1, len2, lengthseq) {
+	var val,elem,valmaxpos;
+	var dep=(matscore.length)-1;
+	var compt=0;
+	var l=[];
+	var align1=[];
+	var align2=[];
+	while (len1>=0 && len2>=0) {
+		if (matpath[dep] === 0) {
+			align1.unshift(s1[len1]);
+			align2.unshift(s2[len2]);
+			break;
 		}
-		var result=[align1,align2];
-		return result;
-	};
+		if (matpath[dep] === 1) {
+			dep = dep - 1;
+			align1.unshift("-");
+			align2.unshift(s2[len2]);
+			len2--;
+		}
+		else if (matpath[dep] === 2) {
+			dep = dep - (lengthseq + 2);
+			align1.unshift(s1[len1]);
+			align2.unshift(s2[len2]);
+			len1--;
+			len2--;
+		}
+		else {
+			dep = dep - (lengthseq + 1);
+			align1.unshift(s1[len1]);
+			align2.unshift("-");
+			len1--;
+		}
+	}
+	var result=[align1,align2];
+	return result;
+};

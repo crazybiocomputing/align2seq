@@ -55,7 +55,6 @@ function choose_gap_penalty(){
 	var seq1=document.getElementById("sequence1").value;
 	var seq2=document.getElementById("sequence2").value;
 	var enter_gap_penalty =document.getElementById("gap");
-	console.log(enter_gap_penalty);
 
 	// if (enter_gap_penalty.hasChildNodes()===true){
 		//console.log(enter_gap_penalty.childNodes[0])
@@ -69,18 +68,12 @@ function choose_gap_penalty(){
 		enter_gap_penalty.appendChild(enter_gap);
 	}
 	if (document.getElementById('multiple').checked===true){
-		console.log("multiple");
-		
-
-		
-		if (seq1.length>=seq2.length){
-			for (var i =0; i <= seq1.length-1; i++) {
-
-				console.log("aha");
+		var lengthmax=Math.max(seq1.length,seq2.length);		
+/*		if (seq1.length>=seq2.length){*/
+			for (var i =0; i <= lengthmax-1; i++) {
 				if (enter_gap_penalty.hasChildNodes==true){
 					var enter_gap=document.createElement('input');
 					enter_gap.insertBefore(enter_gap,enter_gap_penalty.lastChild);
-					
 					enter_gap.setAttribute("type","number");
 					enter_gap.setAttribute("id", "enter_gap_penalty"+i);
 					enter_gap.setAttribute("value", "0");
@@ -94,13 +87,10 @@ function choose_gap_penalty(){
 					enter_gap.setAttribute("value", "0");
 					enter_gap.setAttribute("style", "width:2em");
 				}
-				
 			}
 		}
-		else if (seq2.length>seq1.length){
-			console.log("ahaha");
+/*		else if (seq2.length>seq1.length){
 			for (var i =0; i <= seq2.length-1 ; i++) {
-				console.log(i);
 				if (enter_gap_penalty.hasChildNodes==true){
 					var enter_gap=document.createElement('input');
 					enter_gap.insertBefore(enter_gap,enter_gap_penalty.lastChild);
@@ -118,18 +108,18 @@ function choose_gap_penalty(){
 				enter_gap.setAttribute("style", "width:2em");
 				}
 		 }
-		}
+		}*/
 	}
-	
-}
+/*	
+}*/
 
 
 
 function get_value(){
 // event.preventDefault();
 var algo;
-console.log(algo);
 var type_seq;
+var li_gap=[]
 var algo_choice=document.getElementsByName("algorithm");
 for (var i=0;i<algo_choice.length;i++){
 	if (algo_choice[i].checked===true){
@@ -146,10 +136,32 @@ var seq2=document.getElementById("sequence1").value;
 var seq1=document.getElementById("sequence2").value;
 var matrix=document.getElementById("choice_matrix").options[document.getElementById('choice_matrix').selectedIndex].value;
 var matrix=matrixlist[matrix];
+
+
+if (document.getElementById("single").checked===true){
 var gap=document.getElementById("enter_gap_penalty").value;
-var gap=parseInt(gap);
+var gap=-Math.abs(parseInt(gap));
 init(seq1,seq2,matrix,type_seq,algo,gap);
 }
+
+else if (document.getElementById("multiple").checked===true){
+	var max_len=seq1.length
+	if (seq2.length>max_len){
+		max_len=seq2.length;
+	}
+	for (var i =0;i<max_len;i++) {
+		var tmp=document.getElementById("enter_gap_penalty"+i).value;
+		tmp=Math.abs(parseInt(tmp));
+		li_gap.push(-tmp);
+	// la liste des gap sous forme numérique est dans li_gap
+	}
+	init(seq1,seq2,matrix,type_seq,algo,li_gap);
+}
+
+}
+
+
+
 function init(seq1,seq2,matrix,type_seq,algo,gap){
 	algorithm(seq1,seq2,matrix,type_seq,algo,gap);
 	display();
@@ -158,9 +170,24 @@ function init(seq1,seq2,matrix,type_seq,algo,gap){
 // function verif(){
 
 // var checked=false
-// if algo != undefined{
-	
+// var algo_checked=false
+// var type_seq_check=false
+// var seq_check=false
+// var content_seq_check=false
+// if (algo != undefined){
+// 	algo_checked==true;
 
 // }
+// if (type_seq!=undefined){
+//  type_seq_check=true
+// }
+// if ((seq1!="sequence1")||(seq2!="sequence2")){
+// 	seq_check=true
+// }
+
+// var seq_v
+// if ((type_seq=="protein")|| seq1=="\ \"
+
+
 
 // }

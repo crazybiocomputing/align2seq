@@ -39,6 +39,8 @@ function algorithm(sequence1,sequence2,matrix,type_seq,algo,gap)
 	this.len1 = this.seq1.length;
 	this.len2 = this.seq2.length;
 	this.matrix = matrix;
+	this.gap=gap;
+	this.place = 0;
 	this.l1;
 	this.l2;
 	this.mat1;
@@ -56,8 +58,6 @@ function algorithm(sequence1,sequence2,matrix,type_seq,algo,gap)
 	this.size1=len1+1;
 	this.size2=len2+2;
 	this.add;
-	this.gap=gap;
-	this.seqlength = Math.min(this.len1, this.len2);
 	this.maxi = Math.max(this.len1, this.len2);
 	this.algo = algo;
 	this.matseq[0] = "-";
@@ -69,15 +69,28 @@ function algorithm(sequence1,sequence2,matrix,type_seq,algo,gap)
 	s2 = this.seq2.split("");
 	for (var elems2 = 0; elems2 < this.len2; elems2++) {
 		this.matseq.push(s2[elems2]);
-		this.place = 0;
+
 	}
 	for (i = 0; i <= this.len1; i++) {
 		for (j = this.len1 + 1; j <= ((this.len1 + this.len2) + 1); j++) {
+			console.log(this.place,this.maxi);
+
+			if (this.gap instanceof(Array)){
+				if (this.place<this.maxi){
+					this.gapplace=this.gap[place];
+				}
+				else if(this.place%this.maxi === 0){
+					this.gapplace=this.gap[0];
+				}
+				else{
+					this.gapplace=this.gap[this.place%this.maxi];
+				}
+		}
 			if (this.algo=="smith_waterman"){
-				smithwaterman.prototype.score(this.matrix,this.matscore, this.matpath, this.matsumdia, this.matsumvert, this.matsumhor, this.matseq[i], this.matseq[j], this.len2, this.place,this.gap);
+				smithwaterman.prototype.score(this.matrix,this.matscore, this.matpath, this.matsumdia, this.matsumvert, this.matsumhor, this.matseq[i], this.matseq[j], this.len2, this.place,this.gapplace);
 			}
 			else{
-				needlemanwunsch.prototype.score(this.matrix,this.matscore, this.matpath, this.matsumdia, this.matsumvert, this.matsumhor, this.matseq[i], this.matseq[j], this.len2, this.place,this.i,this.gap);
+				needlemanwunsch.prototype.score(this.matrix,this.matscore, this.matpath, this.matsumdia, this.matsumvert, this.matsumhor, this.matseq[i], this.matseq[j], this.len2, this.place,this.i,this.gapplace);
 			}
 			this.place++;
 		}
