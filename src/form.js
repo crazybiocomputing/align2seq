@@ -55,13 +55,17 @@ function choose_gap_penalty(){
 	var seq1=document.getElementById("sequence1").value;
 	var seq2=document.getElementById("sequence2").value;
 	var enter_gap_penalty =document.getElementById("gap");
-
-	// if (enter_gap_penalty.hasChildNodes()===true){
+	var nodeliste=enter_gap_penalty.childNodes
+	console.log(nodeliste.length);
+	while(enter_gap_penalty.firstChild){
+		enter_gap_penalty.removeChild(enter_gap_penalty.firstChild)
+	}
 		//console.log(enter_gap_penalty.childNodes[0])
-		//enter_gap_penalty.removeChild(enter_gap_penalty.childNodes);
+		//
 	if (document.getElementById('single').checked===true){
 		var enter_gap=document.createElement('input');
 		enter_gap.setAttribute("type","number");
+		enter_gap.setAttribute("min", "0");
 		enter_gap.setAttribute("id", "enter_gap_penalty");
 		enter_gap.setAttribute("value", "0");
 		enter_gap.setAttribute("size", 2);
@@ -75,6 +79,7 @@ function choose_gap_penalty(){
 					var enter_gap=document.createElement('input');
 					enter_gap.insertBefore(enter_gap,enter_gap_penalty.lastChild);
 					enter_gap.setAttribute("type","number");
+					enter_gap.setAttribute("min", "0");
 					enter_gap.setAttribute("id", "enter_gap_penalty"+i);
 					enter_gap.setAttribute("value", "0");
 				enter_gap.setAttribute("style", "width:2em");
@@ -83,35 +88,16 @@ function choose_gap_penalty(){
 					var enter_gap=document.createElement('input');
 					enter_gap_penalty.appendChild(enter_gap);
 					enter_gap.setAttribute("type","number");
+					enter_gap.setAttribute("min", "0");
 					enter_gap.setAttribute("id", "enter_gap_penalty"+i);
 					enter_gap.setAttribute("value", "0");
 					enter_gap.setAttribute("style", "width:2em");
 				}
 			}
 		}
-/*		else if (seq2.length>seq1.length){
-			for (var i =0; i <= seq2.length-1 ; i++) {
-				if (enter_gap_penalty.hasChildNodes==true){
-					var enter_gap=document.createElement('input');
-					enter_gap.insertBefore(enter_gap,enter_gap_penalty.lastChild);
-					enter_gap.setAttribute("type","number");
-					enter_gap.setAttribute("id", "enter_gap_penalty"+i);
-					enter_gap.setAttribute("value", "0");
-					enter_gap.setAttribute("style", "width:2em");
-				}
-				else {
-					var enter_gap=document.createElement('input');
-					enter_gap_penalty.appendChild(enter_gap);
-					enter_gap.setAttribute("type","number");
-					enter_gap.setAttribute("id", "enter_gap_penalty"+i);
-					enter_gap.setAttribute("value", "0");
-				enter_gap.setAttribute("style", "width:2em");
-				}
-		 }
-		}*/
+
 	}
-/*	
-}*/
+
 
 
 
@@ -162,10 +148,10 @@ else if (document.getElementById("multiple").checked===true){
 
 
 
-function init(seq1,seq2,matrix,type_seq,algo,gap){
-	algorithm(seq1,seq2,matrix,type_seq,algo,gap);
-	display();
-}
+// function init(seq1,seq2,matrix,type_seq,algo,gap){
+// 	algorithm(seq1,seq2,matrix,type_seq,algo,gap);
+// 	display();
+// }
 
 // function verif(){
 
@@ -186,7 +172,7 @@ function init(seq1,seq2,matrix,type_seq,algo,gap){
 // }
 
 // var seq_v
-// if ((type_seq=="protein")|| seq1=="\ \"
+// if ((type_seq=="protein")|| seq1=="/ /"
 
 
 
