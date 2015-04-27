@@ -34,6 +34,8 @@ function step_sum(){
 	//Enlever le premier élément casse tout
 	document.getElementById("matrixtime").removeChild(matrixtime.childNodes[0]);
 	
+	var id=[];
+	var cpt=0;
 
 	var matrixs=document.getElementById("matrixtime");
 	
@@ -67,13 +69,15 @@ function step_sum(){
 				}
 			}
 			
-			document.getElementById("next").addEventListener("click",pass);	
+			
 			if(i>=1 && j===1){
 				
 				for (scoring in matscore){
 					matrixtime.rows[i].cells[j].setAttribute("id",i+":"+j);
-					matrixtime.rows[i].cells[j].innerHTML=matscore[scoring];
 					matrixtime.rows[i].cells[j].style.visibility="hidden";
+					matrixtime.rows[i].cells[j].innerHTML=matscore[scoring];
+					var z=matrixtime.rows[i].cells[j].getAttribute("id",i+":"+j)
+					id.push(z)	
 					j++;
 					if(j%size2==0){
 						i++;
@@ -86,35 +90,21 @@ function step_sum(){
 		}
 
 	}
-// document.getElementById("next").addEventListener("click",pass);	
 	
+	document.getElementById("next").addEventListener("click",pass(id,id[cpt]));	
 }	
 
-function pass(id){
-
-	var matrix1=document.getElementById("matrixtime").rows;
-
-	for (var i = 0 ; i < matrix1.length; i++) {
-
-		var column = matrix1[i].cells; 
-		
-		for (var j = 0; j < column.length ; j++) {
-
-			if (i===1 && j===1){
-				for(var x in matrixtime){
-					x=document.getElementById(i+":"+j).style.visibility="visible";
-					j++;
-					if(j%size2==0){
-						i++;
-						j=1;
-					}
-				}
-			}
-		}
+function pass(id,pos){
+	var cpt;
+	console.log(pos)
+	for (var x=0;x<=id.length;x++){
+		document.getElementById(pos).style.visibility="visible";
 	}
+	cpt++;
+	return cpt;
 	
 
-	// if (document.getElementById("10:10"===true){
+	// if (document.getElementById("10:10")===true){
 	// 	step_path();
 	// }
 }
@@ -191,6 +181,25 @@ document.getElementById("next").addEventListener("click",pass2);
 }	
 
 function pass2(){
+
+	var matrix1=document.getElementById("matrixtime2").rows;
+
+	for (var i = 0 ; i < matrix1.length; i++) {
+
+		var column = matrix1[i].cells; 
 		
-		document.getElementById("10,10").style.visibility="visible";
+		for (var j = 0; j < column.length ; j++) {
+
+			if (i===10 & j===10){
+				for(y in matrixtime){
+					document.getElementById(i+","+j).style.visibility="visible";
+					j--;
+					if(j%size2==0){
+						i--;
+						j=10;
+					}
+				}
+			}
+		}
+	}
 }

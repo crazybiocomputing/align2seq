@@ -36,6 +36,7 @@
 	<script type="text/javascript" src=" ../src/smithwaterman.js"></script>
 	<script type="text/javascript" src=" ../src/display.js"></script>
 	<script type="text/javascript" src=" ../matrix/matrixlist.json"></script>
+	<script type="text/javascript" src=" ../src/timelapse.js"></script>
 	<body>
 		<header>
 			<h1 id="title">Tool for pairwise alignment</h1>
@@ -47,6 +48,14 @@
 				<br>
 				<br>
 				<table id="matrixpath">
+				</table>
+				<br>
+				<br>
+				<table id="matrixtime">
+				</table>
+				<br>
+				<br>
+				<table id="matrixtime2">
 				</table>
 			</div>
 			<div id="formulaire">
@@ -75,8 +84,8 @@
 				</li>
 				<li id="commands"><h3>Results</h3></li>
 				<button id="submit_button"onclick="get_value()"><i class="fa fa-play"></i></button>
-				<button id ="suivant" onClick="algorithm()"><i class="fa fa-step-forward"></i></button>
-				<button id ="precedent"><i class="fa fa-step-backward"></i></button>
+				<button id ="next" onClick="timelapse()"><i class="fa fa-step-forward"></i></button>
+				<button id ="preview"><i class="fa fa-step-backward"></i></button>
 				<button id ="final"><i class="fa fa-stop"></i></button>
 				<li id="alignment"></li>
 			</div>
