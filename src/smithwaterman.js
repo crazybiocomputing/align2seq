@@ -32,7 +32,6 @@
  }
 
  smithwaterman.prototype.score = function (matrix,matscore, matpath, matsumdia, matsumvert, matsumhor,l1, l2, lengthseq, place,gap) {
- 	console.log("gap ="+gap);
  	var letters=["A","R","N","D","C","Q","E","G","H","I","L","K","M","F","P","S","T","W","Y","V","B","Z","X", "*"];
  	var currentscore;
  	var scorevert, scorehor, scoredia;

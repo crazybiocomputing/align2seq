@@ -40,6 +40,7 @@ function algorithm(sequence1,sequence2,matrix,type_seq,algo,gap)
 	this.len2 = this.seq2.length;
 	this.matrix = matrix;
 	this.gap=gap;
+	console.log("gap algo ="+this.gap)
 	this.place = 0;
 	this.l1;
 	this.l2;
@@ -73,8 +74,6 @@ function algorithm(sequence1,sequence2,matrix,type_seq,algo,gap)
 	}
 	for (i = 0; i <= this.len1; i++) {
 		for (j = this.len1 + 1; j <= ((this.len1 + this.len2) + 1); j++) {
-			console.log(this.place,this.maxi);
-
 			if (this.gap instanceof(Array)){
 				if (this.place<this.maxi){
 					this.gapplace=this.gap[place];
@@ -86,6 +85,9 @@ function algorithm(sequence1,sequence2,matrix,type_seq,algo,gap)
 					this.gapplace=this.gap[this.place%this.maxi];
 				}
 		}
+			else{
+				this.gapplace=this.gap;
+			}
 			if (this.algo=="smith_waterman"){
 				smithwaterman.prototype.score(this.matrix,this.matscore, this.matpath, this.matsumdia, this.matsumvert, this.matsumhor, this.matseq[i], this.matseq[j], this.len2, this.place,this.gapplace);
 			}
