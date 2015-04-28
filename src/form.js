@@ -132,7 +132,7 @@ var matrix1=matrixEDNA[matrix1];
 if (document.getElementById("single").checked===true){
 var gap=document.getElementById("enter_gap_penalty").value;
 var gap=-Math.abs(parseInt(gap));
-init(seq1,seq2,matrix,matrix1,type_seq,algo,gap);
+init(seq1,seq2,matrix,type_seq,algo,gap);
 }
 
 else if (document.getElementById("multiple").checked===true){
@@ -146,15 +146,15 @@ else if (document.getElementById("multiple").checked===true){
 		li_gap.push(-tmp);
 	// la liste des gap sous forme numérique est dans li_gap
 	}
-	init(seq1,seq2,matrix,matrix1,type_seq,algo,li_gap);
+	init(seq1,seq2,matrix,type_seq,algo,li_gap);
 }
 
 }
 
 
 
-function init(seq1,seq2,matrix,matrix1,type_seq,algo,gap){
-	algorithm(seq1,seq2,matrix,matrix1,type_seq,algo,gap);
+function init(seq1,seq2,matrix,type_seq,algo,gap){
+	algorithm(seq1,seq2,matrix,type_seq,algo,gap);
 	display();
 }
 
