@@ -73,6 +73,10 @@ function step_sum(){
 			if(i>=1 && j===1){
 				
 				for (scoring in matscore){
+					if (matrixtime.rows[i].cells[j].style.visibility == "visible"){
+						cpt++
+						console.log(cpt);
+					}
 					matrixtime.rows[i].cells[j].setAttribute("id",i+":"+j);
 					matrixtime.rows[i].cells[j].style.visibility="hidden";
 					matrixtime.rows[i].cells[j].innerHTML=matscore[scoring];
@@ -82,15 +86,13 @@ function step_sum(){
 					if(j%size2==0){
 						i++;
 						j=1;
+
 					}
 				}
 				i=1;
 			}
-
 		}
-
-	}
-	
+	}	
 	document.getElementById("next").addEventListener("click",pass(id,id[cpt]));	
 }	
 
@@ -101,7 +103,6 @@ function pass(id,pos){
 		document.getElementById(pos).style.visibility="visible";
 	}
 	cpt++;
-	return cpt;
 	
 
 	// if (document.getElementById("10:10")===true){

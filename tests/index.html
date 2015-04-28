@@ -68,9 +68,9 @@
 					<label class="elem_form">Proteins</label><input type="radio" name="type_seq" value="protein" id ="protein" onClick="choose_matrix()" >
 					<label class="elem_form">Nucleotides</label> <input type="radio" name="type_seq" value="nucleotide" id="nucleotide" onClick="choose_matrix()" ><br>
 					<label class="elem_form" for="sequence1">Sequence 1</label>
-					<input type="text" name="sequence1" value="sequence1" id="sequence1" required> <br>
+					<input type="text" name="sequence1" value="sequence1" id="sequence1" onBlur='verif_check()' required> <br>
 					<label class="elem_form" for="sequence2">Sequence 2</label>
-					<input type="text" name="sequence2" value="sequence2" id ="sequence2" required> <br>
+					<input type="text" name="sequence2" value="sequence2" id ="sequence2" onBlur='verif_check()' required> <br>
 				</li>
 				<li id="opt"><h3>Options</h3>
 					<label class="elem_form" for="gap_penalty"> Gap penalty </label><br> 
