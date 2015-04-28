@@ -32,13 +32,14 @@
 @param {string} type_seq - If the sequences are proteins or nucleotides
 @algo {string} - If the algorithm used is S&W or N&W (for the moment)
 @gap {number} - Gap penality */
-function algorithm(sequence1,sequence2,matrix,type_seq,algo,gap)
+function algorithm(sequence1,sequence2,matrix,matrix1,type_seq,algo,gap)
 {
 	this.seq1 = sequence1;
 	this.seq2 = sequence2;
 	this.len1 = this.seq1.length;
 	this.len2 = this.seq2.length;
 	this.matrix = matrix;
+	this.matrix1 = matrix1;
 	this.gap=gap;
 	console.log("gap algo ="+this.gap)
 	this.place = 0;
@@ -89,10 +90,10 @@ function algorithm(sequence1,sequence2,matrix,type_seq,algo,gap)
 				this.gapplace=this.gap;
 			}
 			if (this.algo=="smith_waterman"){
-				smithwaterman.prototype.score(this.matrix,this.matscore, this.matpath, this.matsumdia, this.matsumvert, this.matsumhor, this.matseq[i], this.matseq[j], this.len2, this.place,this.gapplace);
+				smithwaterman.prototype.score(this.matrix,this.matrix1,this.matscore, this.matpath, this.matsumdia, this.matsumvert, this.matsumhor, this.matseq[i], this.matseq[j], this.len2, this.place,this.gapplace);
 			}
 			else{
-				needlemanwunsch.prototype.score(this.matrix,this.matscore, this.matpath, this.matsumdia, this.matsumvert, this.matsumhor, this.matseq[i], this.matseq[j], this.len2, this.place,this.i,this.gapplace);
+				needlemanwunsch.prototype.score(this.matrix,this.matrix1,this.matscore, this.matpath, this.matsumdia, this.matsumvert, this.matsumhor, this.matseq[i], this.matseq[j], this.len2, this.place,this.i,this.gapplace);
 			}
 			this.place++;
 		}

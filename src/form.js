@@ -39,15 +39,19 @@ function choose_matrix(){
 		// }
 	}
 	else if (document.getElementById('nucleotide').checked===true){
-		if (document.getElementById('choice_matrix').options.length!==0){
-			while (document.getElementById('choice_matrix').options[1]){
-				document.getElementById('choice_matrix').removeChild(document.getElementById('choice_matrix').options[0]);
-			}
-			document.getElementById('choice_matrix').options[0]=new Option('DNAfull','DNAfull');
+		var listEDNA=Object.keys(matrixEDNA);
+		for (var l in listEDNA){
+			document.getElementById('choice_matrix').options[l] = new Option(listEDNA[l],listEDNA[l]);
 		}
-		else{
-			document.getElementById('choice_matrix').options[0]=new Option('DNAfull','DNAfull');
-		}
+		// if (document.getElementById('choice_matrix').options.length!==0){
+		// 	while (document.getElementById('choice_matrix').options[1]){
+		// 		document.getElementById('choice_matrix').removeChild(document.getElementById('choice_matrix').options[0]);
+		// 	}
+		// 	document.getElementById('choice_matrix').options[0]=new Option('DNAfull','DNAfull');
+		// }
+		// else{
+		// 	document.getElementById('choice_matrix').options[0]=new Option('DNAfull','DNAfull');
+		// }
 	}
 }
 
@@ -122,11 +126,13 @@ var seq1=document.getElementById("sequence2").value;
 var matrix=document.getElementById("choice_matrix").options[document.getElementById('choice_matrix').selectedIndex].value;
 var matrix=matrixlist[matrix];
 
+var matrix1=document.getElementById("choice_matrix").options[document.getElementById('choice_matrix').selectedIndex].value;
+var matrix1=matrixEDNA[matrix1];
 
 if (document.getElementById("single").checked===true){
 var gap=document.getElementById("enter_gap_penalty").value;
 var gap=-Math.abs(parseInt(gap));
-init(seq1,seq2,matrix,type_seq,algo,gap);
+init(seq1,seq2,matrix,matrix1,type_seq,algo,gap);
 }
 
 else if (document.getElementById("multiple").checked===true){
@@ -140,15 +146,15 @@ else if (document.getElementById("multiple").checked===true){
 		li_gap.push(-tmp);
 	// la liste des gap sous forme numérique est dans li_gap
 	}
-	init(seq1,seq2,matrix,type_seq,algo,li_gap);
+	init(seq1,seq2,matrix,matrix1,type_seq,algo,li_gap);
 }
 
 }
 
 
 
-function init(seq1,seq2,matrix,type_seq,algo,gap){
-	algorithm(seq1,seq2,matrix,type_seq,algo,gap);
+function init(seq1,seq2,matrix,matrix1,type_seq,algo,gap){
+	algorithm(seq1,seq2,matrix,matrix1,type_seq,algo,gap);
 	display();
 }
 
