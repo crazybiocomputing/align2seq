@@ -2,7 +2,11 @@
   "name": "align2seq",
   "version": "0.0.0",
   "description": "make nucleic and proteic sequence alignment",
-  "main": "test2.html",
+  "main": "index.html",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-uglify": "~0.9.1"
+  },
   "directories": {
     "test": "tests"
   },
@@ -19,10 +23,7 @@
     "Needleman et Wunsch",
     "Smith et Waterman"
   ],
-  "author": "Anne Rudy",
-  "author":"Beliard Aurelien ",
-  "author":"Duquenne Emeline ",
-  "author":"Perdriau Aurore",
+  "author": "Perdriau Aurore",
   "license": "GNU",
   "bugs": {
     "url": "https://github.com/crazybiocomputing/align2seq/issues"
