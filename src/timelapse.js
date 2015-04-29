@@ -35,21 +35,36 @@ function timelapse(cpt){
 "use strict"
 
 var nbValuesToDisplay = 0;
+var nbValuesPathToDisplay = 0;
 
 function next(){
 	nbValuesToDisplay++;
+	//vérification des limites des valeurs
 	if(nbValuesToDisplay>matscore.length){
 		nbValuesToDisplay=matscore.length;
+		nbValuesPathToDisplay++;
+
+		if(nbValuesPathToDisplay>matpath.length){
+			nbValuesPathToDisplay=matpath.length;
+		}
 	}
 	launch_nstep(nbValuesToDisplay);
+	launch_nstep_path(nbValuesPathToDisplay);
+
 }
 
 function prev(){
-	nbValuesToDisplay--;
-	if(nbValuesToDisplay<0){
-		nbValuesToDisplay=0;
+	nbValuesPathToDisplay--;
+	if (nbValuesPathToDisplay<0){
+		nbValuesPathToDisplay=0;
+		nbValuesToDisplay--;
+		if(nbValuesToDisplay<0){
+			nbValuesToDisplay=0;
+		}
 	}
+	
 	launch_nstep(nbValuesToDisplay);
+	launch_nstep_path(nbValuesPathToDisplay);
 }
 
 function launch_nstep(nbValuesToDisplay){
@@ -99,6 +114,59 @@ function launch_nstep(nbValuesToDisplay){
 			if (nbDisplayedValues>nbValuesToDisplay) {
 				currentCell.style.visibility="hidden";
 			};
+		}
+	}
+}
+
+function launch_nstep_path(nbValuesToDisplayPath){
+
+	var matrixs=document.getElementById("matrixtime");
+
+	// //On vide le tatbleau
+	// while (matrixs.firstChild) {
+ //    	matrixs.removeChild(matrixs.firstChild);
+	// }
+
+	// // on remplit le tableau avec le nombre de cases souhaitées
+	// for (var i =0;i<=size1;i++){
+	// 	matrixs.insertRow(i);
+	// 	for(var j=0;j<=(size2-1);j++){
+	// 		matrixs.rows[i].insertCell(j);
+	// 	}
+	// }
+
+	// for(var i=0;i<matrixs.rows.length;i++){
+	// 	var currentRow = matrixs.rows[i];
+	// 	for(var j=0;j<currentRow.cells.length;j++){
+	// 		var currentCell=currentRow.cells[j];
+
+	// 		//On remplit le tableau pour mettre la première séquence (première colonne)
+	// 		if (i>=2 && j===0){
+	// 			currentCell.innerHTML=s1[i-2];
+	// 		}
+
+	// 		//On remplit le tableau pour mettre la deuxième séquence (première ligne)
+	// 		if (i===0 && j>=2){
+	// 			currentCell.innerHTML=s2[j-2];
+	// 		}
+	// 	}
+	// }
+
+	var nbDisplayedValuesPath= 0; 
+	for(var i=matrixs.rows.length-1;i>=1;i--){
+		var currentRow = matrixs.rows[i];
+		var currentRowNumber = i-1;
+		for(var j=currentRow.cells.length-1;j>=1;j--){
+			var currentCell=currentRow.cells[j];
+			var currentCellNumber = j-1;
+
+			var matPos = currentRowNumber * (currentRow.cells.length-1) + currentCellNumber;
+
+			//On remplit le tableau en partant du principe qu'il est rempli de gauche à droite
+			if (nbDisplayedValuesPath<nbValuesToDisplayPath) {
+				currentCell.innerHTML+=matpath[matPos];
+			};
+			nbDisplayedValuesPath++;
 		}
 	}
 }
