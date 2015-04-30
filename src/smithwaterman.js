@@ -31,8 +31,7 @@
  	}
  }
 
- smithwaterman.prototype.score = function (matrix,matscore, matpath, matsumdia, matsumvert, matsumhor,l1, l2, lengthseq, place,gap) {
- 	var letters=["A","R","N","D","C","Q","E","G","H","I","L","K","M","F","P","S","T","W","Y","V","B","Z","X", "*"];
+ smithwaterman.prototype.score = function (matrix,matscore, matpath, matsumdia, matsumvert, matsumhor, matsumtot,l1, l2, lengthseq, place,gap,letters) {
  	var currentscore;
  	var scorevert, scorehor, scoredia;
  	var sumvert, sumhor, sumdia;
@@ -49,6 +48,7 @@
  		matsumdia[place]=0;
  		matsumvert[place]=0;
  		matsumhor[place]=0;		
+ 		matsumtot[place]=0;
  	}
  	else{
  		scorevert=matscore[placevert];
@@ -65,6 +65,9 @@
  		var lengthmat=letters.length;
  		var posmatrix=(lengthmat*pos1)+pos2;
  		currentscore=parseInt(matrix[posmatrix]);
+ 		if (currentscore<0){
+ 			currentscore=0;
+ 		}
  		matscore[place]=currentscore;
  		sumdia=scoredia+currentscore;
  		sumvert=scorevert+gap;
@@ -73,6 +76,7 @@
  		matsumvert[place]=sumvert;
  		matsumhor[place]=sumhor;
  		var maxiscore=Math.max(sumvert,sumdia,sumhor);
+ 		matsumtot[place]=maxiscore;
  		if (maxiscore==(sumhor)){
  			matpath[place]=1; 
  		}
@@ -85,28 +89,33 @@
  	}
  }
 
- smithwaterman.prototype.alignment = function (matpath, matscore, s1, s2, len1, len2, lengthseq) {
+ smithwaterman.prototype.alignment = function (matpath, matscore, matsumtot, s1, s2, len1, len2, lengthseq) {
+ 	
  	var val, elem, dep, valmaxpos;
  	var valmax = 0;
  	var compt = 0;
  	var l = [];
  	var align1 = [];
  	var align2 = [];
- 	for (val in matscore) {
- 		valmaxpos = matscore[val];
+ 	for (val in matsumtot) {
+ 		valmaxpos = matsumtot[val];
  		valmax = Math.max(valmax, valmaxpos);
  	}
 
- 	for (elem in matscore) {
- 		if (matscore[elem] === valmax) {
+
+ 	for (elem in matsumtot) {
+ 		if (matsumtot[elem] === valmax) {
  			l.push(elem);
  		}
  	}
+ 	
  	for (dep in l) {
  		deppos = l[dep];
  		while (true) {
- 			if (matscore[deppos] === 0) {
- 				align1.unshift(s1[len1]);
+ 			var posseq1=deppos/(len1+1);
+ 			var posseq2;
+ 			if (matsumtot[deppos] === 0) {
+ 				align1.unshift(s1[posseq1]);
  				align2.unshift(s2[len2]);
  				break;
  			}
@@ -131,7 +140,7 @@
  			}
  		}
  	}
- 	var result = [align1, align2];
+ 	var result = [align2, align1];
  	return result;
  }
 

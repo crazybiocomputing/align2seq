@@ -109,8 +109,8 @@ for (var j=0;j<seq_choice.length;j++) {
 		type_seq= seq_choice[j].value;
 	}
 }
-var seq2=document.getElementById("sequence1").value;
-var seq1=document.getElementById("sequence2").value;
+var seq1=document.getElementById("sequence1").value;
+var seq2=document.getElementById("sequence2").value;
 var matrix=document.getElementById("choice_matrix").options[document.getElementById('choice_matrix').selectedIndex].value;
 if (document.getElementById('protein').checked===true){
 	var matrix=matrixlist[matrix];

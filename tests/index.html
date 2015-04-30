@@ -38,6 +38,7 @@
 	<script type="text/javascript" src=" ../matrix/matrixlist.json"></script>
 	<script type="text/javascript" src=" ../matrix/matrixEDNA.json"></script>
 	<script type="text/javascript" src=" ../src/timelapse.js"></script>
+
 	<body>
 		<header>
 			<h1 id="title">Tool for pairwise alignment</h1>
@@ -85,9 +86,11 @@
 				</li>
 				<li id="commands"><h3>Results</h3></li>
 				<button id="submit_button"onclick="get_value()"><i class="fa fa-play"></i></button>
-				<button id ="next" onClick="timelapse()"><i class="fa fa-step-forward"></i></button>
-				<button id ="preview"><i class="fa fa-step-backward"></i></button>
+				<button id ="next" onClick="next()"><i class="fa fa-step-forward"></i></button>
+				<button id ="preview" onClick="prev()"><i class="fa fa-step-backward"></i></button>
 				<button id ="final"><i class="fa fa-stop"></i></button>
+			</div>
+			<div id ="result">
 				<li id="alignment"></li>
 			</div>
 		</div>

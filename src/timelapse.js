@@ -23,184 +23,128 @@
  * Emeline Duquenne
  * Aurore Perdriau
  */
-function timelapse(){
-	// step_score();
-	step_sum();
-	step_path();
+
+"use strict"
+
+var nbValuesToDisplay = 0;
+var nbValuesPathToDisplay = 0;
+
+function next(){
+	nbValuesToDisplay++;
+	//Limit check value
+	if(nbValuesToDisplay>matscore.length){
+		nbValuesToDisplay=matscore.length;
+		nbValuesPathToDisplay++;
+
+		if(nbValuesPathToDisplay>matpath.length){
+			nbValuesPathToDisplay=matpath.length;
+		}
+	}
+	launch_nstep(nbValuesToDisplay);
+	launch_nstep_path(nbValuesPathToDisplay);
+
 }
 
-function step_sum(){
-
-	//Enlever le premier élément casse tout
-	document.getElementById("matrixtime").removeChild(matrixtime.childNodes[0]);
+function prev(){
+	nbValuesPathToDisplay--;
+	if (nbValuesPathToDisplay<0){
+		nbValuesPathToDisplay=0;
+		nbValuesToDisplay--;
+		if(nbValuesToDisplay<0){
+			nbValuesToDisplay=0;
+		}
+	}
 	
-	var id=[];
-	var cpt=0;
+	launch_nstep(nbValuesToDisplay);
+	launch_nstep_path(nbValuesPathToDisplay);
+}
+/** Step by step function with next and preview possibilities
+@constructor
+@param {number} nbValuesToDisplay - counter for the scoring matrix 
+*/
+function launch_nstep(nbValuesToDisplay){
 
 	var matrixs=document.getElementById("matrixtime");
-	
+
+	//The table is empty
+	while (matrixs.firstChild) {
+    	matrixs.removeChild(matrixs.firstChild);
+	}
+
+	// Filling the array with the desired number of cells
 	for (var i =0;i<=size1;i++){
-		matrixs.insertRow(i).setAttribute("id",i);
+		matrixs.insertRow(i);
 		for(var j=0;j<=(size2-1);j++){
 			matrixs.rows[i].insertCell(j);
 		}
 	}
 
-	var matrix1=document.getElementById("matrixtime").rows;
+	for(var i=0;i<matrixs.rows.length;i++){
+		var currentRow = matrixs.rows[i];
+		for(var j=0;j<currentRow.cells.length;j++){
+			var currentCell=currentRow.cells[j];
 
-	for (var i = 0 ; i < matrix1.length; i++) {
-
-		var column = matrix1[i].cells; 
-		
-		for (var j = 0; j < column.length ; j++) {
-
-			if (i>=2 && j===0){ 
-				for(var column in s1){
-					matrixtime.rows[i].cells[j].innerHTML=s1[column];	
-					i++;	
-				}
+			//Filling the array with the first sequence (first column)
+			if (i>=2 && j===0){
+				currentCell.innerHTML=s1[i-2];
 			}
 
-			if (i===0 && j>=2) {
-				for (var ligne in s2) {
-					matrixtime.rows[i].cells[j].innerHTML=s2[ligne];
-					j++;
-
-				}
-			}
-			
-			
-			if(i>=1 && j===1){
-				
-				for (scoring in matscore){
-					if (matrixtime.rows[i].cells[j].style.visibility == "visible"){
-						cpt++
-						console.log(cpt);
-					}
-					matrixtime.rows[i].cells[j].setAttribute("id",i+":"+j);
-					matrixtime.rows[i].cells[j].style.visibility="hidden";
-					matrixtime.rows[i].cells[j].innerHTML=matscore[scoring];
-					var z=matrixtime.rows[i].cells[j].getAttribute("id",i+":"+j)
-					id.push(z)	
-					j++;
-					if(j%size2==0){
-						i++;
-						j=1;
-
-					}
-				}
-				i=1;
+			//Filling the array with the second sequence (first ligne)
+			if (i===0 && j>=2){
+				currentCell.innerHTML=s2[j-2];
 			}
 		}
-	}	
-	document.getElementById("next").addEventListener("click",pass(id,id[cpt]));	
-}	
-
-function pass(id,pos){
-	var cpt;
-	console.log(pos)
-	for (var x=0;x<=id.length;x++){
-		document.getElementById(pos).style.visibility="visible";
 	}
-	cpt++;
-	
 
-	// if (document.getElementById("10:10")===true){
-	// 	step_path();
-	// }
+	var nbDisplayedValues= 0; 
+	for(var i=1;i<matrixs.rows.length;i++){
+		var currentRow = matrixs.rows[i];
+		for(var j=1;j<currentRow.cells.length;j++){
+			var currentCell=currentRow.cells[j];
+
+			//The table is filled with the assumption that it is filled from left to right
+			currentCell.innerHTML=matscore[nbDisplayedValues];
+			nbDisplayedValues++;
+
+			if (nbDisplayedValues>nbValuesToDisplay) {
+				currentCell.style.visibility="hidden";
+			};
+		}
+	}
 }
+/** Step by step function with next and preview possibilities
+@constructor
+@param {number} nbValuesPathToDisplay - counter for path matrix
+*/
+function launch_nstep_path(nbValuesToDisplayPath){
 
-function step_path(){
+	var matrixs=document.getElementById("matrixtime");
 
-	document.getElementById("matrixtime2").removeChild(matrixtime2.childNodes[0]);
+	var nbDisplayedValuesPath= 0; 
+	for(var i=matrixs.rows.length-1;i>=1;i--){
+		var currentRow = matrixs.rows[i];
+		var currentRowNumber = i-1;
+		for(var j=currentRow.cells.length-1;j>=1;j--){
+			var currentCell=currentRow.cells[j];
+			var currentCellNumber = j-1;
 
-	var matrixp=document.getElementById("matrixtime2");
+			var matPos = currentRowNumber * (currentRow.cells.length-1) + currentCellNumber;
 
-	for (var i =0;i<=size1;i++){
-		matrixp.insertRow(i);
-		for(var j=0;j<=(size2-1);j++){
-			matrixp.rows[i].insertCell(j);
-		}
-	}
-	var matrix1=document.getElementById("matrixtime2").rows;
-
-	for (var i = 0 ; i < matrix1.length; i++) {
-
-		var column = matrix1[i].cells; 
-		
-		for (var j = 0; j < column.length ; j++) {
-
-			if (i>=2 && j===0){ 
-				for(var column in s1){
-					matrixtime2.rows[i].cells[j].innerHTML=s1[column];	
-					i++;	
-				}
-			}
-
-			if (i===0 && j>=2) {
-				for (var ligne in s2) {
-					matrixtime2.rows[i].cells[j].innerHTML=s2[ligne];
-					j++;
-
-				}
-			}
-			if(i>=1 && j===1){
-				for (path in matpath){
-					// matrixtime2.rows[i].cells[j].innerHTML=matpath[path];
-					
-					if (matpath[path]===0){
-						matrixtime2.rows[i].cells[j].setAttribute("id",i+","+j);
-						matrixtime2.rows[i].cells[j].innerHTML="<i class=\"fa fa-circle-thin\"></i>";
-						matrixtime2.rows[i].cells[j].style.visibility="hidden";
+			if (nbDisplayedValuesPath<nbValuesToDisplayPath) {
+				if (matpath[matPos]===0){
+						currentCell.innerHTML="<i class=\"fa fa-circle-thin\"></i>";
 					}
-					else if (matpath[path]===1){
-						matrixtime2.rows[i].cells[j].setAttribute("id",i+","+j);
-						matrixtime2.rows[i].cells[j].innerHTML="<i class=\"fa fa-arrow-left\"></i>";
-						matrixtime2.rows[i].cells[j].style.visibility="hidden";
+					else if (matpath[matPos]===1){
+						currentCell.innerHTML="<i class=\"fa fa-arrow-left\"></i>";
 					}
-					else if (matpath[path]===2){
-						matrixtime2.rows[i].cells[j].setAttribute("id",i+","+j);
-						matrixtime2.rows[i].cells[j].innerHTML="<i class=\"fa fa-gavel\"></i>";
-						matrixtime2.rows[i].cells[j].style.visibility="hidden";
+					else if (matpath[matPos]===2){
+						currentCell.innerHTML="<i class=\"fa fa-gavel\"></i>";
 					}
-					else if (matpath[path]===3){
-						matrixtime2.rows[i].cells[j].setAttribute("id",i+","+j);
-						matrixtime2.rows[i].cells[j].innerHTML="<i class=\"fa fa-arrow-up\"></i>";
-						matrixtime2.rows[i].cells[j].style.visibility="hidden";
+					else if (matpath[matPos]===3){
+						currentCell.innerHTML="<i class=\"fa fa-arrow-up\"></i>";
 					}
-					j++;
-					if(j%size2==0){
-						i++;
-						j=1;
-					}
-				}
-				i=1;
-			}
-		}	
-	}	
-document.getElementById("next").addEventListener("click",pass2);	
-}	
-
-function pass2(){
-
-	var matrix1=document.getElementById("matrixtime2").rows;
-
-	for (var i = 0 ; i < matrix1.length; i++) {
-
-		var column = matrix1[i].cells; 
-		
-		for (var j = 0; j < column.length ; j++) {
-
-			if (i===10 & j===10){
-				for(y in matrixtime){
-					document.getElementById(i+","+j).style.visibility="visible";
-					j--;
-					if(j%size2==0){
-						i--;
-						j=10;
-					}
-				}
-			}
+			};
+			nbDisplayedValuesPath++;
 		}
 	}
 }

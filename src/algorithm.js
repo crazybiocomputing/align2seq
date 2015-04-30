@@ -39,9 +39,8 @@ function algorithm(sequence1,sequence2,matrix,type_seq,algo,gap)
 	this.len1 = this.seq1.length;
 	this.len2 = this.seq2.length;
 	this.matrix = matrix;
-	
+	this.type_seq=type_seq;
 	this.gap=gap;
-	console.log("gap algo ="+this.gap)
 	this.place = 0;
 	this.l1;
 	this.l2;
@@ -49,12 +48,14 @@ function algorithm(sequence1,sequence2,matrix,type_seq,algo,gap)
 	this.mat2;
 	this.s1 = [];
 	this.s2 = [];
+	this.letters=[];
 	this.matseq = [];
 	this.matscore = [];
 	this.matpath = [];
 	this.matsumdia=[];
 	this.matsumhor=[];
 	this.matsumvert=[];
+	this.matsumtot=[];
 	this.i;
 	this.j;
 	this.size1=len1+1;
@@ -63,15 +64,14 @@ function algorithm(sequence1,sequence2,matrix,type_seq,algo,gap)
 	this.maxi = Math.max(this.len1, this.len2);
 	this.algo = algo;
 	this.matseq[0] = "-";
-	s1 = this.seq1.split("");
+	s1 = this.seq2.split("");
 	for (var elems1 = 0; elems1 <= this.len1; elems1++) {
 		this.matseq.push(s1[elems1]);
 	}
 	this.matseq[this.len1 + 1] = "-";
-	s2 = this.seq2.split("");
+	s2 = this.seq1.split("");
 	for (var elems2 = 0; elems2 < this.len2; elems2++) {
 		this.matseq.push(s2[elems2]);
-
 	}
 	for (i = 0; i <= this.len1; i++) {
 		for (j = this.len1 + 1; j <= ((this.len1 + this.len2) + 1); j++) {
@@ -85,27 +85,38 @@ function algorithm(sequence1,sequence2,matrix,type_seq,algo,gap)
 				else{
 					this.gapplace=this.gap[this.place%this.maxi];
 				}
-		}
+			}
 			else{
 				this.gapplace=this.gap;
 			}
-			if (this.algo=="smith_waterman"){
-				smithwaterman.prototype.score(this.matrix,this.matscore, this.matpath, this.matsumdia, this.matsumvert, this.matsumhor, this.matseq[i], this.matseq[j], this.len2, this.place,this.gapplace);
+			if (this.type_seq=="protein"){
+				this.letters=["A","R","N","D","C","Q","E","G","H","I","L","K","M","F","P","S","T","W","Y","V","B","Z","X", "*"];
 			}
 			else{
-				needlemanwunsch.prototype.score(this.matrix,this.matscore, this.matpath, this.matsumdia, this.matsumvert, this.matsumhor, this.matseq[i], this.matseq[j], this.len2, this.place,this.i,this.gapplace);
+				if (this.matrix=="EDNAFULL"){
+					this.letters=["A","T","G","C","S","W","R","Y","K","M","B","V","H","D","N","U"];	
+				}
+				else{
+					this.letters=["A","B","C","D","G","H","K","M","N","R","S","T","U","V","W","X","Y"];
+				}
+			}
+			if (this.algo=="smith_waterman"){
+				smithwaterman.prototype.score(this.matrix,this.matscore, this.matpath, this.matsumdia, this.matsumvert, this.matsumhor,this.matsumtot, this.matseq[i], this.matseq[j], this.len2, this.place,this.gapplace,this.letters);
+			}
+			else{
+				needlemanwunsch.prototype.score(this.matrix,this.matscore, this.matpath, this.matsumdia, this.matsumvert, this.matsumhor, this.matseq[i], this.matseq[j], this.len2, this.place,this.i,this.gapplace,this.letters);
 			}
 			this.place++;
 		}
 	}
 	if (this.algo == "smith_waterman") {
-		var result = smithwaterman.prototype.alignment(matpath, matscore, s1, s2, len1, len2, len2);
+		var result = smithwaterman.prototype.alignment(this.matpath, this.matscore,this.matsumtot, this.s1, this.s2, this.len1, this.len2, this.len2);
 	}
 	else{
-		var result = needlemanwunsch.prototype.alignment(matpath, matscore, s1, s2, len1, len2, len2);
+		var result = needlemanwunsch.prototype.alignment(this.matpath, this.matscore, this.s1, this.s2, this.len1, this.len2, this.len2);
 	}
 	document.getElementById('alignment').innerHTML +="<h3>Alignement</h3>"+result[0]+"<br>"+result[1];
 
 /*	console.log (matscore);
-	console.log (matpath);*/
+console.log (matpath);*/
 }
