@@ -29,9 +29,7 @@ function needlemanwunsch()
 		needlemanwunsch.prototype[key] = algorithm.prototype[key];
 	}
 }
-needlemanwunsch.prototype.score = function (matrix,matscore, matpath, matsumdia, matsumvert, matsumhor,l1, l2, lengthseq, place,i,gap) {
-	console.log("gap nw ="+gap);
-	var letters=["A","R","N","D","C","Q","E","G","H","I","L","K","M","F","P","S","T","W","Y","V","B","Z","X", "*"];
+needlemanwunsch.prototype.score = function (matrix,matscore, matpath, matsumdia, matsumvert, matsumhor,l1, l2, lengthseq, place,i,gap,letters) {
 	var currentscore;
 	var scorevert,scorehor,scoredia;
 	var sumvert,sumdia,sumhor;
@@ -47,7 +45,7 @@ needlemanwunsch.prototype.score = function (matrix,matscore, matpath, matsumdia,
 		scoredia = 0;
 		matsumdia[place]=0;
 		matsumvert[place]=0;
-		matsumhor[place]=0;
+		matsumhor[place]=0; 
 	}
 	else if (place%(lengthseq+1)===0 ){
 		matscore[place]=gap*i;
@@ -82,6 +80,9 @@ needlemanwunsch.prototype.score = function (matrix,matscore, matpath, matsumdia,
 		matsumvert[place]=sumvert;
 		matsumhor[place]=sumhor;
 		var maxiscore=Math.max(sumvert,sumdia,sumhor);
+		console.log(sumvert,sumdia,sumhor);
+ 		console.log(maxiscore);
+
 		if (maxiscore==(sumhor)){
 			matpath[place]=1; 
 		}
