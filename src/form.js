@@ -25,18 +25,12 @@
 */
 "use strict";
 function choose_matrix(){
+	if ((document.getElementById("needleman_wunsch").checked===true)||(document.getElementById("smith_waterman").checked===true)){
 	if (document.getElementById('protein').checked===true){
 		var listmatrix=Object.keys(matrixlist);
 		for (var l in listmatrix){
 			document.getElementById('choice_matrix').options[l] = new Option(listmatrix[l],listmatrix[l]);
 		}
-/*		var i=0;
-		var j=30;
-		while ( i<13){
-			document.getElementById('choice_matrix').options[i] = new Option('Blosum'+j,'Blosum'+j);
-			i+=1;
-			j+=5;
-		}*/
 	}
 	else if (document.getElementById('nucleotide').checked===true){
 		var listEDNA=Object.keys(matrixEDNA);
@@ -44,6 +38,10 @@ function choose_matrix(){
 			document.getElementById('choice_matrix').options[l] = new Option(listEDNA[l],listEDNA[l]);
 		}
 	}
+	}
+	else{
+		alert("Choose an algorithm and a sequence type before choosing a matrix")
+	}	
 }
 
 function choose_gap_penalty(){
@@ -138,76 +136,154 @@ init(seq1,seq2,matrix,type_seq,algo,li_gap);
 }
 
 }
-/*
-var algo;
-var type_seq;
-var li_gap=[];
-var choose_gap;
 
 
-var checked=false;
-var algo_checked=false;
-var type_seq_check=false;
-var seq_check=false;
-var content_seq_check=false;
-var matrix_check=false;
-var gap_choice_check=false;
-
-
-var seq2=document.getElementById("sequence1").value;
-var seq1=document.getElementById("sequence2").value;
-if ((1<seq1.length<20)&&(1<seq2.length<20)){
-if(((type_seq=="protein")&&(/[ARNDCQEGHILKMFPSTWYVBZX]/.test(seq1,seq2)))||((type_seq=="nucleotide")&&(/[ATGCU]/.test(seq1,seq2)))) {
-seq_check=true;
-}
-else{
-	document.getElementById("formulaire").innerHtml="<b>"+"Les séquences entré ne correspondent pas au type de séquence choisi"+"</b>";
-}
-}else{	document.getElementById("formulaire").innerHtml="<b>"+"Les séquences entré ne sont pas de taille adapté"+"</b>";
-}
-
-var matrix=document.getElementById("choice_matrix").options[document.getElementById('choice_matrix').selectedIndex].value;
-if (matrix!=undefined){
-	matrix_check=true;
-} 
-else{
- 	document.getElementById("formulaire").innerHtml="<b>"+"selectionnez une matrice "+"</b>";
- }
-
-matrix=matrixlist[matrix];
-
-
-var nb_gap=document.getElementsByName("choose_gap_penalty");
-for (var k=0;k<nb_gap.length;k++){
-	if (nb_gap[k].checked===true){
-		choose_gap=nb_gap[k].value;
+function verif () {
+	if ((verif_check_algo()===true)&&(verif_check_type_seq()===true)&&(check_content_seq()===true)&&(verif_choice_gap()===true)){
+		get_value();
 	}
+	else{
+		alert("complete the form before submit it");
 	}
 
-	if (document.getElementById("single").checked===true){
+	}
+
+
+
+function verif_check_algo(){
+	var algo_checked=false;
+	var algo_choice=document.getElementsByName("algorithm");
+	for (var i=0;i<algo_choice.length;i++){
+		if (algo_choice[i].checked===true){
+			algo=algo_choice[i].value;
+			if (algo != ""){
+				algo_checked=true;
+				}
+		}
+	}
+	if (algo_checked===false){
+		alert("Choose an algorithm to obtain a result.");
+/*		document.getElementById("algo").innerHtml="<b>"+"Choose an algorithm to obtain a result."+"</b>";
+*/	}
+return(algo_checked)
+}
+function verif_check_type_seq(){
+	var type_seq_check=false
+	var seq_choice=document.getElementsByName("type_seq");
+	var type_seq;
+	for (var j=0;j<seq_choice.length;j++) {
+		if (seq_choice [j].checked===true) {
+			type_seq=seq_choice[j].value;
+		 	type_seq_check=true;
+		}
+	}
+	if (type_seq_check===false){
+	alert("Choose a sequence type.") ;
+}
+return(type_seq_check);
+}
+function check_content_seq () {
+
+	var content_seq_check=false;
+	var seq2=document.getElementById("sequence1").value.toUpperCase();
+	var seq1=document.getElementById("sequence2").value.toUpperCase();
+	console.log("ahaha")
+	var type_seq;
+	var seq_choice=document.getElementsByName("type_seq");
+	for (var j=0;j<seq_choice.length;j++) {
+		if (seq_choice [j].checked===true) {
+			type_seq=seq_choice[j].value;
+		}
+}
+console.log("ihihihi")
+	if(((type_seq=="protein")&&(/[ARNDCQEGHILKMFPSTWYVBZX]/.test(seq1,seq2)))||((type_seq=="nucleotide")&&(/[ATGCU]/.test(seq1,seq2)))) {
+	console.log(type_seq);
+	console.log(seq2);
+	console.log(seq1);
+	content_seq_check=true;
+}
+else{
+alert("the content of the sequence did not match the sequence type you have checked");
+}
+return(content_seq_check);
+}
+
+function verif_choice_gap(){
+	var check_gap=false
+	var choice_gap_check=false
+	var number=false
+	var numbers=false
+	var choice_nbgap=document.getElementsByName("choose_gap_penalty");
+	var nb;
+	var not_equal=false;
+	for (var j=0;j<choice_nbgap.length;j++) {
+		if (choice_nbgap[j].checked===true) {
+			nb=choice_nbgap[j].value;
+		 	choice_gap_check=true;
+	}
+
+	}
+	if (nb=="single"){
 		var gap=document.getElementById("enter_gap_penalty").value;
-		gap=-Math.abs(parseInt(gap,10));
-		init(seq1,seq2,matrix,type_seq,algo,gap);
+		var gap=-Math.abs(parseInt(gap));
+		console.log(isNaN(gap));
+		if(isNaN(gap)===false){
+			number=true;
+		}
+
+	}
+
+	if(nb=="multiple"){
+		var seq1=document.getElementById("sequence1").value;
+		var seq2=document.getElementById("sequence2").value;
+		var li_gap=[];
+		var max_len=seq1.length;
+		if (seq2.length>max_len){
+		max_len=seq2.length;
+		}
+		for (var i =0;i<max_len;i++) {
+			var tmp2=document.getElementById("enter_gap_penalty"+0).value
+			var tmp=document.getElementById("enter_gap_penalty"+i).value;
+			console.log(tmp)
+			tmp=parseInt(tmp);
+			tmp2=parseInt(tmp2);
+			if (tmp==tmp2) {
+				not_equal=true;
+				
+			};
+			console.log(parseInt(tmp,10));
+
+			tmp=Math.abs(parseInt(tmp,10));
+			console.log(tmp);
+
+			if (isNaN(Math.abs(parseInt(tmp,10)))===false){
+				console.log("ohoho");
+
+				numbers=true;
+			}
+			li_gap.push(-tmp);
+
+		}
+		if (not_equal==false){
+			alert("if you choose similar gap penalty, choose single gap penalty")
+		}
+	}
+	if (choice_gap_check===false){
+		alert("choose single gap penalty or multiple gap penalty");
+	
+	}
+	if (((nb=="single")&&(number===false))||((nb=="multiple")&&(numbers===false))) {
+		alert("you have to enter a number");
+	}
+	if ((number===true)&&(numbers===true)&&(choice_gap_check===true)) {
+		check_gap=true;
+	}
+
+	return check_gap;
 }
 
-else if (document.getElementById("multiple").checked===true){
-	var max_len=seq1.length;
-	if (seq2.length>max_len){
-		max_len=seq2.length;
-	}
-	for (var i =0;i<max_len;i++) {
-		var tmp=document.getElementById("enter_gap_penalty"+i).value;
-		tmp=Math.abs(parseInt(tmp,10));
-		li_gap.push(-tmp);
-	// la liste des gap sous forme numérique est dans li_gap
-	}
-	init(seq1,seq2,matrix,type_seq,algo,li_gap);
-}
-	
-	else {
-		document.getElementById("formulaire").innerHtml="<b>"+"le formulaire est mal remplie"+"</b>";
-	}
-}*/
+
+
 
 
 function init(seq1,seq2,matrix,type_seq,algo,gap){
@@ -215,101 +291,3 @@ function init(seq1,seq2,matrix,type_seq,algo,gap){
 	display();
 }
 
-/*function verif_check () {
-	var algo_checked=false
-	var type_seq_check=false
-	var algo_choice=document.getElementsByName("algorithm");
-for (var i=0;i<algo_choice.length;i++){
-	if (algo_choice[i].checked===true){
-		algo=algo_choice[i].value;
-	}
-	}
-	if (algo != ""){
-		console.log(algo);
-		algo_checked=true;
-	}
-	else{
-	document.getElementById("formulaire").innerHtml="<b>"+"Choose an algorithm to obtain a result."+"</b>";
-	}
-
-	var seq_choice=document.getElementsByName("type_seq");
-	for (var j=0;j<seq_choice.length;j++) {
-		if (seq_choice [j].checked===true) {
-			type_seq=seq_choice[j].value;
-		 	type_seq_check=true;
-	}
-}
-if (type_seq_check===true){
-	console.log(type_seq);
-}
-else{
-	document.getElementById("formulaire").innerHtml="<b>"+"Choose a type of sequence to obtain a result"+"</b>";
-}
-if ((type_seq_check===true)&&(algo_checked===true)){
-	return (algo,algo_checked,type_seq,type_seq_check)
-
-}
-else{
-return (algo_checked, type_seq_check)
-}
-}*/
-
-// function verif(algo,type_seq,seq1,seq2,matrix,choose_gap){
-
-// var checked=false;
-// var algo_checked=false;
-// var type_seq_check=false;
-// var seq_check=false;
-// var content_seq_check=false;
-// var matrix_check=false;
-// var gap_choice_check=false;
-// if (algo != undefined){
-// 	algo_checked=true;
-
-// }
-// else{
-// 	document.getElementById("formulaire").innerHtml="<b>"+"vous n'avez pas choisit votre algorithme ca risque de moins bien marcher"+"</b>";
-// }
-// if (type_seq!=undefined){
-//  type_seq_check=true;
-// }
-// else{
-// 	document.getElementById("formulaire").innerHtml="<b>"+"vous n'avez pas coché de type de séquence"+"</b>";
-// }
-// if(((type_seq=="protein")&&(/[ARNDCQEGHILKMFPSTWYVBZX]/.test(seq1,seq2)))||((type_seq=="nucleotide")&&(/[ATGCU]/.test(seq1,seq2)))) {
-// seq_check=true;
-// }
-// else{
-// 	document.getElementById("formulaire").innerHtml="<b>"+"Les séquences entré ne correspondent pas au type de séquence choisi"+"</b>";
-// }
-// if (matrix!=undefined){
-// 	matrix_check=true;
-// } 
-// else{
-// 	document.getElementById("formulaire").innerHtml="<b>"+"selectionnez une matrice "+"</b>";
-// }
-// if (choose_gap!=undefined) {
-// 	gap_choice_check=true;
-// }
-// else{
-// 		document.getElementById("formulaire").innerHtml="<b>"+"vous devez choisir votre type de pénalité de gap"+"</b>";
-// }
-// if (li_gap.length>1){
-// 	var equal=false;
-// 	for (var l= 0; l< li_gap.length-1; l++) {
-// 		if (li_gap[l]==li_gap[l+1]){
-// 			equal=true;
-// 		}
-// 	}
-// 	if (equal===true) {
-// 		document.getElementById("formulaire").innerHtml="<b>"+"vous auriez pu choisir une pénalité de gap unique ca n'aurait rien changer"+"</b>";
-// 		}
-// 	}
-
-
-// if (algo_checked===true||matrix_check===true||seq_check===true||type_seq_check===true||gap_choice_check===true){
-// checked=true;
-// }
-
-// return checked;
-// }
