@@ -36,31 +36,99 @@
  }
  #global{
  	margin:5% 5%;
- 	display: table;
- }
+/* 	display: inline-block;
+*/ }
 
  #global #step_to_step{
- 	display: table-cell;  
-	width: 60%;
+	width: 100%;
  }
 
 
  #global #formulaire{
- 	display: table-cell;
- 	width: 20%;
-	border: 1px solid #71ACFD;
- 	padding: 25px;
- 	padding-top: 10px;
- 	text-align: center;
+ 	display: flex;
+ 	flex-direction:row;
+ 	justify-content:center;
+ 	align-items:stretch;
+/*	border: 1px solid #71ACFD;
+*//* 	padding: 25px;
+/* 	padding-top: 10px;
+*/ 	text-align: center;
  }
 
 #formulaire li{
 	list-style-type:none;}
- #button1{
- 	display: block;
- 	margin: auto;
- 	text-align:center;
+
+#formulaire > li{
+	border: 1px solid #71ACFD;
+ 	padding: 25px;
+ 	padding-top: 10px;
+ 	text-align: center;
+}
+
+#message {
+	border:none;
+}
+
+#commands,#alignment{
+    display: table;
+    margin: 0 auto;
+    text-align: center;
+}
+
+ #global #entire{
+ 	text-align: center;
+ 	display: flex;
+ 	flex-direction:row;
+ 	justify-content:center;
+ 	align-items:center;
+ 	width:100%;
+/*	border: 1px solid #71ACFD;
+*//* 	padding: 25px;
+/* 	padding-top: 10px;
+*/ 	text-align: center;
  }
+
+ #entire>table{
+ 	margin:25px;
+ }
+
+#global #step{
+ 	text-align: center;
+ 	display: flex;
+ 	flex-direction:row;
+ 	justify-content:center;
+ 	align-items:center;
+ 	width:100%;
+/*	border: 1px solid #71ACFD;
+*//* 	padding: 25px;
+/* 	padding-top: 10px;
+*/ 	text-align: center;
+ }
+
+ #step>table{
+ 	margin:25px;
+ }
+
+ #alignment{
+ 	padding: 25px;
+ 	padding-top: 10px;
+ 	text-align: center;
+ 	display:flex;
+ 	 	flex-direction:row;
+ 	justify-content:center;
+ 	align-items:center;
+ }
+
+ #alignment h3{
+ 	font-size: 1.5em;
+ 	color:#71ACFD;
+}
+
+.align{
+	margin:25px;
+	text-align: center;
+}
+
 
  table
  {
@@ -76,7 +144,7 @@
  }
 
 
- i.fa-circle-thin{
+/* i.fa-circle-thin{
  	background-color: red;
  }
 
@@ -90,4 +158,4 @@
 
  i.fa-gavel{
  	background-color: green;
- }
+ }*/

@@ -145,7 +145,6 @@ function verif () {
 	else{
 		alert("complete the form before submit it");
 	}
-
 	}
 
 
@@ -187,7 +186,6 @@ function check_content_seq () {
 	var content_seq_check=false;
 	var seq2=document.getElementById("sequence1").value.toUpperCase();
 	var seq1=document.getElementById("sequence2").value.toUpperCase();
-	console.log("ahaha")
 	var type_seq;
 	var seq_choice=document.getElementsByName("type_seq");
 	for (var j=0;j<seq_choice.length;j++) {
@@ -195,11 +193,7 @@ function check_content_seq () {
 			type_seq=seq_choice[j].value;
 		}
 }
-console.log("ihihihi")
 	if(((type_seq=="protein")&&(/[ARNDCQEGHILKMFPSTWYVBZX]/.test(seq1,seq2)))||((type_seq=="nucleotide")&&(/[ATGCU]/.test(seq1,seq2)))) {
-	console.log(type_seq);
-	console.log(seq2);
-	console.log(seq1);
 	content_seq_check=true;
 }
 else{
@@ -226,7 +220,6 @@ function verif_choice_gap(){
 	if (nb=="single"){
 		var gap=document.getElementById("enter_gap_penalty").value;
 		var gap=-Math.abs(parseInt(gap));
-		console.log(isNaN(gap));
 		if(isNaN(gap)===false){
 			number=true;
 		}
@@ -244,20 +237,16 @@ function verif_choice_gap(){
 		for (var i =0;i<max_len;i++) {
 			var tmp2=document.getElementById("enter_gap_penalty"+0).value
 			var tmp=document.getElementById("enter_gap_penalty"+i).value;
-			console.log(tmp)
 			tmp=parseInt(tmp);
 			tmp2=parseInt(tmp2);
 			if (tmp==tmp2) {
 				not_equal=true;
 				
 			};
-			console.log(parseInt(tmp,10));
 
 			tmp=Math.abs(parseInt(tmp,10));
-			console.log(tmp);
 
 			if (isNaN(Math.abs(parseInt(tmp,10)))===false){
-				console.log("ohoho");
 
 				numbers=true;
 			}
@@ -275,10 +264,9 @@ function verif_choice_gap(){
 	if (((nb=="single")&&(number===false))||((nb=="multiple")&&(numbers===false))) {
 		alert("you have to enter a number");
 	}
-	if ((number===true)&&(numbers===true)&&(choice_gap_check===true)) {
+	if (((number===true)||(numbers===true))&&(choice_gap_check===true)) {
 		check_gap=true;
 	}
-
 	return check_gap;
 }
 

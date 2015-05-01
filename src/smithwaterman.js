@@ -95,8 +95,8 @@
  	var valmax = 0;
  	var compt = 0;
  	var l = [];
- 	var align1 = [];
- 	var align2 = [];
+
+ 	var result = [];
  	for (val in matsumtot) {
  		valmaxpos = matsumtot[val];
  		valmax = Math.max(valmax, valmaxpos);
@@ -108,9 +108,11 @@
  			l.push(elem);
  		}
  	}
- 	
+
  	for (dep in l) {
  		deppos = l[dep];
+ 		var align1 = [];
+ 		var align2 = [];
  		while (true) {
  			var posseq1=deppos/(len1+1);
  			var posseq2;
@@ -139,8 +141,11 @@
  				len1--;
  			}
  		}
+ 		result.push(align1);
+ 		result.push(align2);
  	}
- 	var result = [align2, align1];
+
+ 	console.log(result.length)
  	return result;
  }
 

@@ -132,16 +132,16 @@ function launch_nstep_path(nbValuesToDisplayPath){
 
 			if (nbDisplayedValuesPath<nbValuesToDisplayPath) {
 				if (matpath[matPos]===0){
-						currentCell.innerHTML="<i class=\"fa fa-circle-thin\"></i>";
+						currentCell.innerHTML+="<i class=\"fa fa-circle-thin\"></i>";
 					}
 					else if (matpath[matPos]===1){
-						currentCell.innerHTML="<i class=\"fa fa-arrow-left\"></i>";
+						currentCell.innerHTML+="<i class=\"fa fa-arrow-left\"></i>";
 					}
 					else if (matpath[matPos]===2){
-						currentCell.innerHTML="<i class=\"fa fa-gavel\"></i>";
+						currentCell.innerHTML+="<i class=\"fa fa-gavel\"></i>";
 					}
 					else if (matpath[matPos]===3){
-						currentCell.innerHTML="<i class=\"fa fa-arrow-up\"></i>";
+						currentCell.innerHTML+="<i class=\"fa fa-arrow-up\"></i>";
 					}
 			};
 			nbDisplayedValuesPath++;

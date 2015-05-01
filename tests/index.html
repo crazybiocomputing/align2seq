@@ -43,24 +43,8 @@
 			<h1 id="title">Tool for pairwise alignment</h1>
 		</header>
 		<div id="global">
-			<div id="step_by_step">
-				<table id="matrixsum">
-				</table>
-				<br>
-				<br>
-				<table id="matrixpath">
-				</table>
-				<br>
-				<br>
-				<table id="matrixtime">
-				</table>
-				<br>
-				<br>
-				<table id="matrixtime2">
-				</table>
-			</div>
+			<p id="message"></p>
 			<div id="formulaire">
-				<li id="message"></li>
 				<li id="algo"><h3>Algorithms</h3>
 					<label class="elem_form"> Needleman and Wunsch </label> <input type="radio" name="algorithm" value="needleman_wunsch" id="needleman_wunsch" ><br>
 					<label class="elem_form"> Smith and Waterman </label> <input type="radio" name="algorithm" value="smith_waterman" id="smith_waterman"><br>
@@ -84,13 +68,31 @@
 					<select id="choice_matrix" name="choice_matrix" onFocus="verif_choice_gap()">
 					</select>
 				</li>
-				<li id="commands"><h3>Results</h3></li>
-				<button id="submit_button"onclick="verif()"><i class="fa fa-play"></i></button>
-				<button id ="next" onClick="timelapse()"><i class="fa fa-step-forward"></i></button>
-				<button id ="preview"><i class="fa fa-step-backward"></i></button>
-				<button id ="final"><i class="fa fa-stop"></i></button>
-				<li id="alignment"></li>
 			</div>
+			<br>
+			<div id="commands">
+				<button id="submit_button"onclick="verif()"><i class="fa fa-play"></i></button>
+				<button id ="next" onClick="next()"><i class="fa fa-step-forward"></i></button>
+				<button id ="preview" onClick="prev()"><i class="fa fa-step-backward"></i></button>
+				<button id ="final"><i class="fa fa-stop"></i></button></div>
+				<br><br><br>
+			<div id="step_by_step">
+				<div id="entire">
+					<table id="matrixsum" title="Score matrix">
+					</table>
+					<table id="matrixpath" title="Path matrix">
+					</table>
+				</div>
+				<br>
+				<div id="step">
+					<table id="matrixtime">
+					</table>
+<!-- 					<table id="matrixtime2">
+					</table> -->
+				</div>
+			</div>
+			<p id="alignment"></p>
+
 		</div>
 	</div>
 	<footer>
