@@ -126,39 +126,37 @@
  		deppos = l[dep];
  		var align1 = [];
  		var align2 = [];
+ 		console.log("Début")
  		while (true) {
- 			var posseq1=deppos/(len1+1);
- 			var posseq2;
+ 			console.log("Pos "+deppos)
+ 			var posseq1=(deppos%(len1+1)-1);
+ 			var posseq2=Math.floor(deppos/(len2+1)-1);
+			console.log("Pos1 "+posseq1+" Pos2 "+posseq2)
  			if (matsumtot[deppos] === 0) {
- 				align1.unshift(s1[posseq1]);
- 				align2.unshift(s2[len2]);
+			/*	align1.unshift(s1[posseq1]);
+ 				console.log("Lettre : "+s1[posseq1]);
+ 				align2.unshift(s2[len2]);*/
  				break;
  			}
  			if (matpath[deppos] === 1) {
  				deppos = deppos - 1;
  				align1.unshift("-");
- 				align2.unshift(s2[len2]);
- 				len2--;
+ 				align2.unshift(s2[posseq2]);
  			}
- 			else if (matpath[deppos] === 2) {
- 				deppos = deppos - (lengthseq + 2);
- 				align1.unshift(s1[len1]);
- 				align2.unshift(s2[len2]);
- 				len1--;
- 				len2--;
+ 			else if (matpath[deppos] === 3) {
+  				deppos = deppos - (lengthseq + 1);
+ 				align1.unshift(s1[posseq1]);
+ 				align2.unshift("-");
  			}
  			else {
- 				deppos = deppos - (lengthseq + 1);
- 				align1.unshift(s1[len1]);
- 				align2.unshift("-");
- 				len1--;
+ 				deppos = deppos - (lengthseq + 2);
+ 				align1.unshift(s1[posseq1]);
+ 				align2.unshift(s2[posseq2]);
  			}
  		}
  		result.push(align1);
  		result.push(align2);
  	}
-
- 	console.log(result.length)
  	return result;
- }
+}
 

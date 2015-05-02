@@ -110,21 +110,21 @@ function algorithm(sequence1,sequence2,matrix,type_seq,algo,gap)
 		}
 	}
 	if (this.algo == "smith_waterman") {
-		var result = smithwaterman.prototype.alignment(this.matpath, this.matscore,this.matsumtot, this.s1, this.s2, this.len1, this.len2, this.len2);
+		var result = smithwaterman.prototype.alignment(this.matpath, this.matscore,this.matsumtot, this.s2, this.s1, this.len1, this.len2, this.len2);
 	}
 	else{
-		var result = needlemanwunsch.prototype.alignment(this.matpath, this.matscore, this.s1, this.s2, this.len1, this.len2, this.len2);
+		var result = needlemanwunsch.prototype.alignment(this.matpath, this.matscore, this.s2, this.s1, this.len1, this.len2, this.len2);
 	}
 	if (result.length>2){
 		var cpt=1		
 		document.getElementById('alignment').innerHTML +="<div id=\"allalign\">";
 		for(var alignseq=0;alignseq<=(result.length-1);alignseq+=2){
-			document.getElementById('alignment').innerHTML +="<div class=\"align\"><h3>Alignement "+cpt+"</h3>"+result[alignseq]+"<br>"+result[alignseq+1]+"</div><br>";
+			document.getElementById('alignment').innerHTML +="<div class=\"align\"><h3>Alignement "+cpt+"</h3><br>"+result[alignseq]+"<br>"+result[alignseq+1]+"</div><br>";
 			cpt++
 		}
 	}
 	else{
-		document.getElementById('alignment').innerHTML +="<h3>Alignement</h3>"+result[0]+"<br>"+result[1];
+		document.getElementById('alignment').innerHTML +="<h3>Alignement</h3><br>"+result[0]+"<br>"+result[1];
 	}
 
 /*	console.log (matscore);
