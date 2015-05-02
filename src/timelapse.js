@@ -103,7 +103,7 @@ function launch_nstep(nbValuesToDisplay){
 			var currentCell=currentRow.cells[j];
 
 			//The table is filled with the assumption that it is filled from left to right
-			currentCell.innerHTML=matscore[nbDisplayedValues];
+			currentCell.innerHTML=matsumtot[nbDisplayedValues];
 			nbDisplayedValues++;
 
 			if (nbDisplayedValues>nbValuesToDisplay) {
