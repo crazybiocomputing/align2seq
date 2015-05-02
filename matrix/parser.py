@@ -177,7 +177,7 @@ parser(PAM480)
 parser(PAM490)
 parser(PAM500)
 
-# closing of all matrix files, writinf the end of the JSON file et closing of this one
+# closing of all matrix files, writing the end of the JSON file et closing of this one
 blosum30.close()
 blosum35.close()
 blosum40.close()

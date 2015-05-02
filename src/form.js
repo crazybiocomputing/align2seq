@@ -23,6 +23,9 @@
 * Emeline Duquenne
 * Aurore Perdriau
 */
+/** Function to put in the form the right matrices according to sequence type
+@constructor
+ */
 "use strict";
 function choose_matrix(){
 	if ((document.getElementById("needleman_wunsch").checked===true)||(document.getElementById("smith_waterman").checked===true)){
@@ -44,6 +47,9 @@ function choose_matrix(){
 	}	
 }
 
+/** Function to put in the form the right input for gap penalities according to user choice
+@constructor
+ */
 function choose_gap_penalty(){
 	var seq1=document.getElementById("sequence1").value;
 	var seq2=document.getElementById("sequence2").value;
@@ -88,6 +94,9 @@ function choose_gap_penalty(){
 		}
 	}
 
+/** Function to obtain the user values for the treatment of the sequences alignment 
+@constructor
+ */
 function get_value(){
 // event.preventDefault();
 
@@ -137,7 +146,9 @@ init(seq1,seq2,matrix,type_seq,algo,li_gap);
 
 }
 
-
+/** Function to verify if all values are correctly filled
+@constructor
+ */
 function verif () {
 	if ((verif_check_algo()===true)&&(verif_check_type_seq()===true)&&(check_content_seq()===true)&&(verif_choice_gap()===true)){
 		get_value();
@@ -148,7 +159,9 @@ function verif () {
 	}
 
 
-
+/** Function to verify if the choice of algorithm is correctly filled
+@constructor
+ */
 function verif_check_algo(){
 	var algo_checked=false;
 	var algo_choice=document.getElementsByName("algorithm");
@@ -166,6 +179,10 @@ function verif_check_algo(){
 */	}
 return(algo_checked)
 }
+
+/** Function to verify if the choice of type sequence is correctly filled
+@constructor
+ */
 function verif_check_type_seq(){
 	var type_seq_check=false
 	var seq_choice=document.getElementsByName("type_seq");
@@ -181,6 +198,10 @@ function verif_check_type_seq(){
 }
 return(type_seq_check);
 }
+
+/** Function to verify if the chosen sequences are correctly filled
+@constructor
+ */
 function check_content_seq () {
 
 	var content_seq_check=false;
@@ -202,6 +223,9 @@ alert("the content of the sequence did not match the sequence type you have chec
 return(content_seq_check);
 }
 
+/** Function to verify if the choice of gap penality is correctly filled
+@constructor
+ */
 function verif_choice_gap(){
 	var check_gap=false
 	var choice_gap_check=false
@@ -270,10 +294,15 @@ function verif_choice_gap(){
 	return check_gap;
 }
 
-
-
-
-
+/** Function to initiate the alignment
+@constructor
+@param {string} sequence1 - The first sequence entered by the user, in the first line of the score matrix
+@param {string} sequence2 - The second sequence entered by the user, in the first column of the score matrix
+@param matrix - Substitution matrix chose by the user
+@param {string} type_seq - If the sequences are proteins or nucleotides
+@algo {string} - If the algorithm used is S&W or N&W (for the moment)
+@gap {number} - Gap penality *
+ */
 function init(seq1,seq2,matrix,type_seq,algo,gap){
 	algorithm(seq1,seq2,matrix,type_seq,algo,gap);
 	display();

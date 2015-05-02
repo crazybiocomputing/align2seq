@@ -104,7 +104,7 @@ function algorithm(sequence1,sequence2,matrix,type_seq,algo,gap)
 				smithwaterman.prototype.score(this.matrix,this.matscore, this.matpath, this.matsumdia, this.matsumvert, this.matsumhor,this.matsumtot, this.matseq[i], this.matseq[j], this.len2, this.place,this.gapplace,this.letters);
 			}
 			else{
-				needlemanwunsch.prototype.score(this.matrix,this.matscore, this.matpath, this.matsumdia, this.matsumvert, this.matsumhor, this.matseq[i], this.matseq[j], this.len2, this.place,this.i,this.gapplace,this.letters);
+				needlemanwunsch.prototype.score(this.matrix,this.matscore, this.matpath, this.matsumdia, this.matsumvert, this.matsumhor,this.matsumtot, this.matseq[i], this.matseq[j], this.len2, this.place,this.i,this.gapplace,this.letters);
 			}
 			this.place++;
 		}
@@ -113,7 +113,7 @@ function algorithm(sequence1,sequence2,matrix,type_seq,algo,gap)
 		var result = smithwaterman.prototype.alignment(this.matpath, this.matscore,this.matsumtot, this.s2, this.s1, this.len1, this.len2, this.len2);
 	}
 	else{
-		var result = needlemanwunsch.prototype.alignment(this.matpath, this.matscore, this.s2, this.s1, this.len1, this.len2, this.len2);
+		var result = needlemanwunsch.prototype.alignment(this.matpath, this.matscore,this.matsumtot, this.s2, this.s1, this.len1, this.len2, this.len2);
 	}
 	if (result.length>2){
 		var cpt=1		
@@ -126,7 +126,4 @@ function algorithm(sequence1,sequence2,matrix,type_seq,algo,gap)
 	else{
 		document.getElementById('alignment').innerHTML +="<h3>Alignement</h3><br>"+result[0]+"<br>"+result[1];
 	}
-
-/*	console.log (matscore);
-console.log (matpath);*/
 }

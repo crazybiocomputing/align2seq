@@ -23,7 +23,9 @@
  * Emeline Duquenne
  * Aurore Perdriau
  */
-
+/** Last file executed after data treatment : creation of the displayed matrices, without step by step
+@constructor
+ */
  function display(){
 
 	 	document.getElementById("matrixsum").removeChild(matrixsum.childNodes[0]);

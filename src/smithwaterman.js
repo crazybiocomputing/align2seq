@@ -24,13 +24,31 @@
  * Aurore Perdriau
  */
 
+/** Function to initiate the alignment according to Smith and Waterman algorithm
+@constructor
+ */
  function smithwaterman()
  {
  	for (key in algorithm.prototype) { 
  		smithwaterman.prototype[key] = algorithm.prototype[key];
  	}
  }
-
+/** Function to calculate the score according to Smith and Waterman algorithm
+@constructor
+@param matrix - Substitution matrix chosen by the user
+@param matscore - Score matrix filled by this function
+@param matpath - Path matrix filled by the function
+@param matsumdia - Sum matrix obtained by the diagonal case filled by the function
+@param matsumvert - Sum matrix obtained by the vertical case filled by the function
+@param matsumhor - Sum matrix obtained by the horizontal case filled by the function
+@param matsumtot - Sum matrix obtained by the maximal value between the third previoux matrices
+@param {string} l1 - The letter obtained by the first sequence used for comparison
+@param {string} l2 - The letter obtained by the second sequence used for comparison
+@param {string} lengthseq - Length of the sequence
+@param {string} place - Place of the letter 
+@param {number} gap- Gap penality 
+@param letters - Letters used in subsitution matrices
+ */
  smithwaterman.prototype.score = function (matrix,matscore, matpath, matsumdia, matsumvert, matsumhor, matsumtot,l1, l2, lengthseq, place,gap,letters) {
  	var currentscore;
  	var scorevert, scorehor, scoredia;
@@ -102,6 +120,16 @@
  	}
  }
 
+/** Function to calculate the alignment according to Needleman and Wunsch algorithm
+@constructor
+@param matscore - Score matrix filled by this function
+@param matpath - Path matrix filled by the function
+@param s1 - The first sequence
+@param s2 - The second sequence
+@parem {number} len1 - Length of the first sequence
+@param {number} len2 - Length of the second sequence
+@param {string} lengthseq - Length of the sequence
+ */
  smithwaterman.prototype.alignment = function (matpath, matscore, matsumtot, s1, s2, len1, len2, lengthseq) {
  	
  	var val, elem, dep, valmaxpos;

@@ -23,13 +23,34 @@
 * Emeline Duquenne
 * Aurore Perdriau
 */
+
+/** Function to initiate the alignment according to Needleman and Wunsch algorithm
+@constructor
+ */
 function needlemanwunsch()
 {
 	for (key in algorithm.prototype) {
 		needlemanwunsch.prototype[key] = algorithm.prototype[key];
 	}
 }
-needlemanwunsch.prototype.score = function (matrix,matscore, matpath, matsumdia, matsumvert, matsumhor,l1, l2, lengthseq, place,i,gap,letters) {
+
+/** Function to calculate the score according to Needleman and Wunsch algorithm
+@constructor
+@param matrix - Substitution matrix chosen by the user
+@param matscore - Score matrix filled by this function
+@param matpath - Path matrix filled by the function
+@param matsumdia - Sum matrix obtained by the diagonal case filled by the function
+@param matsumvert - Sum matrix obtained by the vertical case filled by the function
+@param matsumhor - Sum matrix obtained by the horizontal case filled by the function
+@param matsumtot - Sum matrix obtained by the maximal value between the third previoux matrices
+@param {string} l1 - The letter obtained by the first sequence used for comparison
+@param {string} l2 - The letter obtained by the second sequence used for comparison
+@param {string} lengthseq - Length of the sequence
+@param {string} place - Place of the letter 
+@param {number} gapplace- Gap penality 
+@param letters - Letters used in subsitution matrices
+ */
+needlemanwunsch.prototype.score = function (matrix,matscore, matpath, matsumdia, matsumvert, matsumhor,matsumtot,l1, l2, lengthseq, place,i,gap,letters) {
 	var currentscore;
 	var scorevert,scorehor,scoredia;
 	var sumvert,sumdia,sumhor;
@@ -46,6 +67,7 @@ needlemanwunsch.prototype.score = function (matrix,matscore, matpath, matsumdia,
 		matsumdia[place]=0;
 		matsumvert[place]=0;
 		matsumhor[place]=0; 
+		matsumtot[place]=0;
 	}
 	else if (place%(lengthseq+1)===0 ){
 		matscore[place]=gap*i;
@@ -56,6 +78,7 @@ needlemanwunsch.prototype.score = function (matrix,matscore, matpath, matsumdia,
 		matsumdia[place]=0;
 		matsumvert[place]=0;
 		matsumhor[place]=0;
+		matsumtot[place]=0;
 	}
 	else{
 		scorevert=matscore[placevert];
@@ -80,9 +103,7 @@ needlemanwunsch.prototype.score = function (matrix,matscore, matpath, matsumdia,
 		matsumvert[place]=sumvert;
 		matsumhor[place]=sumhor;
 		var maxiscore=Math.max(sumvert,sumdia,sumhor);
-		console.log(sumvert,sumdia,sumhor);
- 		console.log(maxiscore);
-
+		matsumtot[place]=maxiscore;
 		if (maxiscore==(sumhor)){
 			matpath[place]=1; 
 		}
@@ -93,10 +114,23 @@ needlemanwunsch.prototype.score = function (matrix,matscore, matpath, matsumdia,
 			matpath[place]=3; 
 		}
 	}
+	console.log(matsumtot)
 }
-needlemanwunsch.prototype.alignment = function (matpath, matscore, s1, s2, len1, len2, lengthseq) {
+
+/** Function to calculate the alignment according to Needleman and Wunsch algorithm
+@constructor
+@param matscore - Score matrix filled by this function
+@param matpath - Path matrix filled by the function
+@param matsumtot - Sum matrix obtained by the maximal value between the third previoux matrices
+@param s1 - The first sequence
+@param s2 - The second sequence
+@parem {number} len1 - Length of the first sequence
+@param {number} len2 - Length of the second sequence
+@param {string} lengthseq - Length of the sequence
+ */
+needlemanwunsch.prototype.alignment = function (matpath, matscore, matsumtot, s1, s2, len1, len2, lengthseq) {
 	var val,elem,valmaxpos;
-	var dep=(matscore.length)-1;
+	var dep=(matsumtot.length)-1;
 	var compt=0;
 	var l=[];
 	var align1=[];
