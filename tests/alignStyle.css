@@ -138,12 +138,15 @@
  td,th
  {
  	border : 1px solid black;
- 	min-width:25px;
- 	max-width:50px;
+ 	width:25px;
+/* 	max-width:50px;
+*/ 	height: 25px;
  	text-align: center; vertical-align: middle;
  }
 
-
+td>img{
+	width:30%;
+}
 /* i.fa-circle-thin{
  	background-color: red;
  }

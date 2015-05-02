@@ -118,15 +118,26 @@
 						matrixpath.rows[i].cells[j].innerHTML="<i class=\"fa fa-circle-thin\"></i>";
 					}
 					else if (matpath[path]===1){
-						matrixpath.rows[i].cells[j].innerHTML="<i class=\"fa fa-arrow-left\"></i>";
+						matrixpath.rows[i].cells[j].innerHTML="<img src=\"..\\src\\arrows\\hor.png\"></img>";
 					}
 					else if (matpath[path]===2){
-						matrixpath.rows[i].cells[j].innerHTML="<i class=\"fa fa-gavel\"></i>";
+						matrixpath.rows[i].cells[j].innerHTML="<img src=\"..\\src\\arrows\\dia.png\"></img>";
 					}
 					else if (matpath[path]===3){
-						matrixpath.rows[i].cells[j].innerHTML="<i class=\"fa fa-arrow-up\"></i>";
+						matrixpath.rows[i].cells[j].innerHTML="<img src=\"..\\src\\arrows\\vert.png\"></img>";
 					}
-					// matrixpath.rows[i].cells[j].innerHTML=matpath[path];
+					else if (matpath[path]===4){
+						matrixpath.rows[i].cells[j].innerHTML="<img src=\"..\\src\\arrows\\horvert.png\"></img>";
+					}
+					else if (matpath[path]===5){
+						matrixpath.rows[i].cells[j].innerHTML="<img src=\"..\\src\\arrows\\hordia.png\"></img>";
+					}
+					else if (matpath[path]===6){
+						matrixpath.rows[i].cells[j].innerHTML="<img src=\"..\\src\\arrows\\diavert.png\"></img>";
+					}
+					else if (matpath[path]===7){
+						matrixpath.rows[i].cells[j].innerHTML="<img src=\"..\\src\\arrows\\hordiavert.png\"></img>";
+					}
 					j++;
 					if(j%size2==0){
 						i++;

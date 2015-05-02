@@ -77,14 +77,27 @@
  		matsumhor[place]=sumhor;
  		var maxiscore=Math.max(sumvert,sumdia,sumhor);
  		matsumtot[place]=maxiscore;
- 		if (maxiscore==(sumhor)){
+ 		if (maxiscore==(sumhor) && maxiscore!=(sumvert) && maxiscore!=(sumdia)){
  			matpath[place]=1; 
  		}
- 		else if (maxiscore==(sumdia)){
+ 		else if (maxiscore!=(sumhor) && maxiscore!=(sumvert) && maxiscore==(sumdia)){
  			matpath[place]=2;
  		}
- 		else{
- 			matpath[place]=3; 
+
+ 		else if (maxiscore!=(sumhor) && maxiscore==(sumvert) && maxiscore!=(sumdia)){
+ 			matpath[place]=3;
+ 		}
+ 		else if (maxiscore==(sumhor) && maxiscore==(sumvert) && maxiscore!=(sumdia)){
+ 			matpath[place]=4;
+ 		}
+ 		else if (maxiscore==(sumhor) && maxiscore!=(sumvert) && maxiscore==(sumdia)){
+ 			matpath[place]=5;
+ 		}
+ 		else if (maxiscore!=(sumhor) && maxiscore==(sumvert) && maxiscore==(sumdia)){
+ 			matpath[place]=6;
+ 		}
+ 		else if (maxiscore==(sumhor) && maxiscore==(sumvert) && maxiscore==(sumdia)){
+ 			matpath[place]=7;
  		}
  	}
  }
