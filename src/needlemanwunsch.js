@@ -136,31 +136,50 @@ needlemanwunsch.prototype.alignment = function (matpath, matscore, matsumtot, s1
 	var align1=[];
 	var align2=[];
 	while (len1>=0 && len2>=0) {
-		if (matpath[dep] === 0) {
+		var posseq1=(dep%(len1+1)-1);
+ 		var posseq2=Math.floor(dep/(len2+1)-1);
+ 		if (matpath[dep] === 0) {
+			align1.unshift(s1[len1]);
+			align2.unshift(s2[len2]);
+			break;
+ 		}
+ 		if (matpath[dep] === 1) {
+ 			dep = dep - 1;
+ 			align1.unshift("-");
+/* 			align2.unshift(s2[posseq2]);
+*/ 		}
+ 		else if (matpath[dep] === 3 || matpath[dep] === 4) {
+  			dep = dep - (lengthseq + 1);
+/* 			align1.unshift(s1[posseq1]);
+*/ 			align2.unshift("-");
+ 		}
+ 		else {
+ 			dep = dep - (lengthseq + 2);
+ 			align1.unshift(s1[posseq1]);
+ 			align2.unshift(s2[posseq2]);
+ 		}
+/*		if (matpath[dep] === 0) {
 			align1.unshift(s1[len1]);
 			align2.unshift(s2[len2]);
 			break;
 		}
-		if (matpath[dep] === 1) {
-			dep = dep - 1;
-			align1.unshift("-");
-			align2.unshift(s2[len2]);
-			len2--;
-		}
-		else if (matpath[dep] === 2) {
-			dep = dep - (lengthseq + 2);
-			align1.unshift(s1[len1]);
-			align2.unshift(s2[len2]);
-			len1--;
-			len2--;
-		}
-		else {
-			dep = dep - (lengthseq + 1);
-			align1.unshift(s1[len1]);
-			align2.unshift("-");
-			len1--;
-		}
-	}
+		else if (matpath[dep] === 1) {
+ 				dep = dep - 1;
+ 				align1.unshift("-");
+ 				align2.unshift(s2[posseq2]);
+ 			}
+ 		else if (matpath[dep] === 3 || matpath[dep] === 4) {
+  				dep = dep - (lengthseq + 1);
+ 				align1.unshift(s1[posseq1]);
+ 				align2.unshift("-");
+ 			}
+ 		else {
+ 				dep = dep - (lengthseq + 2);
+ 				align1.unshift(s1[posseq1]);
+ 				align2.unshift(s2[posseq2]);
+ 			}
+	}*/
 	var result=[align1,align2];
 	return result;
-};
+	}
+}

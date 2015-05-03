@@ -119,11 +119,11 @@ function algorithm(sequence1,sequence2,matrix,type_seq,algo,gap)
 		var cpt=1		
 		document.getElementById('alignment').innerHTML +="<div id=\"allalign\">";
 		for(var alignseq=0;alignseq<=(result.length-1);alignseq+=2){
-			document.getElementById('alignment').innerHTML +="<div class=\"align\"><h3>Alignement "+cpt+"</h3><br>"+result[alignseq]+"<br>"+result[alignseq+1]+"</div><br>";
+			document.getElementById('alignment').innerHTML +="<h3>Alignment "+cpt+"</h3><br/>"+result[alignseq]+"<br/>"+result[alignseq+1]+"<br>";
 			cpt++
 		}
 	}
 	else{
-		document.getElementById('alignment').innerHTML +="<h3>Alignement</h3><br>"+result[0]+"<br>"+result[1];
+		document.getElementById('alignment').innerHTML ="<h3>Alignment</h3><br/>"+result[0]+"<br/>"+result[1];
 	}
 }
