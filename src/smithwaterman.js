@@ -165,13 +165,13 @@
  			}
  			if (matpath[deppos] === 1) {
  				deppos = deppos - 1;
- 				align1.unshift("-");
-/* 				align2.unshift(s2[posseq2]);
-*/ 			}
+ 				align1.unshift(s1[posseq1]);
+ 				align2.unshift("-");
+ 			}
  			else if (matpath[deppos] === 3 || matpath[deppos] === 4) {
   				deppos = deppos - (lengthseq + 1);
-/* 				align1.unshift(s1[posseq1]);
-*/ 				align2.unshift("-");
+ 				align1.unshift("-")
+ 				align2.unshift(s2[posseq2]);
  			}
  			else {
  				deppos = deppos - (lengthseq + 2);

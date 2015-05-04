@@ -131,29 +131,29 @@ function launch_nstep_path(nbValuesToDisplayPath){
 			var matPos = currentRowNumber * (currentRow.cells.length-1) + currentCellNumber;
 
 			if (nbDisplayedValuesPath<nbValuesToDisplayPath) {
-				if (matpath[matPos]===0){
-						currentCell.innerHTML+="<i class=\"fa fa-circle-thin\"></i>";
+					if (matpath[matPos]===0){
+						currentCell.innerHTML="<i class=\"fa fa-circle-thin\"></i>";
 					}
 					else if (matpath[matPos]===1){
-						currentCell.innerHTML+="<img src=\"..\\src\\arrows\\hor.png\"></img>";
+						currentCell.innerHTML="<img src=\"..\/src\/arrows\/hor.png\"></img>";
 					}
 					else if (matpath[matPos]===2){
-						currentCell.innerHTML+="<img src=\"..\\src\\arrows\\dia.png\"></img>";
+						currentCell.innerHTML="<img src=\"..\/src\/arrows\/dia.png\"></img>";
 					}
 					else if (matpath[matPos]===3){
-						currentCell.innerHTML+="<img src=\"..\\src\\arrows\\vert.png\"></img>";
+						currentCell.innerHTML="<img src=\"..\/src\/arrows\/vert.png\"></img>";
 					}
 					else if (matpath[matPos]===4){
-						currentCell.innerHTML+="<img src=\"..\\src\\arrows\\horvert.png\"></img>";
+						currentCell.innerHTML="<img src=\"..\/src\/arrows\/horvert.png\"></img>";
 					}
 					else if (matpath[matPos]===5){
-						currentCell.innerHTML+="<img src=\"..\\src\\arrows\\hordia.png\"></img>";
+						currentCell.innerHTML="<img src=\"..\/src\/arrows\/hordia.png\"></img>";
 					}
 					else if (matpath[matPos]===6){
-						currentCell.innerHTML+="<img src=\"..\\src\\arrows\\diavert.png\"></img>";
+						currentCell.innerHTML="<img src=\"..\/src\/arrows\/diavert.png\"></img>";
 					}
 					else if (matpath[matPos]===7){
-						currentCell.innerHTML+="<img src=\"..\\src\\arrows\\hordiavert.png\"></img>";
+						currentCell.innerHTML="<img src=\"..\/src\/arrows\/hordiavert.png\"></img>";
 					}
 			};
 			nbDisplayedValuesPath++;
