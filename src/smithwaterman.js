@@ -57,17 +57,39 @@
  	var placevert = place - (lengthseq + 1);
  	var placehor = place - 1;
  	var placedia = place - (lengthseq + 2);
- 	if ((place <= lengthseq) || (place % (lengthseq + 1) === 0)) {
- 		matscore[place] = 0;
- 		matpath[place] = 0;
- 		scorevert = 0;
- 		scorehor = 0;
- 		scoredia = 0;
- 		matsumdia[place]=0;
- 		matsumvert[place]=0;
- 		matsumhor[place]=0;		
- 		matsumtot[place]=0;
- 	}
+ 	if (place===0){
+		matscore[place]=gap*place;
+		matpath[place] = 0;
+		scorevert = 0;
+		scorehor = 0;
+		scoredia = 0;
+		matsumdia[place]=0;
+		matsumvert[place]=0;
+		matsumhor[place]=0; 
+		matsumtot[place]=0;		
+	}
+	else if(place<=lengthseq && place !== 0){
+		matscore[place]=gap*place;
+		matpath[place] = 1;
+		scorevert = 0;
+		scorehor = 0;
+		scoredia = 0;
+		matsumdia[place]=0;
+		matsumvert[place]=0;
+		matsumhor[place]=0; 
+		matsumtot[place]=0;
+	}
+	else if (place%(lengthseq+1)===0 ){
+		matscore[place]=gap*i;
+		matpath[place] = 3;
+		scorevert = 0;
+		scorehor = 0;
+		scoredia = 0;
+		matsumdia[place]=0;
+		matsumvert[place]=0;
+		matsumhor[place]=0;
+		matsumtot[place]=0;
+	}
  	else{
  		scorevert=matscore[placevert];
  		scorehor=matscore[placehor];
@@ -151,6 +173,8 @@
  	}
 
  	for (dep in l) {
+ 		var align1string="";
+ 		var align2string="";
  		deppos = l[dep];
  		var align1 = [];
  		var align2 = [];
@@ -165,22 +189,28 @@
  			}
  			if (matpath[deppos] === 1) {
  				deppos = deppos - 1;
- 				align1.unshift(s1[posseq1]);
+ 				align1.unshift(String(s1[posseq1]));
  				align2.unshift("-");
  			}
  			else if (matpath[deppos] === 3 || matpath[deppos] === 4) {
   				deppos = deppos - (lengthseq + 1);
  				align1.unshift("-")
- 				align2.unshift(s2[posseq2]);
+ 				align2.unshift(String(s2[posseq2]));
  			}
  			else {
  				deppos = deppos - (lengthseq + 2);
- 				align1.unshift(s1[posseq1]);
- 				align2.unshift(s2[posseq2]);
+ 				align1.unshift(String(s1[posseq1]));
+ 				align2.unshift(String(s2[posseq2]));
  			}
  		}
- 		result.push(align1);
- 		result.push(align2);
+ 		for(var el1 in align1){
+		align1string=align1string.concat(align1[el1]);
+		}
+		for(var el2 in align2){
+		align2string=align2string.concat(align2[el2]);
+		}
+ 		result.push(align1string);
+ 		result.push(align2string);
  	}
  	return result;
 }

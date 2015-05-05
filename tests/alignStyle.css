@@ -113,10 +113,10 @@
  	padding: 25px;
  	padding-top: 10px;
  	text-align: center;
- 	display:flex;
- 	 	flex-direction:row;
+ 	display:table;
+/* 	 	flex-direction:row;
  	justify-content:center;
- 	align-items:center;
+ 	align-items:center;*/
  }
 
  #alignment h3{
@@ -124,9 +124,12 @@
  	color:#71ACFD;
 }
 
-.align{
+#allalign{
 	margin:25px;
 	text-align: center;
+	display:table-cell;
+	padding:25px;
+	line-height:10.5pt;
 }
 
 

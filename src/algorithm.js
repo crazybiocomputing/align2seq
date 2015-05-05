@@ -117,14 +117,13 @@ function algorithm(sequence1,sequence2,matrix,type_seq,algo,gap)
 	}
 	if (result.length>2){
 		var cpt=1		
-		document.getElementById('alignment').innerHTML +="<div id=\"allalign\">";
+		// document.getElementById('alignment').innerHTML +="<div id=\"allalign\">";
 		for(var alignseq=0;alignseq<=(result.length-1);alignseq+=2){
-			document.getElementById('alignment').innerHTML +="<h3>Alignment "+cpt+"</h3><br/>"+result[alignseq]+"<br/>"+result[alignseq+1]+"<br/>";
+			document.getElementById('alignment').innerHTML +="<div id=\"allalign\"><h3>Alignment "+cpt+"</h3><br/>"+result[alignseq]+"<br/>"+result[alignseq+1]+"<br/></div>";
 			cpt++
 		}
-		document.getElementById('alignment').innerHTML +="</div>";
 	}
 	else{
-		document.getElementById('alignment').innerHTML ="<h3>Alignment</h3><br/>"+result[0]+"<br/>"+result[1];
+		document.getElementById('alignment').innerHTML ="<h3>Alignment</h3><br>"+result[0]+"<br>"+result[1];
 	}
 }
