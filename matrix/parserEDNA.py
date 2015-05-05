@@ -19,7 +19,6 @@ mat.write("matrixEDNA=")
 mat.write("{")
 
 test=os.listdir("./EDNA")
-test.reverse()
 print test
 def parserEDNA(matrix1,name):
 	#reading of the matrix file, line by line

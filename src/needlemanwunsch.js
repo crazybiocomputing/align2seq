@@ -151,7 +151,7 @@ needlemanwunsch.prototype.score = function (matrix,matscore, matpath, matsumdia,
 @param {number} len2 - Length of the second sequence
 @param {string} lengthseq - Length of the sequence
  */
-needlemanwunsch.prototype.alignment = function (matpath, matscore, matsumtot, s1, s2, len1, len2, lengthseq) {
+needlemanwunsch.prototype.alignment = function (matpath, matscore, matsumtot, s1, s2, len1, len2, lengthseq,listalign) {
 	var val,elem,valmaxpos;
 	var dep=(matsumtot.length)-1;
 	var compt=0;
@@ -163,7 +163,7 @@ needlemanwunsch.prototype.alignment = function (matpath, matscore, matsumtot, s1
 	while (true) {
 		var posseq1=(dep%(len1+1)-1);
  		var posseq2=Math.floor(dep/(len2+1)-1);
- 		console.log(dep)
+ 		listalign.push(dep);
  		console.log("Pos1 "+posseq1+" Pos 2 "+posseq2);
  		if (matpath[dep] === 0) {
 			// align1.unshift(s1[posseq1]);

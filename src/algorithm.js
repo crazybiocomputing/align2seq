@@ -63,6 +63,7 @@ function algorithm(sequence1,sequence2,matrix,type_seq,algo,gap)
 	this.add;
 	this.maxi = Math.max(this.len1, this.len2);
 	this.algo = algo;
+	this.listalign=[];
 	this.matseq[0] = "-";
 	s1 = this.seq2.split("");
 	for (var elems1 = 0; elems1 <= this.len1; elems1++) {
@@ -113,7 +114,7 @@ function algorithm(sequence1,sequence2,matrix,type_seq,algo,gap)
 		var result = smithwaterman.prototype.alignment(this.matpath, this.matscore,this.matsumtot, this.s2, this.s1, this.len1, this.len2, this.len2);
 	}
 	else{
-		var result = needlemanwunsch.prototype.alignment(this.matpath, this.matscore,this.matsumtot, this.s2, this.s1, this.len1, this.len2, this.len2);
+		var result = needlemanwunsch.prototype.alignment(this.matpath, this.matscore,this.matsumtot, this.s2, this.s1, this.len1, this.len2, this.len2,this.listalign);
 	}
 	if (result.length>2){
 		var cpt=1		
