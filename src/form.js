@@ -167,7 +167,7 @@ function verif_check_algo(){
 	var algo_choice=document.getElementsByName("algorithm");
 	for (var i=0;i<algo_choice.length;i++){
 		if (algo_choice[i].checked===true){
-			algo=algo_choice[i].value;
+			var algo=algo_choice[i].value;
 			if (algo != ""){
 				algo_checked=true;
 				}

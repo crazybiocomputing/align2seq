@@ -30,6 +30,15 @@
 
 	 	document.getElementById("matrixsum").removeChild(matrixsum.childNodes[0]);
 	 	document.getElementById("matrixpath").removeChild(matrixpath.childNodes[0]);
+	 	//  var matrixsum=document.getElementById("matrixsum");
+	 	//  console.log(matrixsum.firstChild)
+	 	// while (matrixsum.firstChild!= undefined){
+	 	// 	matrixpath.removeChild(matrixsum.firstChild);
+	 	// }
+	 	// 	 var matrixpath=document.getElementById("matrixpath");
+	 	// while (matrixpath.firstChild){
+	 	// 	matrixpath.removeChild(matrixpath.firstChild);
+	 	// }
 
 	//Affichage de la matrice de score
 
@@ -113,6 +122,12 @@
 
 				}
 			};
+			// var arrow = document.createElement("object");
+			// arrow.setAttribute("type","image/svg+xml");
+			// arrow.setAttribute("width","25 px");
+			// arrow.setAttribute("height","25 px");
+
+
 
 			if(i>=1 && j===1){
 				for (path in matpath){
@@ -120,25 +135,26 @@
 						matrixpath.rows[i].cells[j].innerHTML="<i class=\"fa fa-circle-thin\"></i>";
 					}
 					else if (matpath[path]===1){
-						matrixpath.rows[i].cells[j].innerHTML="<img src=\"..\/src\/arrows\/hor.png\"></img>";
+						// arrow.setAttribute("data","img\/hor.svg")
+						matrixpath.rows[i].cells[j].innerHTML="<object type=\"image/svg+xml\" data=\"..\/img\/hori.svg\" width=\"25 px\" height=\"25\"> error </object>";
 					}
 					else if (matpath[path]===2){
-						matrixpath.rows[i].cells[j].innerHTML="<img src=\"..\/src\/arrows\/dia.png\"></img>";
+						matrixpath.rows[i].cells[j].innerHTML="<object type=\"image/svg+xml\" data=\"..\/img\/diag.svg\" width=\"25 px\" height=\"25 px\">  error </object>";
 					}
 					else if (matpath[path]===3){
-						matrixpath.rows[i].cells[j].innerHTML="<img src=\"..\/src\/arrows\/vert.png\"></img>";
+						matrixpath.rows[i].cells[j].innerHTML="<object type=\"image/svg+xml\" data=\"..\/img\/vert.svg\" width=\"25 px\" height=×\"25 px\">  error </object>";
 					}
 					else if (matpath[path]===4){
-						matrixpath.rows[i].cells[j].innerHTML="<img src=\"..\/src\/arrows\/horvert.png\"></img>";
+						matrixpath.rows[i].cells[j].innerHTML="<object type=\"image/svg+xml\" data=\"..\/img\/bihv.svg\" width=\"25 px\" height=\"25 px\">  error </object>";
 					}
 					else if (matpath[path]===5){
-						matrixpath.rows[i].cells[j].innerHTML="<img src=\"..\/src\/arrows\/hordia.png\"></img>";
+						matrixpath.rows[i].cells[j].innerHTML="<object type=\"image/svg+xml\" data=\"..\/img\/bidv.svg\" width=\"25 px\" height=\"25 px\">  error </object>";
 					}
 					else if (matpath[path]===6){
-						matrixpath.rows[i].cells[j].innerHTML="<img src=\"..\/src\/arrows\/diavert.png\"></img>";
+						matrixpath.rows[i].cells[j].innerHTML="<object type=\"image/svg+xml\" data=\"..\/img\/bihd.svg\" width=\"25 px\" height=\"25 px\">  error </object>";
 					}
 					else if (matpath[path]===7){
-						matrixpath.rows[i].cells[j].innerHTML="<img src=\"..\/src\/arrows\/hordiavert.png\"></img>";
+						matrixpath.rows[i].cells[j].innerHTML="<object type=\"image/svg+xml\" data=\"..\/img\/tri.svg\" width=\"25 px\" height=\"25 px\">  error </object>";
 					}
 					j++;
 					if(j%size2==0){
