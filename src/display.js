@@ -30,15 +30,6 @@
 
 	 	document.getElementById("matrixsum").removeChild(matrixsum.childNodes[0]);
 	 	document.getElementById("matrixpath").removeChild(matrixpath.childNodes[0]);
-	 	//  var matrixsum=document.getElementById("matrixsum");
-	 	//  console.log(matrixsum.firstChild)
-	 	// while (matrixsum.firstChild!= undefined){
-	 	// 	matrixpath.removeChild(matrixsum.firstChild);
-	 	// }
-	 	// 	 var matrixpath=document.getElementById("matrixpath");
-	 	// while (matrixpath.firstChild){
-	 	// 	matrixpath.removeChild(matrixpath.firstChild);
-	 	// }
 
 	//Affichage de la matrice de score
 
@@ -87,6 +78,8 @@
 			i=1;
 			} 
 		}
+	var title=document.getElementById("matrixsum").createCaption();
+	title.innerHTML="<b>Sum matrix</b>";	
 	}
 
 	//Affichage de la matrice de chemin
@@ -165,6 +158,8 @@
 			i=1;
 			} 
 		}
+	var title=document.getElementById("matrixpath").createCaption();
+	title.innerHTML="<b>Path matrix</b>";	
 	}
 
 	

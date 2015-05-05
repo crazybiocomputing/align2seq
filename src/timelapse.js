@@ -28,7 +28,6 @@
 
 var nbValuesToDisplay = 0;
 var nbValuesPathToDisplay = 0;
-var nbValuesAlignToDisplay = 0;
 var title;
 
 
@@ -42,13 +41,12 @@ function next(){
 
 		if(nbValuesPathToDisplay>matpath.length){
 			nbValuesPathToDisplay=matpath.length;
-			// nbValuesAlignToDisplay++;
 		}
 	}
 	
 	launch_nstep(nbValuesToDisplay);
 	launch_nstep_path(nbValuesPathToDisplay);
- 	// launch_nstep_align(nbValuesAlignToDisplay-1);
+
 }
 
 function prev(){
@@ -63,6 +61,19 @@ function prev(){
 	
 	launch_nstep(nbValuesToDisplay);
 	launch_nstep_path(nbValuesPathToDisplay);
+}
+function fastnext(){
+	if(nbValuesToDisplay<=matscore.length){
+		nbValuesPathToDisplay++;
+	}
+	launch_nstep_path(nbValuesPathToDisplay);
+	
+}
+function fastpreview(){
+	if(nbValuesPathToDisplay>0){
+		nbValuesToDisplay--;
+	}
+	launch_nstep(nbValuesToDisplay);
 }
 /** Step by step function with next and preview possibilities
 @constructor
@@ -121,7 +132,7 @@ function launch_nstep(nbValuesToDisplay){
 	}
 	
     title=document.getElementById("matrixtime").createCaption();
-	title.innerHTML="<b>Sum matrix</b>";	
+	title.innerHTML="<b>Matrix sum</b>";	
 	if(nbValuesToDisplay>size1) {
 		if ((nbValuesToDisplay-1)%size1!==0){
 		var cellvert=size1;
@@ -150,7 +161,7 @@ function launch_nstep(nbValuesToDisplay){
 function launch_nstep_path(nbValuesToDisplayPath){
 	if(nbValuesToDisplayPath>0){
 		explain.innerHTML="";
-		title.innerHTML="<b>Path matrix</b>";1
+		title.innerHTML="<b>Matrix path</b>";1
 
 	}
 	
@@ -198,30 +209,4 @@ function launch_nstep_path(nbValuesToDisplayPath){
 	}
 
 }
-
-// function launch_nstep_align(nbValuesToDisplayAlign){
-// 	if((nbValuesToDisplay=matscore.length) && (nbValuesPathToDisplay=matpath.length)){
-// 		title.innerHTML="<b>Alignment matrix</b>";
-// 	}
-
-// 	var matrixs=document.getElementById("matrixtime")
-// 	var nbDisplayedValuesAlign= 0;
-// 	for(var i=matrixs.rows.length-1;i>=1;i--){
-// 		var currentRow = matrixs.rows[i];
-// 		var currentRowNumber = i-1;
-// 		for(var j=currentRow.cells.length-1;j>=1;j--){
-// 			var currentCell=currentRow.cells[j];
-// 			var currentCellNumber = j-1;
-	
-// 			var matPos = currentRowNumber * (currentRow.cells.length-1) + currentCellNumber;
-
-// 			for (var cell in currentCellNumber){
-// 				if (cell === listalign[nbValuesToDisplayAlign]){
-// 					currentCell.innerHTML.style.background="red";
-// 				}
-// 			}
-// 			nbDisplayedValuesAlign++;
-// 		}
-// 	}
-// }
 
