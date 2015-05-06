@@ -185,6 +185,7 @@
  		while (true) {
  			var posseq1=(deppos%(len1+1)-1);
  			var posseq2=Math.floor(deppos/(len2+1)-1);
+ 			listalign.push(deppos);
  			if (matsumtot[deppos] === 0) {
 			/*	align1.unshift(s1[posseq1]);
  				console.log("Lettre : "+s1[posseq1]);
