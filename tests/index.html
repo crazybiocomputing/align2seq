@@ -70,7 +70,6 @@
 					<input type="radio" name="choose_gap_penalty" value="multiple" id="multiple" onClick="choose_gap_penalty()">
 					<label class="elem_form"> multiple gap penalty </label><br>
 					<div id="gap" >
-						
 					 </div><br>
 					<label class="elem_form">Matrices</label>
 					<select id="choice_matrix" name="choice_matrix" onFocus="verif_choice_gap()">
@@ -79,10 +78,11 @@
 			</div>
 			<br>
 			<div id="commands">
+				<button id="fastpreview" onclick="fastpreview()"><i class="fa fa-fast-backward"></i></button>
 				<button id ="preview" onClick="prev()"><i class="fa fa-step-backward"></i></button>
 				<button id="submit_button"onclick="verif()"><i class="fa fa-play"></i></button>
 				<button id ="next" onClick="next()"><i class="fa fa-step-forward"></i></button>
-				<button id ="final"><i class="fa fa-stop"></i></button></div>
+				<button id="fastnext" onclick="fastnext()"><i class="fa fa-fast-forward"></i></button>
 				<br><br><br>
 			<div id="step_by_step">
 				<div id="entire">
