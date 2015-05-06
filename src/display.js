@@ -96,7 +96,7 @@
 	var matrix3=document.getElementById("matrixpath").rows;//création des lignes
 
 	for (var i = 0 ; i < matrix3.length; i++) {
-
+		var cpt=0;
 		var column = matrix3[i].cells; //On a autant de cellule par ligne
 		
 		for (var j = 0; j < column.length ; j++) {
@@ -124,36 +124,36 @@
 
 			if(i>=1 && j===1){
 				for (path in matpath){
-					if (matpath[path]===0){
-						matrixpath.rows[i].cells[j].innerHTML="<i class=\"fa fa-circle-thin\"></i>";
-					}
-					else if (matpath[path]===1){
-						// arrow.setAttribute("data","img\/hor.svg")
-						matrixpath.rows[i].cells[j].innerHTML="<object type=\"image/svg+xml\" data=\"..\/img\/hori.svg\" width=\"25 px\" height=\"25\"> error </object>";
-					}
-					else if (matpath[path]===2){
-						matrixpath.rows[i].cells[j].innerHTML="<object type=\"image/svg+xml\" data=\"..\/img\/diag.svg\" width=\"25 px\" height=\"25 px\">  error </object>";
-					}
-					else if (matpath[path]===3){
-						matrixpath.rows[i].cells[j].innerHTML="<object type=\"image/svg+xml\" data=\"..\/img\/vert.svg\" width=\"25 px\" height=×\"25 px\">  error </object>";
-					}
-					else if (matpath[path]===4){
-						matrixpath.rows[i].cells[j].innerHTML="<object type=\"image/svg+xml\" data=\"..\/img\/bihv.svg\" width=\"25 px\" height=\"25 px\">  error </object>";
-					}
-					else if (matpath[path]===5){
-						matrixpath.rows[i].cells[j].innerHTML="<object type=\"image/svg+xml\" data=\"..\/img\/bidv.svg\" width=\"25 px\" height=\"25 px\">  error </object>";
-					}
-					else if (matpath[path]===6){
-						matrixpath.rows[i].cells[j].innerHTML="<object type=\"image/svg+xml\" data=\"..\/img\/bihd.svg\" width=\"25 px\" height=\"25 px\">  error </object>";
-					}
-					else if (matpath[path]===7){
-						matrixpath.rows[i].cells[j].innerHTML="<object type=\"image/svg+xml\" data=\"..\/img\/tri.svg\" width=\"25 px\" height=\"25 px\">  error </object>";
-					}
+					matrixpath.rows[i].cells[j].innerHTML=matpath[cpt];
+					// }
+					// else if (matpath[path]===1){
+					// 	// arrow.setAttribute("data","img\/hor.svg")
+					// 	matrixpath.rows[i].cells[j].innerHTML="<object type=\"image/svg+xml\" data=\"..\/img\/hori.svg\" width=\"25 px\" height=\"25\"> error </object>";
+					// }
+					// else if (matpath[path]===2){
+					// 	matrixpath.rows[i].cells[j].innerHTML="<object type=\"image/svg+xml\" data=\"..\/img\/diag.svg\" width=\"25 px\" height=\"25 px\">  error </object>";
+					// }
+					// else if (matpath[path]===3){
+					// 	matrixpath.rows[i].cells[j].innerHTML="<object type=\"image/svg+xml\" data=\"..\/img\/vert.svg\" width=\"25 px\" height=×\"25 px\">  error </object>";
+					// }
+					// else if (matpath[path]===4){
+					// 	matrixpath.rows[i].cells[j].innerHTML="<object type=\"image/svg+xml\" data=\"..\/img\/bihv.svg\" width=\"25 px\" height=\"25 px\">  error </object>";
+					// }
+					// else if (matpath[path]===5){
+					// 	matrixpath.rows[i].cells[j].innerHTML="<object type=\"image/svg+xml\" data=\"..\/img\/bihd.svg\" width=\"25 px\" height=\"25 px\">  error </object>";
+					// }
+					// else if (matpath[path]===6){
+					// 	matrixpath.rows[i].cells[j].innerHTML="<object type=\"image/svg+xml\" data=\"..\/img\/bidv.svg\" width=\"25 px\" height=\"25 px\">  error </object>";
+					// }
+					// else if (matpath[path]===7){
+					// 	matrixpath.rows[i].cells[j].innerHTML="<object type=\"image/svg+xml\" data=\"..\/img\/tri.svg\" width=\"25 px\" height=\"25 px\">  error </object>";
+					// }
 					j++;
 					if(j%size2==0){
 						i++;
 						j=1;
 					}
+					cpt++;
 				}
 			i=1;
 			} 

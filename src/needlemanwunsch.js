@@ -67,7 +67,7 @@ needlemanwunsch.prototype.score = function (matrix,matscore, matpath, matsumdia,
 		matsumdia[place]=0;
 		matsumvert[place]=0;
 		matsumhor[place]=0; 
-		matsumtot[place]=0;		
+		matsumtot[place]=gap*place;		
 	}
 	else if(place<=lengthseq && place !== 0){
 		matscore[place]=gap*place;
@@ -78,7 +78,7 @@ needlemanwunsch.prototype.score = function (matrix,matscore, matpath, matsumdia,
 		matsumdia[place]=0;
 		matsumvert[place]=0;
 		matsumhor[place]=0; 
-		matsumtot[place]=0;
+		matsumtot[place]=gap*place;
 	}
 	else if (place%(lengthseq+1)===0 ){
 		matscore[place]=gap*i;
@@ -89,12 +89,12 @@ needlemanwunsch.prototype.score = function (matrix,matscore, matpath, matsumdia,
 		matsumdia[place]=0;
 		matsumvert[place]=0;
 		matsumhor[place]=0;
-		matsumtot[place]=0;
+		matsumtot[place]=gap*i;
 	}
 	else{
-		scorevert=matscore[placevert];
-		scorehor=matscore[placehor];
-		scoredia=matscore[placedia];
+		scorevert=matsumtot[placevert];
+		scorehor=matsumtot[placehor];
+		scoredia=matsumtot[placedia];
 		for (var l in letters){
 			if (l1 === letters[l]){
 				pos1=parseInt(l);

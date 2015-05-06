@@ -58,7 +58,7 @@
  	var placehor = place - 1;
  	var placedia = place - (lengthseq + 2);
  	if (place===0){
-		matscore[place]=gap*place;
+		matscore[place]=0;
 		matpath[place] = 0;
 		scorevert = 0;
 		scorehor = 0;
@@ -69,7 +69,7 @@
 		matsumtot[place]=0;		
 	}
 	else if(place<=lengthseq && place !== 0){
-		matscore[place]=gap*place;
+		matscore[place]=0;
 		matpath[place] = 1;
 		scorevert = 0;
 		scorehor = 0;
@@ -80,7 +80,7 @@
 		matsumtot[place]=0;
 	}
 	else if (place%(lengthseq+1)===0 ){
-		matscore[place]=gap*i;
+		matscore[place]=0;
 		matpath[place] = 3;
 		scorevert = 0;
 		scorehor = 0;
@@ -91,9 +91,9 @@
 		matsumtot[place]=0;
 	}
  	else{
- 		scorevert=matscore[placevert];
- 		scorehor=matscore[placehor];
- 		scoredia=matscore[placedia];
+ 		scorevert=matsumtot[placevert];
+ 		scorehor=matsumtot[placehor];
+ 		scoredia=matsumtot[placedia];
  		for (var l in letters){
  			if (l1 === letters[l]){
  				pos1=parseInt(l);
@@ -105,9 +105,9 @@
  		var lengthmat=letters.length;
  		var posmatrix=(lengthmat*pos1)+pos2;
  		currentscore=parseInt(matrix[posmatrix]);
- 		if (currentscore<0){
- 			currentscore=0;
- 		}
+ 		// if (currentscore<0){
+ 		// 	currentscore=0;
+ 		// }
  		matscore[place]=currentscore;
  		sumdia=scoredia+currentscore;
  		sumvert=scorevert+gap;
@@ -117,6 +117,10 @@
  		matsumhor[place]=sumhor;
  		var maxiscore=Math.max(sumvert,sumdia,sumhor);
  		matsumtot[place]=maxiscore;
+ 		if (maxiscore<0){
+ 			maxiscore=0;
+ 		}
+
  		if (maxiscore==(sumhor) && maxiscore!=(sumvert) && maxiscore!=(sumdia)){
  			matpath[place]=1; 
  		}

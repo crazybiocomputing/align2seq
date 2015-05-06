@@ -110,6 +110,32 @@ function algorithm(sequence1,sequence2,matrix,type_seq,algo,gap)
 			this.place++;
 		}
 	}
+	for (path in matpath){
+		if (matpath[path]===0){
+			matpath[path]="<i class=\"fa fa-circle-thin\"></i>";
+		}
+		else if (matpath[path]===1){
+			matpath[path]="<object type=\"image/svg+xml\" data=\"..\/img\/hori.svg\" width=\"25 px\" height=\"25\"> error </object>";
+		}
+		else if (matpath[path]===2){
+			matpath[path]="<object type=\"image/svg+xml\" data=\"..\/img\/diag.svg\" width=\"25 px\" height=\"25 px\">  error </object>";
+		}
+		else if (matpath[path]===3){
+			matpath[path]="<object type=\"image/svg+xml\" data=\"..\/img\/vert.svg\" width=\"25 px\" height=×\"25 px\">  error </object>";
+		}
+		else if (matpath[path]===4){
+			matpath[path]="<object type=\"image/svg+xml\" data=\"..\/img\/bihv.svg\" width=\"25 px\" height=\"25 px\">  error </object>";
+		}
+		else if (matpath[path]===5){
+			matpath[path]="<object type=\"image/svg+xml\" data=\"..\/img\/bihd.svg\" width=\"25 px\" height=\"25 px\">  error </object>";
+		}
+		else if (matpath[path]===6){
+			matpath[path]="<object type=\"image/svg+xml\" data=\"..\/img\/bidv.svg\" width=\"25 px\" height=\"25 px\">  error </object>";
+		}
+		else if (matpath[path]===7){
+			matpath[path]="<object type=\"image/svg+xml\" data=\"..\/img\/tri.svg\" width=\"25 px\" height=\"25 px\">  error </object>";
+		}
+	}
 	if (this.algo == "smith_waterman") {
 		var result = smithwaterman.prototype.alignment(this.matpath, this.matscore,this.matsumtot, this.s2, this.s1, this.len1, this.len2, this.len2);
 	}
