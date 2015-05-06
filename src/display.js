@@ -124,7 +124,7 @@
 
 			if(i>=1 && j===1){
 				for (path in matpath){
-					matrixpath.rows[i].cells[j].innerHTML=matpath[cpt];
+					matrixpath.rows[i].cells[j].innerHTML=matpatharrows[cpt];
 					// }
 					// else if (matpath[path]===1){
 					// 	// arrow.setAttribute("data","img\/hor.svg")

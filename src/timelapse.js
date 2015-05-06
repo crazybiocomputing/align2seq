@@ -37,16 +37,10 @@ function next(){
 	//Limit check value
 	if(nbValuesToDisplay>=matscore.length){
 		nbValuesToDisplay=matscore.length;
-		// launch_laststep(matscore.length);
+		nbValuesAlignToDisplay++;
 	}
-		// nbValuesPathToDisplay++;
-
-		// if(nbValuesPathToDisplay>matpath.length){
-		// 	nbValuesPathToDisplay=matpath.length;
-		// 	nbValuesAlignToDisplay++;
-		// 	nbAlign=listalign[nbValuesAlignToDisplay-1];
-		// 	console.log(nbAlign)
 	launch_nstep(nbValuesToDisplay);
+	launch_nstep_align(nbValuesAlignToDisplay);
 }
 
 function prev(){
@@ -127,7 +121,7 @@ function launch_nstep(nbValuesToDisplay){
 				}
 				var previousCell=matrixs.rows[i2].cells[j2]
 				var cellprevious=nbDisplayedValues-1;
-				previousCell.innerHTML=matpath[cellprevious];
+				previousCell.innerHTML=matpatharrows[cellprevious];
 				previousCell.innerHTML+=matsumtot[cellprevious];
 			} 
 			//The table is filled with the assumption that it is filled from left to right
@@ -139,7 +133,7 @@ function launch_nstep(nbValuesToDisplay){
 			}
 
 			if (nbDisplayedValues==matscore.length){
-				currentCell.innerHTML=matpath[(matscore.length)-1]+""+matsumtot[(matscore.length)-1];
+				currentCell.innerHTML=matpatharrows[(matscore.length)-1]+""+matsumtot[(matscore.length)-1];
 			}
 		}
 	}
@@ -160,7 +154,7 @@ function launch_nstep(nbValuesToDisplay){
 		explain.innerHTML+=matsumtot[cellcurrent-cellvert]+"+"+gapplace+"="+"<b>"+matsumvert[cellcurrent]+"</b>"+"<br>";
 		explain.innerHTML+="Maximum value of the three<br>";
 		explain.innerHTML+="<b>"+matsumtot[cellcurrent]+"</b><br>";
-		explain.innerHTML+="<b>Corresponding path</b> : "+matpath[cellcurrent]+"<br>"
+		explain.innerHTML+="<b>Corresponding path</b> : "+matpatharrows[cellcurrent]+"<br>"
 		}
 		else{
 			explain.innerHTML="";	
@@ -168,102 +162,24 @@ function launch_nstep(nbValuesToDisplay){
 	}
 }
 
-// function launch_laststep(lastValue){
-// 	var matrixs=document.getElementById("matrixtime")
-
-// 	var nbDisplayedValues = 0
-// 	for(var i=matrixs.rows.length-1;i>=1;i--){
-// 		var currentRow = matrixs.rows[i];
-// 		for(var j=currentRow.cells.length-1;j>=1;j++){
-// 			var currentCell=currentRow.cells[j];
-// 			currentCell.innerHTML=matscore[nbDisplayedValues];
-// 			nbDisplayedValues++;
-// 			if (nbDisplayedValues==lastValue){
-// 				currentCell.innerHTML=matsumtot[lastValue-1]+""+matpath[lastValue-1];
-// 			}
-// 		}
-// 	}
-// }
-/** Step by step function with next and preview possibilities
-@constructor
-@param {number} nbValuesPathToDisplay - counter for path matrix
-*/
-
-// function launch_nstep_path(nbValuesToDisplayPath){
-// 	if(nbValuesToDisplayPath>0){
-// 		explain.innerHTML="";
-// 		title.innerHTML="<b>Path matrix</b>";
-
-// 	}
-	
-// 	var matrixs=document.getElementById("matrixtime")
-	
-// 	var nbDisplayedValuesPath= 0; 
-// 	for(var i=matrixs.rows.length-1;i>=1;i--){
-// 		var currentRow = matrixs.rows[i];
-// 		var currentRowNumber = i-1;
-// 		for(var j=currentRow.cells.length-1;j>=1;j--){
-// 			var currentCell=currentRow.cells[j];
-// 			var currentCellNumber = j-1;
-
-// 			var matPos = currentRowNumber * (currentRow.cells.length-1) + currentCellNumber;
-
-// 			if (nbDisplayedValuesPath<nbValuesToDisplayPath) {
-// 					if (matpath[matPos]===0){
-// 						currentCell.innerHTML="<i class=\"fa fa-circle-thin\"></i>";
-// 					}
-// 					else if (matpath[matPos]===1){
-// 						// arrow.setAttribute("data","img\/hor.svg")
-// 						currentCell.innerHTML="<object type=\"image/svg+xml\" data=\"..\/img\/hori.svg\" width=\"25 px\" height=\"25\"> error </object>";
-// 					}
-// 					else if (matpath[matPos]===2){
-// 						currentCell.innerHTML="<object type=\"image/svg+xml\" data=\"..\/img\/diag.svg\" width=\"25 px\" height=\"25 px\">  error </object>";
-// 					}
-// 					else if (matpath[matPos]===3){
-// 						currentCell.innerHTML="<object type=\"image/svg+xml\" data=\"..\/img\/vert.svg\" width=\"25 px\" height=×\"25 px\">  error </object>";
-// 					}
-// 					else if (matpath[matPos]===4){
-// 						currentCell.innerHTML="<object type=\"image/svg+xml\" data=\"..\/img\/bihv.svg\" width=\"25 px\" height=\"25 px\">  error </object>";
-// 					}
-// 					else if (matpath[matPos]===5){
-// 						currentCell.innerHTML="<object type=\"image/svg+xml\" data=\"..\/img\/bihd.svg\" width=\"25 px\" height=\"25 px\">  error </object>";
-// 					}
-// 					else if (matpath[matPos]===6){
-// 						currentCell.innerHTML="<object type=\"image/svg+xml\" data=\"..\/img\/bidv.svg\" width=\"25 px\" height=\"25 px\">  error </object>";
-// 					}
-// 					else if (matpath[matPos]===7){
-// 						currentCell.innerHTML="<object type=\"image/svg+xml\" data=\"..\/img\/tri.svg\" width=\"25 px\" height=\"25 px\">  error </object>";
-// 					}
-// 					currentCell.innerHTML+=matsumtot[matPos]
-// 			};
-// 			nbDisplayedValuesPath++;
-// 		}	
-// 	}
-
-// }
-
 function launch_nstep_align(nbValuesToDisplayAlign){
-	if(nbValuesToDisplayAlign>=0){
-		title.innerHTML="<b>Alignment matrix</b>";
-	}
+	title.innerHTML="<b>Alignment matrix</b>";
 	var matrixs=document.getElementById("matrixtime")
 	var nbDisplayedValuesAlign= 0;
 	for(var i=1;i<matrixs.rows.length;i++){
 		var currentRow = matrixs.rows[i];
 		for(var j=1;j<currentRow.cells.length;j++){
 			var currentCell=currentRow.cells[j];
-			nbDisplayedValuesAlign++;
-
-			if (nbDisplayedValuesAlign === (nbValuesToDisplayAlign+1)){
-				console.log("Done ")
-				currentCell.style.color="red";
-				console.log(currentCell.innerHTML)
-
-				}
-			
-			
 		}
 	}
+	for(var posalign=1;posalign<=nbValuesToDisplayAlign;posalign++){
+		var alignpos=listalign[posalign-1];
+		var posj=(alignpos%(len1+1)-1)+2;
+		var posi=Math.floor((alignpos/(len2+1)-1)+2);
+		var alignCell=matrixs.rows[posi].cells[posj];
+		alignCell.innerHTML=matpatharrowsalign[alignpos];
+	}
+
 }
 
 

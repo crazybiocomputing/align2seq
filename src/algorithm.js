@@ -52,6 +52,8 @@ function algorithm(sequence1,sequence2,matrix,type_seq,algo,gap)
 	this.matseq = [];
 	this.matscore = [];
 	this.matpath = [];
+	this.matpatharrows = [];
+	this.matpatharrowsalign = [];
 	this.matsumdia=[];
 	this.matsumhor=[];
 	this.matsumvert=[];
@@ -112,28 +114,36 @@ function algorithm(sequence1,sequence2,matrix,type_seq,algo,gap)
 	}
 	for (path in matpath){
 		if (matpath[path]===0){
-			matpath[path]="<i class=\"fa fa-circle-thin\"></i>";
+			matpatharrows[path]="<i class=\"fa fa-circle-thin\"></i>";
+			matpatharrowsalign[path]="<i class=\"fa fa-circle-thin\" style=\"color:red\"></i>";
 		}
 		else if (matpath[path]===1){
-			matpath[path]="<object type=\"image/svg+xml\" data=\"..\/img\/hori.svg\" width=\"25 px\" height=\"25\"> error </object>";
+			matpatharrows[path]="<object type=\"image/svg+xml\" data=\"..\/img\/hori.svg\" width=\"25 px\" height=\"25\"> error </object>";
+			matpatharrowsalign[path]="<object type=\"image/svg+xml\" data=\"..\/img\/horir.svg\" width=\"25 px\" height=\"25\"> error </object>";
 		}
 		else if (matpath[path]===2){
-			matpath[path]="<object type=\"image/svg+xml\" data=\"..\/img\/diag.svg\" width=\"25 px\" height=\"25 px\">  error </object>";
+			matpatharrows[path]="<object type=\"image/svg+xml\" data=\"..\/img\/diag.svg\" width=\"25 px\" height=\"25 px\">  error </object>";
+			matpatharrowsalign[path]="<object type=\"image/svg+xml\" data=\"..\/img\/diagr.svg\" width=\"25 px\" height=\"25 px\">  error </object>";
 		}
 		else if (matpath[path]===3){
-			matpath[path]="<object type=\"image/svg+xml\" data=\"..\/img\/vert.svg\" width=\"25 px\" height=×\"25 px\">  error </object>";
+			matpatharrows[path]="<object type=\"image/svg+xml\" data=\"..\/img\/vert.svg\" width=\"25 px\" height=×\"25 px\">  error </object>";
+			matpatharrowsalign[path]="<object type=\"image/svg+xml\" data=\"..\/img\/vertr.svg\" width=\"25 px\" height=×\"25 px\">  error </object>";
 		}
 		else if (matpath[path]===4){
-			matpath[path]="<object type=\"image/svg+xml\" data=\"..\/img\/bihv.svg\" width=\"25 px\" height=\"25 px\">  error </object>";
+			matpatharrows[path]="<object type=\"image/svg+xml\" data=\"..\/img\/bihv.svg\" width=\"25 px\" height=\"25 px\">  error </object>";
+			matpatharrowsalign[path]="<object type=\"image/svg+xml\" data=\"..\/img\/bihvr.svg\" width=\"25 px\" height=\"25 px\">  error </object>";
 		}
 		else if (matpath[path]===5){
-			matpath[path]="<object type=\"image/svg+xml\" data=\"..\/img\/bihd.svg\" width=\"25 px\" height=\"25 px\">  error </object>";
+			matpatharrows[path]="<object type=\"image/svg+xml\" data=\"..\/img\/bihd.svg\" width=\"25 px\" height=\"25 px\">  error </object>";
+			matpatharrowsalign[path]="<object type=\"image/svg+xml\" data=\"..\/img\/bihdr.svg\" width=\"25 px\" height=\"25 px\">  error </object>";
 		}
 		else if (matpath[path]===6){
-			matpath[path]="<object type=\"image/svg+xml\" data=\"..\/img\/bidv.svg\" width=\"25 px\" height=\"25 px\">  error </object>";
+			matpatharrows[path]="<object type=\"image/svg+xml\" data=\"..\/img\/bidv.svg\" width=\"25 px\" height=\"25 px\">  error </object>";
+			matpatharrowsalign[path]="<object type=\"image/svg+xml\" data=\"..\/img\/bidvr.svg\" width=\"25 px\" height=\"25 px\">  error </object>";
 		}
 		else if (matpath[path]===7){
-			matpath[path]="<object type=\"image/svg+xml\" data=\"..\/img\/tri.svg\" width=\"25 px\" height=\"25 px\">  error </object>";
+			matpatharrows[path]="<object type=\"image/svg+xml\" data=\"..\/img\/tri.svg\" width=\"25 px\" height=\"25 px\">  error </object>";
+			matpatharrowsalign[path]="<object type=\"image/svg+xml\" data=\"..\/img\/trir.svg\" width=\"25 px\" height=\"25 px\">  error </object>";
 		}
 	}
 	if (this.algo == "smith_waterman") {
