@@ -28,6 +28,8 @@
 
 var nbValuesToDisplay = 0;
 var nbValuesPathToDisplay = 0;
+var nbValuesAlignToDisplay = 0;
+var nbAlign;
 var title;
 
 
@@ -41,12 +43,16 @@ function next(){
 
 		if(nbValuesPathToDisplay>matpath.length){
 			nbValuesPathToDisplay=matpath.length;
+			nbValuesAlignToDisplay++;
+			nbAlign=listalign[nbValuesAlignToDisplay-1];
+			console.log(nbAlign)
+
+			launch_nstep_align(nbAlign);
 		}
 	}
 	
 	launch_nstep(nbValuesToDisplay);
 	launch_nstep_path(nbValuesPathToDisplay);
-
 }
 
 function prev(){
@@ -62,6 +68,7 @@ function prev(){
 	launch_nstep(nbValuesToDisplay);
 	launch_nstep_path(nbValuesPathToDisplay);
 }
+
 function fastnext(){
 	if(nbValuesToDisplay<=matscore.length){
 		nbValuesPathToDisplay++;
@@ -132,7 +139,7 @@ function launch_nstep(nbValuesToDisplay){
 	}
 	
     title=document.getElementById("matrixtime").createCaption();
-	title.innerHTML="<b>Matrix sum</b>";	
+	title.innerHTML="<b>Sum matrix</b>";	
 	if(nbValuesToDisplay>size1) {
 		if ((nbValuesToDisplay-1)%size1!==0){
 		var cellvert=size1;
@@ -146,7 +153,8 @@ function launch_nstep(nbValuesToDisplay){
 		explain.innerHTML+="score vertical + score gap = sum vertical<br>";
 		explain.innerHTML+=matscore[cellcurrent-cellvert]+"+"+gapplace+"="+"<b>"+matsumvert[cellcurrent]+"</b>"+"<br>";
 		explain.innerHTML+="Maximum value of the three<br>";
-		explain.innerHTML+="<b>"+matsumtot[cellcurrent]+"</b>";
+		explain.innerHTML+="<b>"+matsumtot[cellcurrent]+"</b><br>";
+		explain.innerHTML+="<b>Corresponding path</b> : "+matpath[cellcurrent]+"<br>"
 		}
 		else{
 			explain.innerHTML="";	
@@ -161,7 +169,7 @@ function launch_nstep(nbValuesToDisplay){
 function launch_nstep_path(nbValuesToDisplayPath){
 	if(nbValuesToDisplayPath>0){
 		explain.innerHTML="";
-		title.innerHTML="<b>Matrix path</b>";1
+		title.innerHTML="<b>Path matrix</b>";
 
 	}
 	
@@ -203,10 +211,36 @@ function launch_nstep_path(nbValuesToDisplayPath){
 					else if (matpath[matPos]===7){
 						currentCell.innerHTML="<object type=\"image/svg+xml\" data=\"..\/img\/tri.svg\" width=\"25 px\" height=\"25 px\">  error </object>";
 					}
+					currentCell.innerHTML+=matsumtot[matPos]
 			};
 			nbDisplayedValuesPath++;
 		}	
 	}
 
 }
+
+function launch_nstep_align(nbValuesToDisplayAlign){
+	if(nbValuesToDisplayAlign>=0){
+		title.innerHTML="<b>Alignment matrix</b>";
+	}
+	var matrixs=document.getElementById("matrixtime")
+	var nbDisplayedValuesAlign= 0;
+	for(var i=1;i<matrixs.rows.length;i++){
+		var currentRow = matrixs.rows[i];
+		for(var j=1;j<currentRow.cells.length;j++){
+			var currentCell=currentRow.cells[j];
+			nbDisplayedValuesAlign++;
+
+			if (nbDisplayedValuesAlign === (nbValuesToDisplayAlign+1)){
+				console.log("Done ")
+				currentCell.style.color="red";
+				console.log(currentCell.innerHTML)
+
+				}
+			
+			
+		}
+	}
+}
+
 
