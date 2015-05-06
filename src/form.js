@@ -27,12 +27,76 @@
 @constructor
  */
 "use strict";
-function choose_matrix(){
-	while (document.getElementById('choice_matrix').firstChild){
+
+ function event_onload(){
+  	if(document.getElementById('nucleotide').checked!==true){
+	var listmatrix=Object.keys(matrixlist);
+		for (var l in listmatrix){
+			document.getElementById('choice_matrix').options[l] = new Option(listmatrix[l],listmatrix[l]);
+		}
+ 	}
+ 	else{
+ 		while (document.getElementById('choice_matrix').firstChild){
 			document.getElementById('choice_matrix').removeChild(document.getElementById('choice_matrix').firstChild);
 		}
-	if ((document.getElementById("needleman_wunsch").checked===true)||(document.getElementById("smith_waterman").checked===true)){
+		var listEDNA=Object.keys(matrixEDNA);
+		for (var l in listEDNA){
+			document.getElementById('choice_matrix').options[l] = new Option(listEDNA[l],listEDNA[l]);
+ 		}
+	}
+
+var enter_gap_penalty =document.getElementById("gap");
+	while(enter_gap_penalty.firstChild){
+		enter_gap_penalty.removeChild(enter_gap_penalty.firstChild);
+	}
+		
+		if (document.getElementById('multiple').checked!==true){
+			var enter_gap=document.createElement('input');
+			enter_gap.setAttribute("type","number");
+			enter_gap.setAttribute("min", "0");
+			enter_gap.setAttribute("id", "enter_gap_penalty");
+			enter_gap.setAttribute("value", "0");
+			enter_gap.setAttribute("size", 2);
+			enter_gap_penalty.appendChild(enter_gap);
+		}
+		else{
+			var lengthmax=Math.max(seq1.length,seq2.length);		
+			for (var m =0; m <= lengthmax-1; m++) {
+				if (enter_gap_penalty.hasChildNodes===true){
+					var enter_gap=document.createElement('input');
+					enter_gap.insertBefore(enter_gap,enter_gap_penalty.lastChild);
+					enter_gap.setAttribute("type","number");
+					enter_gap.setAttribute("min", "0");
+					enter_gap.setAttribute("id", "enter_gap_penalty"+m);
+					enter_gap.setAttribute("value", "0");
+					enter_gap.setAttribute("style", "width:2em");
+				}
+				else {
+					var enter_gap=document.createElement('input');
+					enter_gap_penalty.appendChild(enter_gap);
+					enter_gap.setAttribute("type","number");
+					enter_gap.setAttribute("min", "0");
+					enter_gap.setAttribute("id", "enter_gap_penalty"+m);
+					enter_gap.setAttribute("value", "0");
+					enter_gap.setAttribute("style", "width:2em");
+				}
+			}
+		}
+}
+
+
+/** Function to put in the form the right matrices according to sequence type
+@constructor
+ */
+
+function choose_matrix(){
+	
+	
 	if (document.getElementById('protein').checked===true){
+
+		while (document.getElementById('choice_matrix').firstChild){
+			document.getElementById('choice_matrix').removeChild(document.getElementById('choice_matrix').firstChild);
+		}
 
 		var listmatrix=Object.keys(matrixlist);
 		for (var l in listmatrix){
@@ -40,30 +104,30 @@ function choose_matrix(){
 		}
 	}
 	else if (document.getElementById('nucleotide').checked===true){
+		while (document.getElementById('choice_matrix').firstChild){
+			document.getElementById('choice_matrix').removeChild(document.getElementById('choice_matrix').firstChild);
+		}
 		var listEDNA=Object.keys(matrixEDNA);
 		for (var l in listEDNA){
 			document.getElementById('choice_matrix').options[l] = new Option(listEDNA[l],listEDNA[l]);
 		}
 	}
-	}
-	else{
-		alert("Choose an algorithm and a sequence type before choosing a matrix")
-	}	
+		
+		
 }
 
 /** Function to put in the form the right input for gap penalities according to user choice
 @constructor
  */
+
 function choose_gap_penalty(){
 	var seq1=document.getElementById("sequence1").value;
 	var seq2=document.getElementById("sequence2").value;
 	var enter_gap_penalty =document.getElementById("gap");
-	var nodeliste=enter_gap_penalty.childNodes;
 	while(enter_gap_penalty.firstChild){
 		enter_gap_penalty.removeChild(enter_gap_penalty.firstChild);
 	}
-		//console.log(enter_gap_penalty.childNodes[0]);
-		//
+		
 		if (document.getElementById('single').checked===true){
 			var enter_gap=document.createElement('input');
 			enter_gap.setAttribute("type","number");
@@ -218,13 +282,20 @@ function check_content_seq () {
 			type_seq=seq_choice[j].value;
 		}
 }
-if ((2<seq1.length<15)&&(seq1.length ===seq2.length)){ 
-	if(((type_seq=="protein")&&(/[ARNDCQEGHILKMFPSTWYVBZX]/.test(seq1,seq2)))||((type_seq=="nucleotide")&&(/[ATGCU]/.test(seq1,seq2)))) {
+if (((2<=seq1.length)&&(seq1.length<=15))&&((2<=seq2.length<=15)&&(seq2.length<=15))){ 
+	if(((type_seq=="protein")&&(/^[ARNDCQEGHILKMFPSTWYVBZX]+$/.test(seq1,seq2)))||((type_seq=="nucleotide")&&(/^[ATGCSWRYKMBVHDNU]+$/.test(seq1,seq2)))) {
+	console.log(seq1.length);
+	console.log(seq2.length);
+	console.log(type_seq);
 	content_seq_check=true;
+}
+else{
+	alert("the content of the sequence did not match the sequence type you have checked");
 }
 }
 else{
-alert("the sequence is to small or to long, or the content of the sequence did not match the sequence type you have checked");
+	
+alert("the sequence is too small or too long for the application");
 }
 return(content_seq_check);
 }
@@ -233,10 +304,10 @@ return(content_seq_check);
 @constructor
  */
 function verif_choice_gap(){
-	var check_gap=false
-	var choice_gap_check=false
-	var number=false
-	var numbers=false
+	var check_gap=false;
+	var choice_gap_check=false;
+	var number=false;
+	var numbers=false;
 	var choice_nbgap=document.getElementsByName("choose_gap_penalty");
 	var nb;
 	var not_equal=false;

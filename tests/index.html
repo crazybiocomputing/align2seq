@@ -38,13 +38,13 @@
 	<script type="text/javascript" src=" ../matrix/matrixlist.json"></script>
 	<script type="text/javascript" src=" ../matrix/matrixEDNA.json"></script>
 	<script type="text/javascript" src=" ../src/timelapse.js"></script>
-	<body>
+	<body onload="event_onload()" >
 		<header>
 			<h1 id="title">Tool for pairwise alignment</h1>
 		</header>
 		<div id="global">
 			<p id="message"></p>
-			<div id="formulaire">
+			<div id="formulaire"  >
 				<li id="algo"><h3>Algorithms</h3>
 					<input type="radio" name="algorithm" value="needleman_wunsch" id="needleman_wunsch" >
 					<label class="elem_form"> Needleman and Wunsch </label> <br>
@@ -52,27 +52,27 @@
 					<label class="elem_form"> Smith and Waterman </label> <br>
 				</li>
 				<li id="seq"><h3>Sequences</h3>
-					<input type="radio" name="type_seq" value="protein" id ="protein" onClick="choose_matrix()" >
+					<input type="radio" name="type_seq" value="protein" id ="protein" Checked onClick="choose_matrix()">
 					<label class="elem_form">Proteins</label>
 					<input type="radio" name="type_seq" value="nucleotide" id="nucleotide" onClick="choose_matrix()" >
 					<label class="elem_form">Nucleotides</label> <br>
 					<label class="elem_form" for="sequence1">Sequence 1</label><br>
-					<input type="text" name="sequence1" value="sequence1" id="sequence1" onfocus='verif_check_algo();verif_check_type_seq()' 				onblur='check_content_seq() ' required> <br>
+					<input type="text" name="sequence1" value="sequence1" id="sequence1" required> <br>
 					<label class="elem_form" for="sequence2">Sequence 2</label> <br>
-					<input type="text" name="sequence2" value="sequence2" id ="sequence2" onFocus='verif_check_algo();verif_check_type_seq()' onblur='check_content_seq() ' required>
+					<input type="text" name="sequence2" value="sequence2" id ="sequence2" required>
 					
 					 <br>
 				</li>
 				<li id="opt"><h3>Options</h3>
 					<CENTER><label class="elem_form" for="gap_penalty" textalign> Gap penalty </label></CENTER><br> 
-					<input type="radio" name="choose_gap_penalty" value="single" id="single" onClick="choose_gap_penalty()">
+					<input type="radio" name="choose_gap_penalty" value="single" id="single" onClick="choose_gap_penalty()"checked>
 					<label class="elem_form"> single gap penalty </label><br>
 					<input type="radio" name="choose_gap_penalty" value="multiple" id="multiple" onClick="choose_gap_penalty()">
 					<label class="elem_form"> multiple gap penalty </label><br>
 					<div id="gap" >
 					 </div><br>
 					<label class="elem_form">Matrices</label>
-					<select id="choice_matrix" name="choice_matrix" onFocus="verif_choice_gap()">
+					<select id="choice_matrix" name="choice_matrix" >
 					</select>
 				</li>
 			</div>
