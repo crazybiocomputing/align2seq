@@ -15,20 +15,16 @@
    <g id="layer1-0" transform="matrix(6.7653353,0,0,6.6395081,-18392.518,-974.80131)">
     <g id="tri-1" stroke-linejoin="miter" transform="matrix(0.15263551,0,0,0.14559317,2783.9956,151.8235)" stroke="#000" stroke-linecap="round" stroke-miterlimit="4" stroke-dasharray="none" stroke-width="46.59999847" fill="none">
      <g id="layer1-06" transform="matrix(0.67359768,0,0,0.68855176,-14212.484,595.23025)">
-      <g id="tri-2" stroke-linejoin="miter" transform="matrix(1.498828,0,0,1.4906657,21303.708,-907.09579)" stroke="#000" stroke-linecap="round" stroke-miterlimit="4" stroke-dasharray="none" stroke-width="46.59999847" fill="none">
-       <g id="layer1-02" transform="matrix(0.64771841,0,0,0.65382798,-14204.81,613.31787)">
-        <g id="tri-0" stroke-linejoin="miter" transform="matrix(1.498828,0,0,1.4906657,21303.708,-907.09579)" stroke="#000" stroke-linecap="round" stroke-miterlimit="4" stroke-dasharray="none" stroke-width="46.59999847" fill="none">
-         <g id="g4401">
-          <g id="g4317" transform="matrix(-0.68314179,-0.73028576,-0.73028576,0.68314179,-13820.806,516.52417)">
-           <path id="path4319" d="m-571.67,345.22,428.81,0"/>
-           <path id="path4321" d="M-205.89,231.48-88.746,348.63-203.03,462.91"/>
-          </g>
-          <g id="g4323" transform="matrix(0.03333582,-0.9994442,0.9994442,0.03333582,-14020.737,563.24827)">
-           <path id="path4325" d="m-594.15,362.41,451.29-17.188"/>
-           <path id="path4327" d="M-211.18,230.83-94.038,347.97-208.32,462.26"/>
-          </g>
-         </g>
+      <g id="tri-2" stroke-linejoin="miter" transform="matrix(1.498828,0,0,1.4906657,21303.708,-907.09579)" stroke="#f50000" stroke-linecap="round" stroke-miterlimit="4" stroke-dasharray="none" stroke-width="46.59999847" fill="none">
+       <g id="g4401">
+        <g id="g4317" transform="matrix(-0.68314179,-0.73028576,-0.73028576,0.68314179,-13820.806,516.52417)" stroke="#f50000">
+         <path id="path4319" d="m-571.67,345.22,428.81,0"/>
+         <path id="path4321" d="M-205.89,231.48-88.746,348.63-203.03,462.91"/>
         </g>
+       </g>
+       <g id="g4329-5" transform="matrix(-0.9994442,-0.03333582,0.03333582,-0.9994442,-14285.232,1512.9597)">
+        <path id="path4331" d="m-594.15,362.41,451.29-17.188"/>
+        <path id="path4333" d="M-215.6,230.98-98.455,348.12-212.74,462.41"/>
        </g>
       </g>
      </g>

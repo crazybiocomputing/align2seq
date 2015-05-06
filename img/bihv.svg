@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
-<svg id="svg4528" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/">
- <metadata id="metadata4533">
+<svg id="svg4989" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" height="100%" width="100%" version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/">
+ <metadata id="metadata4994">
   <rdf:RDF>
    <cc:Work rdf:about="">
     <dc:format>image/svg+xml</dc:format>
@@ -10,15 +10,33 @@
    </cc:Work>
   </rdf:RDF>
  </metadata>
- <g id="layer1" transform="translate(0,-52.362183)">
-  <g id="g4377" stroke-linejoin="miter" transform="matrix(1.5584742,0,0,1.5088354,24069.889,1525.4825)" stroke="#000" stroke-linecap="round" stroke-miterlimit="4" stroke-dasharray="none" stroke-width="46.59999847" fill="none">
-   <g id="g4347" transform="matrix(-1,0,0,1,-15509.153,-789.12388)">
-    <path id="path4349" d="m-571.67,345.22,428.81,0"/>
-    <path id="path4351" d="M-215.62,229.51-98.48,346.65-212.77,460.93"/>
-   </g>
-   <g id="g4353" transform="matrix(0.03005806,-0.99954816,0.99954816,0.03005806,-15275.946,-1048.5618)">
-    <path id="path4355" d="m-594.15,362.41,451.29-17.188"/>
-    <path id="path4357" d="M-215.6,230.83-98.46,347.98-212.75,462.26"/>
+ <g id="layer1" transform="matrix(0.09861861,0,0,0.10103779,0.28889846,-4.908557)">
+  <g id="tri" stroke-linejoin="miter" transform="matrix(1.498828,0,0,1.4906657,21303.708,-907.09579)" stroke="#000" stroke-linecap="round" stroke-miterlimit="4" stroke-dasharray="none" stroke-width="46.59999847" fill="none">
+   <g id="layer1-0" transform="matrix(6.7653353,0,0,6.6395081,-18392.518,-974.80131)">
+    <g id="tri-1" stroke-linejoin="miter" transform="matrix(0.15263551,0,0,0.14559317,2783.9956,151.8235)" stroke="#000" stroke-linecap="round" stroke-miterlimit="4" stroke-dasharray="none" stroke-width="46.59999847" fill="none">
+     <g id="layer1-06" transform="matrix(0.67359768,0,0,0.68855176,-14212.484,595.23025)">
+      <g id="tri-2" stroke-linejoin="miter" transform="matrix(1.498828,0,0,1.4906657,21303.708,-907.09579)" stroke="#000" stroke-linecap="round" stroke-miterlimit="4" stroke-dasharray="none" stroke-width="46.59999847" fill="none">
+       <g id="layer1-02" transform="matrix(0.64771841,0,0,0.65382798,-14204.81,613.31787)">
+        <g id="tri-0" stroke-linejoin="miter" transform="matrix(1.498828,0,0,1.4906657,21303.708,-907.09579)" stroke="#000" stroke-linecap="round" stroke-miterlimit="4" stroke-dasharray="none" stroke-width="46.59999847" fill="none">
+         <g id="layer1-1" transform="matrix(0.7064815,0,0,0.70882706,-14232.024,590.91036)">
+          <g id="tri-7" stroke-linejoin="miter" transform="matrix(1.498828,0,0,1.4906657,21303.708,-907.09579)" stroke="#000" stroke-linecap="round" stroke-miterlimit="4" stroke-dasharray="none" stroke-width="46.59999847" fill="none">
+           <g id="g4401" transform="matrix(0.99898181,0,0,0.98267346,-13.812468,20.257311)">
+            <g id="g4323" transform="matrix(0.03333582,-0.9994442,0.9994442,0.03333582,-14020.737,563.24827)">
+             <path id="path4325" d="m-594.15,362.41,451.29-17.188"/>
+             <path id="path4327" d="M-211.18,230.83-94.038,347.97-208.32,462.26"/>
+            </g>
+           </g>
+           <g id="g4329-9" transform="matrix(-0.98299947,-0.03333582,0.03278732,-0.9994442,-14275.147,1512.9597)">
+            <path id="path4331" d="m-594.15,362.41,451.29-17.188"/>
+            <path id="path4333" d="M-215.6,230.98-98.455,348.12-212.74,462.41"/>
+           </g>
+          </g>
+         </g>
+        </g>
+       </g>
+      </g>
+     </g>
+    </g>
    </g>
   </g>
  </g>

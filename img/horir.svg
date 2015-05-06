@@ -13,9 +13,9 @@
  <g id="layer1" transform="translate(0,-952.36218)">
   <g id="layer1-7" transform="matrix(0.09808831,0,0,0.10112821,-1.014101,945.18031)">
    <g id="g4377" stroke-linejoin="miter" transform="matrix(1.5584742,0,0,1.5088354,24069.889,1525.4825)" stroke="#000" stroke-linecap="round" stroke-miterlimit="4" stroke-dasharray="none" stroke-width="46.59999847" fill="none">
-    <g id="g4353" transform="matrix(0.03005806,-0.99954816,0.99954816,0.03005806,-15467.521,-1020.4746)" stroke="#000">
-     <path id="path4355" fill="#F00" d="m-594.15,362.41,451.29-17.188"/>
-     <path id="path4357" d="M-215.6,230.83-98.46,347.98-212.75,462.26"/>
+    <g id="horir" stroke-linejoin="miter" transform="matrix(-0.96638985,-0.03290496,0.03223334,-0.98652586,-15456.924,-240.44889)" stroke="#F00" stroke-linecap="round" stroke-miterlimit="4" stroke-dasharray="none" stroke-width="46.59999847000000273" fill="none">
+     <path id="path4331" d="m-594.15,362.41,451.29-17.188"/>
+     <path id="path4333" d="M-215.6,230.98-98.455,348.12-212.74,462.41"/>
     </g>
    </g>
   </g>

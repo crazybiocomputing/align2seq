@@ -18,7 +18,7 @@
       <g id="tri-2" stroke-linejoin="miter" transform="matrix(1.498828,0,0,1.4906657,21303.708,-907.09579)" stroke="#000" stroke-linecap="round" stroke-miterlimit="4" stroke-dasharray="none" stroke-width="46.59999847" fill="none">
        <g id="layer1-02" transform="matrix(0.64771841,0,0,0.65382798,-14204.81,613.31787)">
         <g id="tri-0" stroke-linejoin="miter" transform="matrix(1.498828,0,0,1.4906657,21303.708,-907.09579)" stroke="#000" stroke-linecap="round" stroke-miterlimit="4" stroke-dasharray="none" stroke-width="46.59999847" fill="none">
-         <g id="g4401">
+         <g id="g4401" stroke="#f50000">
           <g id="g4317" transform="matrix(-0.68314179,-0.73028576,-0.73028576,0.68314179,-13820.806,516.52417)">
            <path id="path4319" d="m-571.67,345.22,428.81,0"/>
            <path id="path4321" d="M-205.89,231.48-88.746,348.63-203.03,462.91"/>
