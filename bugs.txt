@@ -1,0 +1,3 @@
+Sous Iceweasel : 
+- Vérification des séquences non faites à la fin (exemple avec sequence1 et sequence2)
+- Message d'erreur dès que l'on quitte le champ de sequence1
