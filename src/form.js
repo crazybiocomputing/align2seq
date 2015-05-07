@@ -196,7 +196,7 @@ else{
 if (document.getElementById("single").checked===true){
 	var gap=document.getElementById("enter_gap_penalty").value;
 	var gap=-Math.abs(parseInt(gap));
-	init(seq1,seq2,matrix,type_seq,algo,gap);
+	algorithm(seq1,seq2,matrix,type_seq,algo,gap);
 }
 else if (document.getElementById("multiple").checked===true){
 	var max_len=seq1.length
@@ -209,7 +209,7 @@ else if (document.getElementById("multiple").checked===true){
 		li_gap.push(-tmp);
 	// la liste des gap sous forme numérique est dans li_gap
 }
-init(seq1,seq2,matrix,type_seq,algo,li_gap);
+	algorithm(seq1,seq2,matrix,type_seq,algo,li_gap);
 }
 
 }
@@ -219,9 +219,10 @@ init(seq1,seq2,matrix,type_seq,algo,li_gap);
  */
 function verif () {
 	if ((verif_check_algo()===true)&&(verif_check_type_seq()===true)&&(check_content_seq()===true)&&(verif_choice_gap()===true)){
-		get_value();
+		return true;
 	}
 	else{
+		return false;
 		alert("complete the form before submit it");
 	}
 	}
@@ -380,8 +381,31 @@ function verif_choice_gap(){
 @algo {string} - If the algorithm used is S&W or N&W (for the moment)
 @gap {number} - Gap penality *
  */
-function init(seq1,seq2,matrix,type_seq,algo,gap){
-	algorithm(seq1,seq2,matrix,type_seq,algo,gap);
+function init_final(){
+	if (verif()===true){
+	get_value();
 	display();
 }
+}
 
+function init_next(){
+	if (verif()===true){
+	get_value();
+	next();
+}
+}
+
+function init_prev(){
+	if (verif()===true){
+	get_value();
+	prev();
+}
+}
+
+
+function init_fast(){
+	if (verif()===true){
+	get_value();
+	fastnext();
+}
+}
