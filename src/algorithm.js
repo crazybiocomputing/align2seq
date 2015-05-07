@@ -67,30 +67,33 @@ function algorithm(sequence1,sequence2,matrix,type_seq,algo,gap)
 	this.algo = algo;
 	this.listalign=[];
 	this.matseq[0] = "-";
-	s1 = this.seq2.split("");
+	s1 = this.seq1.split("");
 	for (var elems1 = 0; elems1 <= this.len1; elems1++) {
 		this.matseq.push(s1[elems1]);
 	}
 	this.matseq[this.len1 + 1] = "-";
-	s2 = this.seq1.split("");
+	s2 = this.seq2.split("");
 	for (var elems2 = 0; elems2 < this.len2; elems2++) {
 		this.matseq.push(s2[elems2]);
 	}
+	if (isNaN(this.gap) == false ){
+		var gapsimple=this.gap;
+		var gap =[];
+		for(var i=0;i<size1;i++){
+			gap.push(gapsimple);
+		}
+		this.gap=gap;
+	}
 	for (i = 0; i <= this.len1; i++) {
 		for (j = this.len1 + 1; j <= ((this.len1 + this.len2) + 1); j++) {
-			if (this.gap instanceof(Array)){
-				if (this.place<this.maxi){
-					this.gapplace=this.gap[place];
-				}
-				else if(this.place%this.maxi === 0){
-					this.gapplace=this.gap[0];
-				}
-				else{
-					this.gapplace=this.gap[this.place%this.maxi];
-				}
+			if (this.place<(this.maxi+1)){
+				this.gapplace=this.gap[place];
 			}
+			// else if(this.place%this.maxi === 0){
+			// 	this.gapplace=this.gap[0];
+			// }
 			else{
-				this.gapplace=this.gap;
+				this.gapplace=this.gap[this.place%(this.maxi+1)];
 			}
 			if (this.type_seq=="protein"){
 				this.letters=["A","R","N","D","C","Q","E","G","H","I","L","K","M","F","P","S","T","W","Y","V","B","Z","X", "*"];
@@ -104,18 +107,18 @@ function algorithm(sequence1,sequence2,matrix,type_seq,algo,gap)
 				}
 			}
 			if (this.algo=="smith_waterman"){
-				smithwaterman.prototype.score(this.matrix,this.matscore, this.matpath, this.matsumdia, this.matsumvert, this.matsumhor,this.matsumtot, this.matseq[i], this.matseq[j], this.len2, this.place,this.gapplace,this.letters);
+				smithwaterman.prototype.score(this.matrix,this.matscore, this.matpath, this.matsumdia, this.matsumvert, this.matsumhor,this.matsumtot, this.matseq[j], this.matseq[i], this.len2, this.place,this.gapplace,this.letters);
 			}
 			else{
-				needlemanwunsch.prototype.score(this.matrix,this.matscore, this.matpath, this.matsumdia, this.matsumvert, this.matsumhor,this.matsumtot, this.matseq[i], this.matseq[j], this.len2, this.place,this.i,this.gapplace,this.letters);
+				needlemanwunsch.prototype.score(this.matrix,this.matscore, this.matpath, this.matsumdia, this.matsumvert, this.matsumhor,this.matsumtot, this.matseq[j], this.matseq[i], this.len2, this.place,this.i,this.gapplace,this.letters);
 			}
 			this.place++;
 		}
 	}
 	for (path in matpath){
 		if (matpath[path]===0){
-			matpatharrows[path]="<i class=\"fa fa-circle-thin\"></i>";
-			matpatharrowsalign[path]="<i class=\"fa fa-circle-thin\" style=\"color:red\"></i>";
+			matpatharrows[path]="";
+			matpatharrowsalign[path]="";
 		}
 		else if (matpath[path]===1){
 			matpatharrows[path]="<object type=\"image/svg+xml\" data=\"..\/img\/hori.svg\" width=\"25 px\" height=\"25\"> error </object>";

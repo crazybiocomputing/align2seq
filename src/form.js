@@ -61,7 +61,8 @@ var enter_gap_penalty =document.getElementById("gap");
 		}
 		else{
 			var lengthmax=Math.max(seq1.length,seq2.length);		
-			for (var m =0; m <= lengthmax-1; m++) {
+			for (var m =0; m <= lengthmax; m++) {
+				console.max(lengthmax);
 				if (enter_gap_penalty.hasChildNodes===true){
 					var enter_gap=document.createElement('input');
 					enter_gap.insertBefore(enter_gap,enter_gap_penalty.lastChild);
@@ -139,7 +140,7 @@ function choose_gap_penalty(){
 		}
 		if (document.getElementById('multiple').checked===true){
 			var lengthmax=Math.max(seq1.length,seq2.length);		
-			for (var m =0; m <= lengthmax-1; m++) {
+			for (var m =0; m <= lengthmax; m++) {
 				if (enter_gap_penalty.hasChildNodes===true){
 					var enter_gap=document.createElement('input');
 					enter_gap.insertBefore(enter_gap,enter_gap_penalty.lastChild);
@@ -203,7 +204,7 @@ else if (document.getElementById("multiple").checked===true){
 	if (seq2.length>max_len){
 		max_len=seq2.length;
 	}
-	for (var i =0;i<max_len;i++) {
+	for (var i =0;i<(max_len+1);i++) {
 		var tmp=document.getElementById("enter_gap_penalty"+i).value;
 		tmp=Math.abs(parseInt(tmp));
 		li_gap.push(-tmp);
@@ -285,9 +286,7 @@ function check_content_seq () {
 }
 if (((2<=seq1.length)&&(seq1.length<=15))&&((2<=seq2.length<=15)&&(seq2.length<=15))){ 
 	if(((type_seq=="protein")&&(/^[ARNDCQEGHILKMFPSTWYVBZX]+$/.test(seq1,seq2)))||((type_seq=="nucleotide")&&(/^[ATGCSWRYKMBVHDNU]+$/.test(seq1,seq2)))) {
-	console.log(seq1.length);
-	console.log(seq2.length);
-	console.log(type_seq);
+
 	content_seq_check=true;
 }
 else{

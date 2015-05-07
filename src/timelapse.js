@@ -94,12 +94,12 @@ function launch_nstep(nbValuesToDisplay){
 
 			//Filling the array with the first sequence (first column)
 			if (i>=2 && j===0){
-				currentCell.innerHTML=s1[i-2];
+				currentCell.innerHTML=s2[i-2];
 			}
 
 			//Filling the array with the second sequence (first ligne)
 			if (i===0 && j>=2){
-				currentCell.innerHTML=s2[j-2];
+				currentCell.innerHTML=s1[j-2];
 			}
 		}
 	}
@@ -133,11 +133,10 @@ function launch_nstep(nbValuesToDisplay){
 			}
 
 			if (nbDisplayedValues==matscore.length){
-				currentCell.innerHTML=matpatharrows[(matscore.length)-1]+""+matsumtot[(matscore.length)-1];
+				currentCell.innerHTML=matpatharrows[(matscore.length)-1]+" "+matsumtot[(matscore.length)-1];
 			}
 		}
 	}
-	
     title=document.getElementById("matrixtime").createCaption();
 	title.innerHTML="<b>Sum matrix</b>";	
 	if(nbValuesToDisplay>size1) {
@@ -145,12 +144,12 @@ function launch_nstep(nbValuesToDisplay){
 		var cellvert=size1;
 		var celldia=size1+1;
 		var cellcurrent=nbValuesToDisplay-1;
-		var posj=(nbValuesToDisplay%(len1+1)-1)+2;
-		var posi=Math.floor((nbValuesToDisplay/(len2+1)-1)+2);
+		var posj=((nbValuesToDisplay-1)%(len1+1));
+		var posi=Math.floor((nbValuesToDisplay/(len2+2)-1)+2);
 		explain.innerHTML="Value of M("+posi+","+posj+") = maximal value between : <br>";
 		explain.innerHTML+="M("+(posi-1)+","+(posj-1)+") + S("+posi+","+posj+") = "+matsumtot[cellcurrent-celldia]+" + "+matscore[cellcurrent]+" = " +"<b>"+matsumdia[cellcurrent]+"</b>"+"<br>";
-		explain.innerHTML+="M("+(posi)+","+(posj-1)+") + gap = "+matsumtot[cellcurrent-1]+"+"+gapplace+" = "+"<b>"+matsumhor[cellcurrent]+"</b>"+"<br>";
-		explain.innerHTML+="M("+(posi-1)+","+(posj)+") + gap = "+matsumtot[cellcurrent-cellvert]+"+"+gapplace+"= "+"<b>"+matsumvert[cellcurrent]+"</b>"+"<br>";
+		explain.innerHTML+="M("+(posi)+","+(posj-1)+") + gap = "+matsumtot[cellcurrent-1]+"+"+gap[posj]+" = "+"<b>"+matsumhor[cellcurrent]+"</b>"+"<br>";
+		explain.innerHTML+="M("+(posi-1)+","+(posj)+") + gap = "+matsumtot[cellcurrent-cellvert]+"+"+gap[posj]+"= "+"<b>"+matsumvert[cellcurrent]+"</b>"+"<br>";
 		explain.innerHTML+="Maximum value of the three : <b>"+matsumtot[cellcurrent]+"</b><br>";
 		explain.innerHTML+="<b>Corresponding path</b> : "+matpatharrows[cellcurrent]+"<br>";
 		}

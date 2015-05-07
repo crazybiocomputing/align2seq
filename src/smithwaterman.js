@@ -105,9 +105,6 @@
  		var lengthmat=letters.length;
  		var posmatrix=(lengthmat*pos1)+pos2;
  		currentscore=parseInt(matrix[posmatrix]);
- 		// if (currentscore<0){
- 		// 	currentscore=0;
- 		// }
  		matscore[place]=currentscore;
  		sumdia=scoredia+currentscore;
  		sumvert=scorevert+gap;
@@ -117,10 +114,6 @@
  		matsumhor[place]=sumhor;
  		var maxiscore=Math.max(sumvert,sumdia,sumhor);
  		matsumtot[place]=maxiscore;
- 		if (maxiscore<0){
- 			maxiscore=0;
- 		}
-
  		if (maxiscore==(sumhor) && maxiscore!=(sumvert) && maxiscore!=(sumdia)){
  			matpath[place]=1; 
  		}
@@ -142,6 +135,9 @@
  		}
  		else if (maxiscore==(sumhor) && maxiscore==(sumvert) && maxiscore==(sumdia)){
  			matpath[place]=7;
+ 		}
+ 		if (maxiscore<0){
+ 			matsumtot[place]=0;
  		}
  	}
  }
@@ -187,6 +183,7 @@
  			var posseq2=Math.floor(deppos/(len2+1)-1);
  			listalign.push(deppos);
  			if (matsumtot[deppos] === 0) {
+ 				listalign.pop();
 			/*	align1.unshift(s1[posseq1]);
  				console.log("Lettre : "+s1[posseq1]);
  				align2.unshift(s2[len2]);*/
