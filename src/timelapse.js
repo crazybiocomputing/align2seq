@@ -145,16 +145,14 @@ function launch_nstep(nbValuesToDisplay){
 		var cellvert=size1;
 		var celldia=size1+1;
 		var cellcurrent=nbValuesToDisplay-1;
-		
-		explain.innerHTML="score diagonal + score cell = sum diagonal<br>";
-		explain.innerHTML+=matsumtot[cellcurrent-celldia]+"+"+matscore[cellcurrent]+"="+"<b>"+matsumdia[cellcurrent]+"</b>"+"<br>";
-		explain.innerHTML+="score horizontal + score gap = sum horizontal<br>";
-		explain.innerHTML+=matsumtot[cellcurrent-1]+"+"+gapplace+"="+"<b>"+matsumhor[cellcurrent]+"</b>"+"<br>";
-		explain.innerHTML+="score vertical + score gap = sum vertical<br>";
-		explain.innerHTML+=matsumtot[cellcurrent-cellvert]+"+"+gapplace+"="+"<b>"+matsumvert[cellcurrent]+"</b>"+"<br>";
-		explain.innerHTML+="Maximum value of the three<br>";
-		explain.innerHTML+="<b>"+matsumtot[cellcurrent]+"</b><br>";
-		explain.innerHTML+="<b>Corresponding path</b> : "+matpatharrows[cellcurrent]+"<br>"
+		var posj=(nbValuesToDisplay%(len1+1)-1)+2;
+		var posi=Math.floor((nbValuesToDisplay/(len2+1)-1)+2);
+		explain.innerHTML="Value of M("+posi+","+posj+") = maximal value between : <br>";
+		explain.innerHTML+="M("+(posi-1)+","+(posj-1)+") + S("+posi+","+posj+") = "+matsumtot[cellcurrent-celldia]+" + "+matscore[cellcurrent]+" = " +"<b>"+matsumdia[cellcurrent]+"</b>"+"<br>";
+		explain.innerHTML+="M("+(posi)+","+(posj-1)+") + gap = "+matsumtot[cellcurrent-1]+"+"+gapplace+" = "+"<b>"+matsumhor[cellcurrent]+"</b>"+"<br>";
+		explain.innerHTML+="M("+(posi-1)+","+(posj)+") + gap = "+matsumtot[cellcurrent-cellvert]+"+"+gapplace+"= "+"<b>"+matsumvert[cellcurrent]+"</b>"+"<br>";
+		explain.innerHTML+="Maximum value of the three : <b>"+matsumtot[cellcurrent]+"</b><br>";
+		explain.innerHTML+="<b>Corresponding path</b> : "+matpatharrows[cellcurrent]+"<br>";
 		}
 		else{
 			explain.innerHTML="";	
@@ -163,7 +161,10 @@ function launch_nstep(nbValuesToDisplay){
 }
 
 function launch_nstep_align(nbValuesToDisplayAlign){
-	title.innerHTML="<b>Alignment matrix</b>";
+	if (nbValuesAlignToDisplay==1){
+		title.innerHTML="<b>Alignment matrix</b>";
+		// explain.innerHTML="";
+	}
 	var matrixs=document.getElementById("matrixtime")
 	var nbDisplayedValuesAlign= 0;
 	for(var i=1;i<matrixs.rows.length;i++){
@@ -174,12 +175,12 @@ function launch_nstep_align(nbValuesToDisplayAlign){
 	}
 	for(var posalign=1;posalign<=nbValuesToDisplayAlign;posalign++){
 		var alignpos=listalign[posalign-1];
+		if (alignpos >= listalign[posalign-2]){
+			launch_nstep(matscore.length)
+		}
 		var posj=(alignpos%(len1+1)-1)+2;
 		var posi=Math.floor((alignpos/(len2+1)-1)+2);
 		var alignCell=matrixs.rows[posi].cells[posj];
 		alignCell.innerHTML=matpatharrowsalign[alignpos];
 	}
-
 }
-
-
