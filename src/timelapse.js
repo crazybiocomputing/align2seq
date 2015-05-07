@@ -144,11 +144,13 @@ function launch_nstep(nbValuesToDisplay){
 		var cellvert=size1;
 		var celldia=size1+1;
 		var cellcurrent=nbValuesToDisplay-1;
-		var posj=((nbValuesToDisplay-1)%(len1+1));
-		var posi=Math.floor((nbValuesToDisplay/(len2+2)-1)+2);
+		var posj=(nbValuesToDisplay-1)%(len1+1);
+		var posi=Math.floor((nbValuesToDisplay-1)/(len2+1));
+		// console.log(len1);
+		// console.log("Position : "+(nbValuesToDisplay-1)+" Gap1 : "+gap[posj]+" Gap2 : "+gap2[posi]);
 		explain.innerHTML="Value of M("+posi+","+posj+") = maximal value between : <br>";
 		explain.innerHTML+="M("+(posi-1)+","+(posj-1)+") + S("+posi+","+posj+") = "+matsumtot[cellcurrent-celldia]+" + "+matscore[cellcurrent]+" = " +"<b>"+matsumdia[cellcurrent]+"</b>"+"<br>";
-		explain.innerHTML+="M("+(posi)+","+(posj-1)+") + gap = "+matsumtot[cellcurrent-1]+"+"+gap[posj]+" = "+"<b>"+matsumhor[cellcurrent]+"</b>"+"<br>";
+		explain.innerHTML+="M("+(posi)+","+(posj-1)+") + gap = "+matsumtot[cellcurrent-1]+"+"+gap2[posi]+" = "+"<b>"+matsumhor[cellcurrent]+"</b>"+"<br>";
 		explain.innerHTML+="M("+(posi-1)+","+(posj)+") + gap = "+matsumtot[cellcurrent-cellvert]+"+"+gap[posj]+"= "+"<b>"+matsumvert[cellcurrent]+"</b>"+"<br>";
 		explain.innerHTML+="Maximum value of the three : <b>"+matsumtot[cellcurrent]+"</b><br>";
 		explain.innerHTML+="<b>Corresponding path</b> : "+matpatharrows[cellcurrent]+"<br>";

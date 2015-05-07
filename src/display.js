@@ -52,15 +52,15 @@
 		for (var j = 0; j < column.length ; j++) {
 
 			if (i>=2 && j===0){ 
-				for(var column in s1){
-					matrixsum.rows[i].cells[j].innerHTML=s1[column];	
+				for(var column in s2){
+					matrixsum.rows[i].cells[j].innerHTML=s2[column];	
 					i++;	
 				}
 			};
 
 			if (i===0 && j>=2) {
-				for (var ligne in s2) {
-					matrixsum.rows[i].cells[j].innerHTML=s2[ligne];
+				for (var ligne in s1) {
+					matrixsum.rows[i].cells[j].innerHTML=s1[ligne];
 					j++;
 
 				}
@@ -102,15 +102,15 @@
 		for (var j = 0; j < column.length ; j++) {
 
 			if (i>=2 && j===0){ 
-				for(var column in s1){
-					matrixpath.rows[i].cells[j].innerHTML=s1[column];	
+				for(var column in s2){
+					matrixpath.rows[i].cells[j].innerHTML=s2[column];	
 					i++;	
 				}
 			};
 
 			if (i===0 && j>=2) { //Remplir la première ligne à partir de la seconde case
-				for (var ligne in s2) {
-					matrixpath.rows[i].cells[j].innerHTML=s2[ligne];
+				for (var ligne in s1) {
+					matrixpath.rows[i].cells[j].innerHTML=s1[ligne];
 					j++;
 
 				}

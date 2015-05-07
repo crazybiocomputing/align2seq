@@ -63,7 +63,6 @@ function algorithm(sequence1,sequence2,matrix,type_seq,algo,gap)
 	this.size1=len1+1;
 	this.size2=len2+2;
 	this.add;
-	this.maxi = Math.max(this.len1, this.len2);
 	this.algo = algo;
 	this.listalign=[];
 	this.matseq[0] = "-";
@@ -84,17 +83,20 @@ function algorithm(sequence1,sequence2,matrix,type_seq,algo,gap)
 		}
 		this.gap=gap;
 	}
+	this.gap2=gap;
 	for (i = 0; i <= this.len1; i++) {
 		for (j = this.len1 + 1; j <= ((this.len1 + this.len2) + 1); j++) {
-			if (this.place<(this.maxi+1)){
+			if ((this.place<(this.len1+1))){
 				this.gapplace=this.gap[place];
 			}
 			// else if(this.place%this.maxi === 0){
 			// 	this.gapplace=this.gap[0];
 			// }
 			else{
-				this.gapplace=this.gap[this.place%(this.maxi+1)];
+				this.gapplace=this.gap[this.place%(this.len1+1)];
+				this.gapplace2=this.gap2[Math.floor(this.place/(this.len2+1))]
 			}
+		 	// console.log(place+" : Gap1 = "+(this.place%(this.len1+1))+" / Gap2 : "+this.gapplace2)
 			if (this.type_seq=="protein"){
 				this.letters=["A","R","N","D","C","Q","E","G","H","I","L","K","M","F","P","S","T","W","Y","V","B","Z","X", "*"];
 			}
@@ -107,7 +109,7 @@ function algorithm(sequence1,sequence2,matrix,type_seq,algo,gap)
 				}
 			}
 			if (this.algo=="smith_waterman"){
-				smithwaterman.prototype.score(this.matrix,this.matscore, this.matpath, this.matsumdia, this.matsumvert, this.matsumhor,this.matsumtot, this.matseq[j], this.matseq[i], this.len2, this.place,this.gapplace,this.letters);
+				smithwaterman.prototype.score(this.matrix,this.matscore, this.matpath, this.matsumdia, this.matsumvert, this.matsumhor,this.matsumtot, this.matseq[j], this.matseq[i], this.len2, this.place,this.gapplace,this.gapplace2,this.letters);
 			}
 			else{
 				needlemanwunsch.prototype.score(this.matrix,this.matscore, this.matpath, this.matsumdia, this.matsumvert, this.matsumhor,this.matsumtot, this.matseq[j], this.matseq[i], this.len2, this.place,this.i,this.gapplace,this.letters);
@@ -115,6 +117,7 @@ function algorithm(sequence1,sequence2,matrix,type_seq,algo,gap)
 			this.place++;
 		}
 	}
+	console.log(place);
 	for (path in matpath){
 		if (matpath[path]===0){
 			matpatharrows[path]="";

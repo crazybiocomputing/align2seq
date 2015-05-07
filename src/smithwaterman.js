@@ -49,7 +49,7 @@
 @param {number} gap- Gap penality 
 @param letters - Letters used in subsitution matrices
  */
- smithwaterman.prototype.score = function (matrix,matscore, matpath, matsumdia, matsumvert, matsumhor, matsumtot,l1, l2, lengthseq, place,gap,letters) {
+ smithwaterman.prototype.score = function (matrix,matscore, matpath, matsumdia, matsumvert, matsumhor, matsumtot,l1, l2, lengthseq, place,gap,gap2,letters) {
  	var currentscore;
  	var scorevert, scorehor, scoredia;
  	var sumvert, sumhor, sumdia;
@@ -108,7 +108,7 @@
  		matscore[place]=currentscore;
  		sumdia=scoredia+currentscore;
  		sumvert=scorevert+gap;
- 		sumhor=scorehor+gap;
+ 		sumhor=scorehor+gap2;
  		matsumdia[place]=sumdia;
  		matsumvert[place]=sumvert;
  		matsumhor[place]=sumhor;
