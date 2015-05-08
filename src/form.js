@@ -23,8 +23,8 @@
 * Emeline Duquenne
 * Aurore Perdriau
 */
-/** Function to put in the form the right matrices according to sequence type
-@constructor
+/** 
+ * Function to put in the form the right matrices according to sequence type and the right gap penalities
  */
 "use strict";
 
@@ -44,60 +44,59 @@
 			document.getElementById('choice_matrix').options[l] = new Option(listEDNA[l],listEDNA[l]);
  		}
 	}
-var seq1=document.getElementById("sequence1");
-var seq2=document.getElementById("sequence2");
-var enter_gap_penalty =document.getElementById("gap");
+
+	var seq1=document.getElementById("sequence1");
+	var seq2=document.getElementById("sequence2");
+	var enter_gap_penalty =document.getElementById("gap");
+	
 	while(enter_gap_penalty.firstChild){
 		enter_gap_penalty.removeChild(enter_gap_penalty.firstChild);
 	}
-		if (document.getElementById('multiple').checked!==true){
-			var enter_gap=document.createElement('input');
-			enter_gap.setAttribute("type","number");
-			enter_gap.setAttribute("min", "0");
-			enter_gap.setAttribute("id", "enter_gap_penalty");
-			enter_gap.setAttribute("value", "0");
-			enter_gap.setAttribute("size", 2);
-			enter_gap_penalty.appendChild(enter_gap);
-		}
-		else{
-			var lengthmax=Math.max(seq1.value.length,seq2.value.length);		
-			for (var m =0; m <= lengthmax; m++) {
-				if (enter_gap_penalty.hasChildNodes===true){
-					var enter_gap=document.createElement('input');
-					enter_gap.insertBefore(enter_gap,enter_gap_penalty.lastChild);
-					enter_gap.setAttribute("type","number");
-					enter_gap.setAttribute("min", "0");
-					enter_gap.setAttribute("id", "enter_gap_penalty"+m);
-					enter_gap.setAttribute("value", "0");
-					enter_gap.setAttribute("style", "width:2em");
-				}
-				else {
-					var enter_gap=document.createElement('input');
-					enter_gap_penalty.appendChild(enter_gap);
-					enter_gap.setAttribute("type","number");
-					enter_gap.setAttribute("min", "0");
-					enter_gap.setAttribute("id", "enter_gap_penalty"+m);
-					enter_gap.setAttribute("value", "0");
-					enter_gap.setAttribute("style", "width:2em");
-				}
+	
+	if (document.getElementById('multiple').checked!==true){
+		var enter_gap=document.createElement('input');
+		enter_gap.setAttribute("type","number");
+		enter_gap.setAttribute("min", "0");
+		enter_gap.setAttribute("id", "enter_gap_penalty");
+		enter_gap.setAttribute("value", "0");
+		enter_gap.setAttribute("size", 2);
+		enter_gap_penalty.appendChild(enter_gap);
+	}
+	else{
+		var lengthmax=Math.max(seq1.value.length,seq2.value.length);		
+		for (var m =0; m <= lengthmax; m++) {
+			if (enter_gap_penalty.hasChildNodes===true){
+				var enter_gap=document.createElement('input');
+				enter_gap.insertBefore(enter_gap,enter_gap_penalty.lastChild);
+				enter_gap.setAttribute("type","number");
+				enter_gap.setAttribute("min", "0");
+				enter_gap.setAttribute("id", "enter_gap_penalty"+m);
+				enter_gap.setAttribute("value", "0");
+				enter_gap.setAttribute("style", "width:2em");
+			}
+			else {
+				var enter_gap=document.createElement('input');
+				enter_gap_penalty.appendChild(enter_gap);
+				enter_gap.setAttribute("type","number");
+				enter_gap.setAttribute("min", "0");
+				enter_gap.setAttribute("id", "enter_gap_penalty"+m);
+				enter_gap.setAttribute("value", "0");
+				enter_gap.setAttribute("style", "width:2em");
 			}
 		}
+	}
 }
 
 
-/** Function to put in the form the right matrices according to sequence type
-@constructor
+/** 
+ * Function to put in the form the right matrices according to sequence type
  */
 
 function choose_matrix(){
-	
-	
 	if (document.getElementById('protein').checked===true){
-
 		while (document.getElementById('choice_matrix').firstChild){
 			document.getElementById('choice_matrix').removeChild(document.getElementById('choice_matrix').firstChild);
 		}
-
 		var listmatrix=Object.keys(matrixlist);
 		for (var l in listmatrix){
 			document.getElementById('choice_matrix').options[l] = new Option(listmatrix[l],listmatrix[l]);
@@ -112,11 +111,9 @@ function choose_matrix(){
 			document.getElementById('choice_matrix').options[l] = new Option(listEDNA[l],listEDNA[l]);
 		}
 	}
-		
-		
 }
 
-/** Function to put in the form the right input for gap penalities according to user choice
+/** Function to put in the form the right inputs for gap penalities according to user choice
 @constructor
  */
 
@@ -127,109 +124,106 @@ function choose_gap_penalty(){
 	while(enter_gap_penalty.firstChild){
 		enter_gap_penalty.removeChild(enter_gap_penalty.firstChild);
 	}
-		
-		if (document.getElementById('single').checked===true){
-			var enter_gap=document.createElement('input');
-			enter_gap.setAttribute("type","number");
-			enter_gap.setAttribute("min", "0");
-			enter_gap.setAttribute("id", "enter_gap_penalty");
-			enter_gap.setAttribute("value", "0");
-			enter_gap.setAttribute("size", 2);
-			enter_gap_penalty.appendChild(enter_gap);
-		}
-		if (document.getElementById('multiple').checked===true){
-			var lengthmax=Math.max(seq1.length,seq2.length);		
-			for (var m =0; m <= lengthmax; m++) {
-				if (enter_gap_penalty.hasChildNodes===true){
-					var enter_gap=document.createElement('input');
-					enter_gap.insertBefore(enter_gap,enter_gap_penalty.lastChild);
-					enter_gap.setAttribute("type","number");
-					enter_gap.setAttribute("min", "0");
-					enter_gap.setAttribute("id", "enter_gap_penalty"+m);
-					enter_gap.setAttribute("value", "0");
-					enter_gap.setAttribute("style", "width:2em");
-				}
-				else {
-					var enter_gap=document.createElement('input');
-					enter_gap_penalty.appendChild(enter_gap);
-					enter_gap.setAttribute("type","number");
-					enter_gap.setAttribute("min", "0");
-					enter_gap.setAttribute("id", "enter_gap_penalty"+m);
-					enter_gap.setAttribute("value", "0");
-					enter_gap.setAttribute("style", "width:2em");
-				}
+	if (document.getElementById('single').checked===true){
+		var enter_gap=document.createElement('input');
+		enter_gap.setAttribute("type","number");
+		enter_gap.setAttribute("min", "0");
+		enter_gap.setAttribute("id", "enter_gap_penalty");
+		enter_gap.setAttribute("value", "0");
+		enter_gap.setAttribute("size", 2);
+		enter_gap_penalty.appendChild(enter_gap);
+	}
+	if (document.getElementById('multiple').checked===true){
+		var lengthmax=Math.max(seq1.length,seq2.length);		
+		for (var m =0; m <= lengthmax; m++) {
+			if (enter_gap_penalty.hasChildNodes===true){
+				var enter_gap=document.createElement('input');
+				enter_gap.insertBefore(enter_gap,enter_gap_penalty.lastChild);
+				enter_gap.setAttribute("type","number");
+				enter_gap.setAttribute("min", "0");
+				enter_gap.setAttribute("id", "enter_gap_penalty"+m);
+				enter_gap.setAttribute("value", "0");
+				enter_gap.setAttribute("style", "width:2em");
+			}
+			else {
+				var enter_gap=document.createElement('input');
+				enter_gap_penalty.appendChild(enter_gap);
+				enter_gap.setAttribute("type","number");
+				enter_gap.setAttribute("min", "0");
+				enter_gap.setAttribute("id", "enter_gap_penalty"+m);
+				enter_gap.setAttribute("value", "0");
+				enter_gap.setAttribute("style", "width:2em");
 			}
 		}
 	}
+}
 
-/** Function to obtain the user values for the treatment of the sequences alignment 
-@constructor
+/**
+ * Function to obtain the user values for the treatment of the sequences alignment
  */
 function get_value(){
-// event.preventDefault();
+	var algo;
+	var type_seq;
+	var li_gap=[];
+	var algo_choice=document.getElementsByName("algorithm");
+	for (var i=0;i<algo_choice.length;i++){
+		if (algo_choice[i].checked===true){
+			algo=algo_choice[i].value;
+		}
+	}
+	var seq_choice=document.getElementsByName("type_seq");
+	for (var j=0;j<seq_choice.length;j++) {
+		if (seq_choice [j].checked===true) {
+			type_seq= seq_choice[j].value;
+		}
+	}
 
-
-var algo;
-var type_seq;
-var li_gap=[]
-var algo_choice=document.getElementsByName("algorithm");
-for (var i=0;i<algo_choice.length;i++){
-	if (algo_choice[i].checked===true){
-		algo=algo_choice[i].value;
+	var seq1=document.getElementById("sequence1").value.toUpperCase();
+	var seq2=document.getElementById("sequence2").value.toUpperCase();
+	var matrix=document.getElementById("choice_matrix").options[document.getElementById('choice_matrix').selectedIndex].value;
+	if (document.getElementById('protein').checked===true){
+		var matrix=matrixlist[matrix];
 	}
-}
-var seq_choice=document.getElementsByName("type_seq");
-for (var j=0;j<seq_choice.length;j++) {
-	if (seq_choice [j].checked===true) {
-		type_seq= seq_choice[j].value;
+	else{
+		var matrix=matrixEDNA[matrix];
 	}
-}
-var seq1=document.getElementById("sequence1").value.toUpperCase();
-var seq2=document.getElementById("sequence2").value.toUpperCase();
-var matrix=document.getElementById("choice_matrix").options[document.getElementById('choice_matrix').selectedIndex].value;
-if (document.getElementById('protein').checked===true){
-	var matrix=matrixlist[matrix];
-}
-else{
-	var matrix=matrixEDNA[matrix];
-}
-if (document.getElementById("single").checked===true){
-	var gap=document.getElementById("enter_gap_penalty").value;
-	var gap=-Math.abs(parseInt(gap));
-	algorithm(seq1,seq2,matrix,type_seq,algo,gap);
-}
-else if (document.getElementById("multiple").checked===true){
-	var max_len=seq1.length
-	if (seq2.length>max_len){
-		max_len=seq2.length;
+	if (document.getElementById("single").checked===true){
+		var gap=document.getElementById("enter_gap_penalty").value;
+		var gap=-Math.abs(parseInt(gap,10));
+		algorithm(seq1,seq2,matrix,type_seq,algo,gap);
 	}
-	for (var i =0;i<(max_len+1);i++) {
-		var tmp=document.getElementById("enter_gap_penalty"+i).value;
-		tmp=Math.abs(parseInt(tmp));
-		li_gap.push(-tmp);
-	// la liste des gap sous forme numérique est dans li_gap
-}
+	else if (document.getElementById("multiple").checked===true){
+		var max_len=seq1.length;
+		if (seq2.length>max_len){
+			max_len=seq2.length;
+		}
+		for (var i =0;i<(max_len+1);i++) {
+			var tmp=document.getElementById("enter_gap_penalty"+i).value;
+			tmp=Math.abs(parseInt(tmp,10));
+			li_gap.push(-tmp);
+		// li_gap contains list of gaps in digital format
+		}
 	algorithm(seq1,seq2,matrix,type_seq,algo,li_gap);
+	}
 }
 
-}
-
-/** Function to verify if all values are correctly filled
-@constructor
- */
+/** 
+ * Function to verify if all values are correctly filled
+*/
 function verif () {
 	if ((verif_check_algo()===true)&&(verif_check_type_seq()===true)&&(check_content_seq()===true)&&(verif_choice_gap()===true)){
 		return true;
 	}
 	else{
-		return false;
 		alert("complete the form before submit it");
+		return false;
+		
 	}
-	}
+}
 
 
-/** Function to verify if the choice of algorithm is correctly filled
-@constructor
+/**
+ * Function to verify if the choice of algorithm is correctly filled
  */
 function verif_check_algo(){
 	var algo_checked=false;
@@ -237,23 +231,22 @@ function verif_check_algo(){
 	for (var i=0;i<algo_choice.length;i++){
 		if (algo_choice[i].checked===true){
 			var algo=algo_choice[i].value;
-			if (algo != ""){
+			if (algo !== ""){
 				algo_checked=true;
 				}
 		}
 	}
 	if (algo_checked===false){
 		alert("Choose an algorithm to obtain a result.");
-/*		document.getElementById("algo").innerHtml="<b>"+"Choose an algorithm to obtain a result."+"</b>";
-*/	}
-return(algo_checked)
+	}
+	return(algo_checked);
 }
 
-/** Function to verify if the choice of type sequence is correctly filled
-@constructor
+/** 
+ * Function to verify if the choice of type sequence is correctly filled
  */
 function verif_check_type_seq(){
-	var type_seq_check=false
+	var type_seq_check=false;
 	var seq_choice=document.getElementsByName("type_seq");
 	var type_seq;
 	for (var j=0;j<seq_choice.length;j++) {
@@ -264,15 +257,15 @@ function verif_check_type_seq(){
 	}
 	if (type_seq_check===false){
 	alert("Choose a sequence type.") ;
-}
-return(type_seq_check);
+	}
+	return(type_seq_check);
 }
 
-/** Function to verify if the chosen sequences are correctly filled
-@constructor
+/** 
+ * Function to verify if the chosen sequences are correctly filled
  */
-function check_content_seq () {
 
+function check_content_seq () {
 	var content_seq_check=false;
 	var seq2=document.getElementById("sequence1").value.toUpperCase();
 	var seq1=document.getElementById("sequence2").value.toUpperCase();
@@ -282,26 +275,24 @@ function check_content_seq () {
 		if (seq_choice [j].checked===true) {
 			type_seq=seq_choice[j].value;
 		}
-}
-if (((2<=seq1.length)&&(seq1.length<=15))&&((2<=seq2.length<=15)&&(seq2.length<=15))){ 
-	if(((type_seq=="protein")&&(/^[ARNDCQEGHILKMFPSTWYVBZX]+$/.test(seq1,seq2)))||((type_seq=="nucleotide")&&(/^[ATGCSWRYKMBVHDNU]+$/.test(seq1,seq2)))) {
-
-	content_seq_check=true;
-}
-else{
-	alert("the content of the sequence did not match the sequence type you have checked");
-}
-}
-else{
-	
-alert("the sequence is too small or too long for the application");
-}
-return(content_seq_check);
+	}
+	if (((2<=seq1.length)&&(seq1.length<=15))&&((2<=seq2.length<=15)&&(seq2.length<=15))){ 
+		if(((type_seq=="protein")&&(/^[ARNDCQEGHILKMFPSTWYVBZX]+$/.test(seq1,seq2)))||((type_seq=="nucleotide")&&(/^[ATGCSWRYKMBVHDNU]+$/.test(seq1,seq2)))) {
+			content_seq_check=true;
+		}
+		else{
+			alert("the content of the sequence did not match the sequence type you have checked");
+		}
+	}
+	else{
+		alert("the sequence is too small or too long for the application");
+	}
+	return(content_seq_check);
 }
 
-/** Function to verify if the choice of gap penality is correctly filled
-@constructor
- */
+/**
+ *  Function to verify if the choice of gap penality is correctly filled
+*/
 function verif_choice_gap(){
 	var check_gap=false;
 	var choice_gap_check=false;
@@ -314,16 +305,14 @@ function verif_choice_gap(){
 		if (choice_nbgap[j].checked===true) {
 			nb=choice_nbgap[j].value;
 		 	choice_gap_check=true;
-	}
-
+		}
 	}
 	if (nb=="single"){
 		var gap=document.getElementById("enter_gap_penalty").value;
-		var gap=-Math.abs(parseInt(gap));
+		var gap=-Math.abs(parseInt(gap,10));
 		if(isNaN(gap)===false){
 			number=true;
 		}
-
 	}
 
 	if(nb=="multiple"){
@@ -332,34 +321,28 @@ function verif_choice_gap(){
 		var li_gap=[];
 		var max_len=seq1.length;
 		if (seq2.length>max_len){
-		max_len=seq2.length;
+			max_len=seq2.length;
 		}
 		for (var i =0;i<max_len;i++) {
-			var tmp2=document.getElementById("enter_gap_penalty"+0).value
+			var tmp2=document.getElementById("enter_gap_penalty"+0).value;
 			var tmp=document.getElementById("enter_gap_penalty"+i).value;
-			tmp=parseInt(tmp);
-			tmp2=parseInt(tmp2);
+			tmp=parseInt(tmp,10);
+			tmp2=parseInt(tmp2,10);
 			if (tmp==tmp2) {
-				not_equal=true;
-				
-			};
-
+				not_equal=true;	
+			}
 			tmp=Math.abs(parseInt(tmp,10));
-
 			if (isNaN(Math.abs(parseInt(tmp,10)))===false){
-
 				numbers=true;
 			}
 			li_gap.push(-tmp);
-
 		}
-		if (not_equal==false){
-			alert("if you choose similar gap penalty, choose single gap penalty")
+		if (not_equal===false){
+			alert("if you choose similar gap penalty, choose single gap penalty");
 		}
 	}
 	if (choice_gap_check===false){
 		alert("choose single gap penalty or multiple gap penalty");
-	
 	}
 	if (((nb=="single")&&(number===false))||((nb=="multiple")&&(numbers===false))) {
 		alert("you have to enter a number");
@@ -370,40 +353,40 @@ function verif_choice_gap(){
 	return check_gap;
 }
 
-/** Function to initiate the alignment
-@constructor
-@param {string} sequence1 - The first sequence entered by the user, in the first line of the score matrix
-@param {string} sequence2 - The second sequence entered by the user, in the first column of the score matrix
-@param matrix - Substitution matrix chose by the user
-@param {string} type_seq - If the sequences are proteins or nucleotides
-@algo {string} - If the algorithm used is S&W or N&W (for the moment)
-@gap {number} - Gap penality *
+/** 
+ * [Function to initiate the process and get the final result]
  */
 function init_final(){
 	if (verif()===true){
 	get_value();
 	display();
+	}
 }
-}
-
+/**
+ * [Function to initiate the step by step and go to the next step]
+ */
 function init_next(){
 	if (verif()===true){
 	get_value();
 	next();
+	}
 }
-}
-
+/**
+ * [Function to initiate the step by step and go to the previous step]
+ */
 function init_prev(){
 	if (verif()===true){
 	get_value();
 	prev();
-}
+	}
 }
 
-
+/**
+ * [Function to initiate the step by step and go to the next state]
+ */
 function init_fast(){
 	if (verif()===true){
 	get_value();
 	fastnext();
-}
+	}
 }

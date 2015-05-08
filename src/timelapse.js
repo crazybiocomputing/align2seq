@@ -5,6 +5,7 @@
  *  This file is part of align2seq.
  *
  *  align2seq is free software: you can redistribute it and/or modify
+
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
@@ -31,6 +32,10 @@ var nbValuesAlignToDisplay = 0;
 var nbAlign;
 var title;
 
+/**
+ *[First function executed after data treatment in case of step by step]
+ *
+ */
 
 function next(){
 	nbValuesToDisplay++;
@@ -45,7 +50,9 @@ function next(){
 	launch_nstep(nbValuesToDisplay);
 	launch_nstep_align(nbValuesAlignToDisplay);
 }
-
+/**
+ * [this function allow to return to the previous step of the step by step]
+ *  */
 function prev(){
 	nbValuesAlignToDisplay--;
 	if(nbValuesAlignToDisplay<0){
@@ -55,22 +62,26 @@ function prev(){
 	launch_nstep(nbValuesToDisplay);
 	launch_nstep_align(nbValuesAlignToDisplay);
 }
-
+/**
+ * [this function allow to return to the next state]
+ * 
+ */
 function fastnext(){
 	if(nbValuesToDisplay<=matscore.length){
 		nbValuesToDisplay=matscore.length
-		/*nbValuesAlignToDisplay++;*/
 	}
-	if (nbValuesAlignToDisplay<=listalign.length && nbValuesAlignToDisplay!=0){
+	if (nbValuesAlignToDisplay<=listalign.length && nbValuesAlignToDisplay!==0){
 		nbValuesAlignToDisplay=listalign.length;
 	}
-	
 	launch_nstep(nbValuesToDisplay);
 	launch_nstep_align(nbValuesAlignToDisplay);
 	nbValuesAlignToDisplay++	
 }
+/**
+ * [this function allow to return to the previous state]
+  */
 function fastpreview(){
-	if (nbValuesAlignToDisplay!=0){
+	if (nbValuesAlignToDisplay!==0){
 		nbValuesAlignToDisplay=0
 		nbValuesToDisplay=matscore.length;
 	}
@@ -83,15 +94,13 @@ function fastpreview(){
 
 }
 /** Step by step function with next and preview possibilities
-@constructor
-@param {number} nbValuesToDisplay - counter for the scoring matrix 
+@param {[number]} nbValuesToDisplay - counter for the scoring matrix 
 */
 
 
 function launch_nstep(nbValuesToDisplay){
-
 	var matrixs=document.getElementById("matrixtime");
-	
+
 	//The table is empty
 	while (matrixs.firstChild) {
     	matrixs.removeChild(matrixs.firstChild);
@@ -159,26 +168,28 @@ function launch_nstep(nbValuesToDisplay){
 	title.innerHTML="<b>Sum matrix</b>";	
 	if(nbValuesToDisplay>size1) {
 		if ((nbValuesToDisplay-1)%size1!==0){
-		var cellvert=size1;
-		var celldia=size1+1;
-		var cellcurrent=nbValuesToDisplay-1;
-		var posj=(nbValuesToDisplay-1)%(len1+1);
-		var posi=Math.floor((nbValuesToDisplay-1)/(len1+1));
-		// console.log(len1);
-		// console.log("Position : "+(nbValuesToDisplay-1)+" Gap1 : "+gap[posj]+" Gap2 : "+gap2[posi]);
-		explain.innerHTML="Value of M("+posi+","+posj+") = maximal value between : <br>";
-		explain.innerHTML+="M("+(posi-1)+","+(posj-1)+") + S("+posi+","+posj+") = "+matsumtot[cellcurrent-celldia]+" + "+matscore[cellcurrent]+" = " +"<b>"+matsumdia[cellcurrent]+"</b>"+"<br>";
-		explain.innerHTML+="M("+(posi)+","+(posj-1)+") + gap = "+matsumtot[cellcurrent-1]+"+"+gap2[posi]+" = "+"<b>"+matsumhor[cellcurrent]+"</b>"+"<br>";
-		explain.innerHTML+="M("+(posi-1)+","+(posj)+") + gap = "+matsumtot[cellcurrent-cellvert]+"+"+gap[posj]+"= "+"<b>"+matsumvert[cellcurrent]+"</b>"+"<br>";
-		explain.innerHTML+="Maximum value of the three : <b>"+matsumtot[cellcurrent]+"</b><br>";
-		explain.innerHTML+="Corresponding path : "+matpatharrows[cellcurrent]+"<br>";
+			var cellvert=size1;
+			var celldia=size1+1;
+			var cellcurrent=nbValuesToDisplay-1;
+			var posj=(nbValuesToDisplay-1)%(len1+1);
+			var posi=Math.floor((nbValuesToDisplay-1)/(len1+1));
+			explain.innerHTML="Value of M("+posi+","+posj+") = maximal value between : <br>";
+			explain.innerHTML+="M("+(posi-1)+","+(posj-1)+") + S("+posi+","+posj+") = "+matsumtot[cellcurrent-celldia]+" + "+matscore[cellcurrent]+" = " +"<b>"+matsumdia[cellcurrent]+"</b>"+"<br>";
+			explain.innerHTML+="M("+(posi)+","+(posj-1)+") + gap = "+matsumtot[cellcurrent-1]+"+"+gap2[posi]+" = "+"<b>"+matsumhor[cellcurrent]+"</b>"+"<br>";
+			explain.innerHTML+="M("+(posi-1)+","+(posj)+") + gap = "+matsumtot[cellcurrent-cellvert]+"+"+gap[posj]+"= "+"<b>"+matsumvert[cellcurrent]+"</b>"+"<br>";
+			explain.innerHTML+="Maximum value of the three : <b>"+matsumtot[cellcurrent]+"</b><br>";
+			explain.innerHTML+="Corresponding path : "+matpatharrows[cellcurrent]+"<br>";
 		}
 		else{
 			explain.innerHTML="";	
 		}
 	}
 }
-
+/**
+ * display the alignment step by step
+ * @param  {integer} nbValuesToDisplayAlign number of value in the alignment
+ * 
+ */
 function launch_nstep_align(nbValuesToDisplayAlign){
 	if (nbValuesAlignToDisplay>=1){
 		title.innerHTML="<b>Alignment matrix</b>";

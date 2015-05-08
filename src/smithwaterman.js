@@ -33,21 +33,22 @@
  		smithwaterman.prototype[key] = algorithm.prototype[key];
  	}
  }
-/** Function to calculate the score according to Smith and Waterman algorithm
-@constructor
-@param matrix - Substitution matrix chosen by the user
-@param matscore - Score matrix filled by this function
-@param matpath - Path matrix filled by the function
-@param matsumdia - Sum matrix obtained by the diagonal case filled by the function
-@param matsumvert - Sum matrix obtained by the vertical case filled by the function
-@param matsumhor - Sum matrix obtained by the horizontal case filled by the function
-@param matsumtot - Sum matrix obtained by the maximal value between the third previoux matrices
-@param {string} l1 - The letter obtained by the first sequence used for comparison
-@param {string} l2 - The letter obtained by the second sequence used for comparison
-@param {string} lengthseq - Length of the sequence
-@param {string} place - Place of the letter 
-@param {number} gap- Gap penality 
-@param letters - Letters used in subsitution matrices
+/**
+  * [Function to calculate the score according to Smith and Waterman algorithm
+ * @param  {array]} matrix     Substitution matrix chosen by the user
+ * @param  {array]} matscore   Score matrix filled by this function
+ * @param  {array]} matpath    Path matrix filled by the function
+ * @param  {array]} matsumdia  Sum matrix obtained by the diagonal case filled by the function
+ * @param  {array]} matsumvert Sum matrix obtained by the vertical case filled by the function
+ * @param  {array]} matsumhor  Sum matrix obtained by the horizontal case filled by the function
+ * @param  {array]} matsumtot  Sum matrix obtained by the maximal value between the third previoux matrices
+ * @param  {integer} l1         The letter obtained by the first sequence used for comparison
+ * @param  {integer} l2         The letter obtained by the second sequence used for comparison
+ * @param  {integer} lengthseq   max Length of the 2 sequence
+ * @param  {integer} place      Place of the letter 
+ * @param  {integer} gap        Gap penality 
+ * @param  {integer} gap2       Gap penality 
+ * @param  {char} letters      Letters used in subsitution matrices
  */
  smithwaterman.prototype.score = function (matrix,matscore, matpath, matsumdia, matsumvert, matsumhor, matsumtot,l1, l2, lengthseq, place,gap,gap2,letters) {
  	var currentscore;
@@ -96,15 +97,15 @@
  		scoredia=matsumtot[placedia];
  		for (var l in letters){
  			if (l1 === letters[l]){
- 				pos1=parseInt(l);
+ 				pos1=parseInt(l,10);
  			}
  			if (l2 === letters[l]){
- 				pos2=parseInt(l);
+ 				pos2=parseInt(l,10);
  			}
  		}
  		var lengthmat=letters.length;
  		var posmatrix=(lengthmat*pos1)+pos2;
- 		currentscore=parseInt(matrix[posmatrix]);
+ 		currentscore=parseInt(matrix[posmatrix],10);
  		matscore[place]=currentscore;
  		sumdia=scoredia+currentscore;
  		sumvert=scorevert+gap;
@@ -142,30 +143,26 @@
  	}
  }
 
-/** Function to calculate the alignment according to Needleman and Wunsch algorithm
-@constructor
-@param matscore - Score matrix filled by this function
-@param matpath - Path matrix filled by the function
-@param s1 - The first sequence
-@param s2 - The second sequence
-@parem {number} len1 - Length of the first sequence
-@param {number} len2 - Length of the second sequence
-@param {string} lengthseq - Length of the sequence
+/**
+ * Function to calculate the alignment according to Needleman and Wunsch algorithm
+ * @param  {array} matpath   path matrix filled  by the function
+ * @param  {type} matscore   Score matrix filled by this function
+ * @param  {type} matsumtot sum matrix filled by the function
+ * @param  {type} s1        The first sequence
+ * @param  {type} s2        The second sequence
+ * @param  {type} len1      Length of the first sequence
+ * @param  {type} lengthseq max Length of the 2 sequence
  */
- smithwaterman.prototype.alignment = function (matpath, matscore, matsumtot, s1, s2, len1, len2, lengthseq) {
- 	
+ smithwaterman.prototype.alignment = function (matpath, matscore, matsumtot, s1, s2, len1, lengthseq) {
  	var val, elem, dep, valmaxpos;
  	var valmax = 0;
- 	var compt = 0;
  	var l = [];
  	var choice1,choice2,choice3;
-
  	var result = [];
  	for (val in matsumtot) {
  		valmaxpos = matsumtot[val];
  		valmax = Math.max(valmax, valmaxpos);
  	}
-
 
  	for (elem in matsumtot) {
  		if (matsumtot[elem] === valmax) {
@@ -267,10 +264,10 @@
  			}
  		}
  		for(var el1 in align1){
-		align1string=align1string.concat(align1[el1]);
+			align1string=align1string.concat(align1[el1]);
 		}
 		for(var el2 in align2){
-		align2string=align2string.concat(align2[el2]);
+			align2string=align2string.concat(align2[el2]);
 		}
  		result.push(align1string);
  		result.push(align2string);

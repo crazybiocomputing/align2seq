@@ -28,12 +28,13 @@
 @constructor
 @param {string} sequence1 - The first sequence entered by the user, in the first line of the score matrix
 @param {string} sequence2 - The second sequence entered by the user, in the first column of the score matrix
-@param matrix - Substitution matrix chose by the user
+@param {array} matrix - Substitution matrix chosen by the user
 @param {string} type_seq - If the sequences are proteins or nucleotides
 @algo {string} - If the algorithm used is S&W or N&W (for the moment)
 @gap {number} - Gap penality */
 function algorithm(sequence1,sequence2,matrix,type_seq,algo,gap)
 {
+	//initialization of the values
 	this.seq1 = sequence1;
 	this.seq2 = sequence2;
 	this.len1 = this.seq1.length;
@@ -44,10 +45,6 @@ function algorithm(sequence1,sequence2,matrix,type_seq,algo,gap)
 	this.type_seq=type_seq;
 	this.gap=gap;
 	this.place = 0;
-	this.l1;
-	this.l2;
-	this.mat1;
-	this.mat2;
 	this.s1 = [];
 	this.s2 = [];
 	this.letters=[];
@@ -64,10 +61,11 @@ function algorithm(sequence1,sequence2,matrix,type_seq,algo,gap)
 	this.j;
 	this.size1=len1+1;
 	this.size2=len2+2;
-	this.add;
 	this.algo = algo;
 	this.listalign=[];
 	this.matseq[0] = "-";
+
+	//division of the sequences into separate letters
 	s1 = this.seq1.split("");
 	for (var elems1 = 0; elems1 <= this.len1; elems1++) {
 		this.matseq.push(s1[elems1]);
@@ -77,7 +75,9 @@ function algorithm(sequence1,sequence2,matrix,type_seq,algo,gap)
 	for (var elems2 = 0; elems2 < this.len2; elems2++) {
 		this.matseq.push(s2[elems2]);
 	}
-	if (isNaN(this.gap) == false ){
+
+	//creation of the gap tables
+	if (isNaN(this.gap) === false ){
 		var gapsimple=this.gap;
 		var gap =[];
 		for(var i=0;i<size1;i++){
@@ -95,7 +95,8 @@ function algorithm(sequence1,sequence2,matrix,type_seq,algo,gap)
 		this.gap2=gap2;
 		}
 	}
-	console.log(this.gap2)
+
+	//selection of the good gap for the each comparison and the letters depending the selected matrix, and calculation of the score
 	for (j = this.len1 + 1; j <= ((this.len1 + this.len2) + 1); j++) {	
 		for (i = 0; i <= this.len1; i++) {	
 			if ((this.place<(this.len1+1))){
@@ -103,7 +104,7 @@ function algorithm(sequence1,sequence2,matrix,type_seq,algo,gap)
 			}
 			else{
 				this.gapplace=this.gap[this.place%(this.len1+1)];
-				this.gapplace2=this.gap2[Math.floor(this.place/(this.len1+1))]
+				this.gapplace2=this.gap2[Math.floor(this.place/(this.len1+1))];
 			}
 			if (this.type_seq=="protein"){
 				this.letters=["A","R","N","D","C","Q","E","G","H","I","L","K","M","F","P","S","T","W","Y","V","B","Z","X", "*"];
@@ -125,6 +126,8 @@ function algorithm(sequence1,sequence2,matrix,type_seq,algo,gap)
 			this.place++;
 		}
 	}
+
+	//substituton of the value of the path by the corresponding arrow for each case (in alignment or not)
 	for (path in matpath){
 		if (matpath[path]===0){
 			matpatharrows[path]="";
@@ -159,19 +162,22 @@ function algorithm(sequence1,sequence2,matrix,type_seq,algo,gap)
 			matpatharrowsalign[path]="<object type=\"image/svg+xml\" data=\"..\/img\/trir.svg\" width=\"25 px\" height=\"25 px\">  error </object>";
 		}
 	}
+
+	//calculation of the alignment(s)
 	if (this.algo == "smith_waterman") {
-		var result = smithwaterman.prototype.alignment(this.matpath, this.matscore,this.matsumtot, this.s1, this.s2, this.len1, this.len2, this.lenmax);
+		var result = smithwaterman.prototype.alignment(this.matpath, this.matscore,this.matsumtot, this.s1, this.s2, this.len1, this.lenmax);
 	}
 	else{
-		var result = needlemanwunsch.prototype.alignment(this.matpath, this.matscore,this.matsumtot, this.s1, this.s2, this.len1, this.len2, this.lenmax);
+		var result = needlemanwunsch.prototype.alignment(this.matpath, this.matscore,this.matsumtot, this.s1, this.s2, this.len1, this.lenmax);
 	}
+	
+	//display of the alignement(s)
 	if (result.length>2){
-		var cpt=1		
+		var cpt=1;	
 		document.getElementById('alignment').innerHTML="";
-		// document.getElementById('alignment').innerHTML +="<div id=\"allalign\">";
 		for(var alignseq=0;alignseq<=(result.length-1);alignseq+=2){
 			document.getElementById('alignment').innerHTML +="<div id=\"allalign\"><h3>Alignment "+cpt+"</h3><br/>"+result[alignseq]+"<br/>"+result[alignseq+1]+"<br/></div>";
-			cpt++
+			cpt++;
 		}
 	}
 	else{

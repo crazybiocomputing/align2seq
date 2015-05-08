@@ -34,21 +34,22 @@ function needlemanwunsch()
 	}
 }
 
-/** Function to calculate the score according to Needleman and Wunsch algorithm
-@constructor
-@param matrix - Substitution matrix chosen by the user
-@param matscore - Score matrix filled by this function
-@param matpath - Path matrix filled by the function
-@param matsumdia - Sum matrix obtained by the diagonal case filled by the function
-@param matsumvert - Sum matrix obtained by the vertical case filled by the function
-@param matsumhor - Sum matrix obtained by the horizontal case filled by the function
-@param matsumtot - Sum matrix obtained by the maximal value between the third previoux matrices
-@param {string} l1 - The letter obtained by the first sequence used for comparison
-@param {string} l2 - The letter obtained by the second sequence used for comparison
-@param {string} lengthseq - Length of the sequence
-@param {string} place - Place of the letter 
-@param {number} gapplace- Gap penality 
-@param letters - Letters used in subsitution matrices
+/**
+ * [ * Function to calculate the score according to Needleman and Wunsch algorithm]
+ * @param  {[array]} matrix     [Substitution matrix chosen by the user]
+ * @param  {[array]} matscore   [Score matrix filled by this function]
+ * @param  {[array]} matpath    [Path matrix filled by the function]
+ * @param  {[array]} matsumdia  [Sum matrix obtained by the diagonal case filled by the function]
+ * @param  {[array]} matsumvert [Sum matrix obtained by the vertical case filled by the function]
+ * @param  {[array]} matsumhor  [Sum matrix obtained by the horizontal case filled by the function]
+ * @param  {[array]} matsumtot  [Sum matrix obtained by the maximal value between the third previoux matrices]
+ * @param  {[string]} l1         [The letter obtained by the first sequence used for comparison]
+ * @param  {[string]} l2         [The letter obtained by the second sequence used for comparison]
+ * @param  {[integer]} lengthseq  [Length of the sequence]
+ * @param  {[integer]} place      [Place of the letter]
+ * @param  {[integer]} gap        [Gap penality]
+ * @param  {[integer]} gap2       [Gap penality]
+ * @param  {[array]} letters    [Letters used in subsitution matrices]
  */
 needlemanwunsch.prototype.score = function (matrix,matscore, matpath, matsumdia, matsumvert, matsumhor,matsumtot,l1, l2, lengthseq, place,gap,gap2,letters) {
 	var currentscore;
@@ -97,15 +98,15 @@ needlemanwunsch.prototype.score = function (matrix,matscore, matpath, matsumdia,
 		scoredia=matsumtot[placedia];
 		for (var l in letters){
 			if (l1 === letters[l]){
-				pos1=parseInt(l);
+				pos1=parseInt(l,10);
 			}
 			if (l2 === letters[l]){
-				pos2=parseInt(l);
+				pos2=parseInt(l,10);
 			}
 		}
 		var lengthmat=letters.length;
 		var posmatrix=(lengthmat*pos1)+pos2;
-		currentscore=parseInt(matrix[posmatrix]);
+		currentscore=parseInt(matrix[posmatrix],10);
 		matscore[place]=currentscore;
 		sumdia=scoredia+currentscore;
 		sumvert=scorevert+gap;
@@ -140,27 +141,24 @@ needlemanwunsch.prototype.score = function (matrix,matscore, matpath, matsumdia,
 	}
 }
 
-/** Function to calculate the alignment according to Needleman and Wunsch algorithm
+/**
 @constructor
-@param matscore - Score matrix filled by this function
-@param matpath - Path matrix filled by the function
-@param matsumtot - Sum matrix obtained by the maximal value between the third previoux matrices
-@param s1 - The first sequence
-@param s2 - The second sequence
-@parem {number} len1 - Length of the first sequence
-@param {number} len2 - Length of the second sequence
-@param {string} lengthseq - Length of the sequence
+ * [ Function to calculate the alignment according to Needleman and Wunsch algorithm
+ * @param  {array} matpath   Path matrix filled by the function
+ * @param  {type} matscore   Score matrix filled by this function
+ * @param  {array} matsumtot Sum matrix obtained by the maximal value between the third previous matrix
+ * @param  {array} s1        The first sequence
+ * @param  {array} s2        The second sequence
+ * @param  {integer} len1      Length of the first sequence
+ * @param  {integer} lengthseq Length of the sequence
  */
-needlemanwunsch.prototype.alignment = function (matpath, matscore, matsumtot, s1, s2, len1, len2, lengthseq) {
-
-	var val,elem,valmaxpos;
+needlemanwunsch.prototype.alignment = function (matpath, matscore, matsumtot, s1, s2, len1, lengthseq) {
 	var dep=(matsumtot.length)-1;
-	var compt=0;
-	var l=[];
 	var align1=[];
 	var align2=[];
 	var align1string="";
 	var align2string="";
+ 	var choice1,choice2,choice3;
 	while (true) {
 		var posseq1=(dep%(len1+1)-1);
  		var posseq2=Math.floor(dep/(len1+1)-1);
@@ -249,12 +247,12 @@ needlemanwunsch.prototype.alignment = function (matpath, matscore, matsumtot, s1
  			}
  		}
  		for(var el1 in align1){
-		align1string=align1string.concat(align1[el1]);
+			align1string=align1string.concat(align1[el1]);
 		}
 		for(var el2 in align2){
-		align2string=align2string.concat(align2[el2]);
+			align2string=align2string.concat(align2[el2]);
 		}
-var result=[align1string,align2string];
-return result;
+	var result=[align1string,align2string];
+	return result;
 }
 
