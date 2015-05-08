@@ -1,0 +1,22 @@
+﻿
+- Vérification des séquences non faites à la fin (exemple avec sequence1 et sequence2) : corrigé
+
+- Message d'erreur dès que l'on quitte le champ de sequence1 : corrigé
+
+- Problème d'actualisation des matrices : corrigé
+
+- Multiplication des signaux alert : corrigé
+
+- Gap se produisant aléatoirement en premiere position de l'alignement 
+: corrigé
+- Problème d'affichage des séquences de taille différentes
+ si sequence 1 plus grande : corrigé
+- Problème d'affichage des séquences de taille différente si sequence 2 plus grande
+- Seq1 et seq2 indéfinies à l'usage des gaps multiples : corrigé
+
+- Problème de rafraîchissement : corrigé
+
+- Vérification du contenu de la séquence1 uniquement : corrigé
+
+- Problème de persistance des chemins lors d'un preview
+ : corrigé

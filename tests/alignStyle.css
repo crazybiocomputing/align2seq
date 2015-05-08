@@ -1,0 +1,138 @@
+/*
+ *  align2seq: Pairwise alignements algorithms in JavaScript, html5, and css3 
+ *  Copyright (C) 2015  
+ *
+ *  This file is part of align2seq.
+ *
+ *  align2seq is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  align2seq is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with align2seq.  If not, see <http://www.gnu.org/licenses/>
+ *
+ * Authors:
+ * Rudy Anne
+ * Aurelien Beliard
+ * Emeline Duquenne
+ * Aurore Perdriau
+ */
+
+ *{
+ 	background-color:#CFE3FF;
+ }
+
+ #title{
+ 	text-align: center;
+ 	font-size: 2em;
+	border: 1px solid #71ACFD;
+	background-color: #71ACFD;
+ }
+ #global{
+ 	margin:5% 5%;
+ }
+
+ #global #step_to_step{
+	width: 100%;
+ }
+
+
+ #global #formulaire{
+ 	display: flex;
+ 	flex-direction:row;
+ 	justify-content:center;
+ 	align-items:stretch;
+*/ 	text-align: center;
+ }
+
+#formulaire li{
+	list-style-type:none;}
+
+#formulaire > li{
+	border: 1px solid #71ACFD;
+ 	padding: 25px;
+ 	padding-top: 10px;
+ 	text-align: center;
+}
+
+#message {
+	border:none;
+}
+
+#commands,#alignment{
+    display: table;
+    margin: 0 auto;
+    text-align: center;
+}
+
+ #global #entire{
+ 	text-align: center;
+ 	display: flex;
+ 	flex-direction:row;
+ 	justify-content:center;
+ 	align-items:center;
+ 	width:100%;
+*/ 	text-align: center;
+ }
+
+ #entire>table{
+ 	margin:25px;
+ }
+
+#global #step{
+ 	text-align: center;
+ 	display: flex;
+ 	flex-direction:row;
+ 	justify-content:center;
+ 	align-items:center;
+ 	width:100%;
+*/ 	text-align: center;
+ }
+
+ #step>table{
+ 	margin:25px;
+ }
+
+ #alignment{
+ 	padding: 25px;
+ 	padding-top: 10px;
+ 	text-align: center;
+ 	display:table;
+ }
+
+ #alignment h3{
+ 	font-size: 1.5em;
+ 	color:#71ACFD;
+}
+
+#allalign{
+	margin:25px;
+	text-align: center;
+	display:table-cell;
+	padding:25px;
+	line-height:10.5pt;
+}
+
+
+ table
+ {
+ 	border-collapse: collapse;
+ }
+
+ td,th
+ {
+ 	border : 1px solid black;
+ 	width:25px;
+ 	height: 25px;
+ 	text-align: center; vertical-align: middle;
+ }
+
+td>img{
+	width:30%;
+}
