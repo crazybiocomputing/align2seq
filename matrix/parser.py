@@ -89,7 +89,7 @@ def parser(matrix1):
 	#for each line, delete spaces, write the matrix name and, after, scores into the matrix
 	for i in lines:
 		j=i.split(" ")
-		for k in range(len(j)):
+		for k in range(len(j)+1):
 			if j[0]=="#":
 				if re.match(r"blosum[0-9]{,4}\.iij", j[k])or re.match(r"blosum[0-9]{,4}\_[0-9]\.iij", j[k]) or re.match(r"blosumn", j[k]) :
 					l=j[k].split(".")
