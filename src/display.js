@@ -28,8 +28,20 @@
  */
  function display(){
 
-	 	document.getElementById("matrixsum").removeChild(matrixsum.childNodes[0]);
-	 	document.getElementById("matrixpath").removeChild(matrixpath.childNodes[0]);
+ 		console.log(matrixsum.childNodes);
+ 		// console.log(matrixpath.childNodes);
+ 		matrixsum.childNodes=[]
+ 	while(matrixsum.hasChildNodes()) { 
+  		matrixsum.removeChild( matrixsum.childNodes[0] );
+		}
+while(matrixpath.hasChildNodes()){
+	matrixpath.removeChild( matrixpath.childNodes[0] );
+}
+ 	// for (var i = 0; i <= matrixsum.childNodes.length; i++) {
+ 	// 			 	document.getElementById("matrixsum").removeChild(matrixsum.childNodes[i]);
+ 	// 	};
+	 	// document.getElementById("matrixsum").removeChild(matrixsum.childNodes[0]);
+	 	// document.getElementById("matrixpath").removeChild(matrixpath.childNodes[0]);
 
 	//Affichage de la matrice de score
 
