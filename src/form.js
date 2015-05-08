@@ -44,13 +44,17 @@
 			document.getElementById('choice_matrix').options[l] = new Option(listEDNA[l],listEDNA[l]);
  		}
 	}
-
+var seq1=document.getElementById("sequence1");
+var seq2=document.getElementById("sequence2");
 var enter_gap_penalty =document.getElementById("gap");
 	while(enter_gap_penalty.firstChild){
 		enter_gap_penalty.removeChild(enter_gap_penalty.firstChild);
 	}
-		
+		console.log(seq1.value)
+		console.log(seq2.value)
+		console.log("iiiiiii")
 		if (document.getElementById('multiple').checked!==true){
+			console.log("ahah")
 			var enter_gap=document.createElement('input');
 			enter_gap.setAttribute("type","number");
 			enter_gap.setAttribute("min", "0");
@@ -60,7 +64,7 @@ var enter_gap_penalty =document.getElementById("gap");
 			enter_gap_penalty.appendChild(enter_gap);
 		}
 		else{
-			var lengthmax=Math.max(seq1.length,seq2.length);		
+			var lengthmax=Math.max(seq1.value.length,seq2.value.length);		
 			for (var m =0; m <= lengthmax; m++) {
 				console.max(lengthmax);
 				if (enter_gap_penalty.hasChildNodes===true){
