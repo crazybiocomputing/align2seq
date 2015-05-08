@@ -38,31 +38,49 @@ function next(){
 	if(nbValuesToDisplay>=matscore.length){
 		nbValuesToDisplay=matscore.length;
 		nbValuesAlignToDisplay++;
+		if (nbValuesAlignToDisplay>=listalign.length){
+			nbValuesAlignToDisplay=listalign.length;
+		}
 	}
 	launch_nstep(nbValuesToDisplay);
 	launch_nstep_align(nbValuesAlignToDisplay);
 }
 
 function prev(){
-	nbValuesToDisplay--;
-	if(nbValuesToDisplay<0){
-		nbValuesToDisplay=0;
+	nbValuesAlignToDisplay--;
+	if(nbValuesAlignToDisplay<0){
+		nbValuesAlignToDisplay=0
+		nbValuesToDisplay--;
 	}
 	launch_nstep(nbValuesToDisplay);
+	launch_nstep_align(nbValuesAlignToDisplay);
 }
 
 function fastnext(){
 	if(nbValuesToDisplay<=matscore.length){
-		nbValuesPathToDisplay++;
+		nbValuesToDisplay=matscore.length
+		/*nbValuesAlignToDisplay++;*/
 	}
-	launch_nstep_path(nbValuesPathToDisplay);
+	if (nbValuesAlignToDisplay<=listalign.length && nbValuesAlignToDisplay!=0){
+		nbValuesAlignToDisplay=listalign.length;
+	}
 	
+	launch_nstep(nbValuesToDisplay);
+	launch_nstep_align(nbValuesAlignToDisplay);
+	nbValuesAlignToDisplay++	
 }
 function fastpreview(){
-	if(nbValuesPathToDisplay>0){
-		nbValuesToDisplay--;
+	if (nbValuesAlignToDisplay!=0){
+		nbValuesAlignToDisplay=0
+		nbValuesToDisplay=matscore.length;
+	}
+	else if (nbValuesToDisplay<=matscore.length){
+		nbValuesAlignToDisplay=0
+		nbValuesToDisplay=0
 	}
 	launch_nstep(nbValuesToDisplay);
+	launch_nstep_align(nbValuesAlignToDisplay);
+
 }
 /** Step by step function with next and preview possibilities
 @constructor
