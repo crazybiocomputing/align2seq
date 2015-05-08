@@ -98,9 +98,9 @@ function launch_nstep(nbValuesToDisplay){
 	}
 	
 	// Filling the array with the desired number of cells
-	for (var i =0;i<=size1;i++){
+	for (var i =0;i<=(size2-1);i++){
 		matrixs.insertRow(i);
-		for(var j=0;j<=(size2-1);j++){
+		for(var j=0;j<=(size1);j++){
 			matrixs.rows[i].insertCell(j);
 		}
 	}
@@ -163,7 +163,7 @@ function launch_nstep(nbValuesToDisplay){
 		var celldia=size1+1;
 		var cellcurrent=nbValuesToDisplay-1;
 		var posj=(nbValuesToDisplay-1)%(len1+1);
-		var posi=Math.floor((nbValuesToDisplay-1)/(len2+1));
+		var posi=Math.floor((nbValuesToDisplay-1)/(len1+1));
 		// console.log(len1);
 		// console.log("Position : "+(nbValuesToDisplay-1)+" Gap1 : "+gap[posj]+" Gap2 : "+gap2[posi]);
 		explain.innerHTML="Value of M("+posi+","+posj+") = maximal value between : <br>";
@@ -171,7 +171,7 @@ function launch_nstep(nbValuesToDisplay){
 		explain.innerHTML+="M("+(posi)+","+(posj-1)+") + gap = "+matsumtot[cellcurrent-1]+"+"+gap2[posi]+" = "+"<b>"+matsumhor[cellcurrent]+"</b>"+"<br>";
 		explain.innerHTML+="M("+(posi-1)+","+(posj)+") + gap = "+matsumtot[cellcurrent-cellvert]+"+"+gap[posj]+"= "+"<b>"+matsumvert[cellcurrent]+"</b>"+"<br>";
 		explain.innerHTML+="Maximum value of the three : <b>"+matsumtot[cellcurrent]+"</b><br>";
-		explain.innerHTML+="<b>Corresponding path</b> : "+matpatharrows[cellcurrent]+"<br>";
+		explain.innerHTML+="Corresponding path : "+matpatharrows[cellcurrent]+"<br>";
 		}
 		else{
 			explain.innerHTML="";	
@@ -180,10 +180,11 @@ function launch_nstep(nbValuesToDisplay){
 }
 
 function launch_nstep_align(nbValuesToDisplayAlign){
-	if (nbValuesAlignToDisplay==1){
+	if (nbValuesAlignToDisplay>=1){
 		title.innerHTML="<b>Alignment matrix</b>";
-		// explain.innerHTML="";
+		explain.innerHTML=" ";
 	}
+
 	var matrixs=document.getElementById("matrixtime")
 	var nbDisplayedValuesAlign= 0;
 	for(var i=1;i<matrixs.rows.length;i++){
@@ -194,11 +195,12 @@ function launch_nstep_align(nbValuesToDisplayAlign){
 	}
 	for(var posalign=1;posalign<=nbValuesToDisplayAlign;posalign++){
 		var alignpos=listalign[posalign-1];
+		console.log(alignpos);
 		if (alignpos >= listalign[posalign-2]){
 			launch_nstep(matscore.length)
 		}
 		var posj=(alignpos%(len1+1)-1)+2;
-		var posi=Math.floor((alignpos/(len2+1)-1)+2);
+		var posi=Math.floor((alignpos/(len1+1)-1)+2);
 		var alignCell=matrixs.rows[posi].cells[posj];
 		alignCell.innerHTML=matpatharrowsalign[alignpos];
 	}

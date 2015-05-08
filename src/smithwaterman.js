@@ -181,7 +181,7 @@
  		var align2 = [];
  		while (true) {
  			var posseq1=(deppos%(len1+1)-1);
- 			var posseq2=Math.floor(deppos/(len2+1)-1);
+ 			var posseq2=Math.floor(deppos/(len1+1)-1);
  			listalign.push(deppos);
  			if (matsumtot[deppos] === 0) {
  				listalign.pop();

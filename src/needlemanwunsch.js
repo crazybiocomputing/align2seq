@@ -50,7 +50,7 @@ function needlemanwunsch()
 @param {number} gapplace- Gap penality 
 @param letters - Letters used in subsitution matrices
  */
-needlemanwunsch.prototype.score = function (matrix,matscore, matpath, matsumdia, matsumvert, matsumhor,matsumtot,l1, l2, lengthseq, place,j,gap,gap2,letters) {
+needlemanwunsch.prototype.score = function (matrix,matscore, matpath, matsumdia, matsumvert, matsumhor,matsumtot,l1, l2, lengthseq, place,gap,gap2,letters) {
 	var currentscore;
 	var scorevert,scorehor,scoredia;
 	var sumvert,sumdia,sumhor;
@@ -163,7 +163,7 @@ needlemanwunsch.prototype.alignment = function (matpath, matscore, matsumtot, s1
 	var align2string="";
 	while (true) {
 		var posseq1=(dep%(len1+1)-1);
- 		var posseq2=Math.floor(dep/(len2+1)-1);
+ 		var posseq2=Math.floor(dep/(len1+1)-1);
  		listalign.push(dep);
  			if (matsumtot[dep] === 0) {
  				listalign.pop();

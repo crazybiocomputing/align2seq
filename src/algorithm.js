@@ -38,6 +38,8 @@ function algorithm(sequence1,sequence2,matrix,type_seq,algo,gap)
 	this.seq2 = sequence2;
 	this.len1 = this.seq1.length;
 	this.len2 = this.seq2.length;
+	this.lenmax= Math.max(this.len1,this.len2);
+	this.lenmin=Math.min(this.len1,this.len2);
 	this.matrix = matrix;
 	this.type_seq=type_seq;
 	this.gap=gap;
@@ -84,16 +86,24 @@ function algorithm(sequence1,sequence2,matrix,type_seq,algo,gap)
 		this.gap=gap;
 	}
 	this.gap2=gap;
-/*	for (i = 0; i <= this.len1; i++) {
-		for (j = this.len1 + 1; j <= ((this.len1 + this.len2) + 1); j++) {
-*/	for (j = this.len1 + 1; j <= ((this.len1 + this.len2) + 1); j++) {	
+	if (len1!=len2){
+		if (len2<len1){
+			gap2=[];
+			for(var j=0;j<(this.lenmin+1);j++){
+				gap2.push(gap[j]);
+			}
+		this.gap2=gap2;
+		}
+	}
+	console.log(this.gap2)
+	for (j = this.len1 + 1; j <= ((this.len1 + this.len2) + 1); j++) {	
 		for (i = 0; i <= this.len1; i++) {	
 			if ((this.place<(this.len1+1))){
 				this.gapplace=this.gap[place];
 			}
 			else{
 				this.gapplace=this.gap[this.place%(this.len1+1)];
-				this.gapplace2=this.gap2[Math.floor(this.place/(this.len2+1))]
+				this.gapplace2=this.gap2[Math.floor(this.place/(this.len1+1))]
 			}
 			if (this.type_seq=="protein"){
 				this.letters=["A","R","N","D","C","Q","E","G","H","I","L","K","M","F","P","S","T","W","Y","V","B","Z","X", "*"];
@@ -107,10 +117,10 @@ function algorithm(sequence1,sequence2,matrix,type_seq,algo,gap)
 				}
 			}
 			if (this.algo=="smith_waterman"){
-				smithwaterman.prototype.score(this.matrix,this.matscore, this.matpath, this.matsumdia, this.matsumvert, this.matsumhor,this.matsumtot, this.matseq[j], this.matseq[i], this.len2, this.place,this.gapplace,this.gapplace2,this.letters);
+				smithwaterman.prototype.score(this.matrix,this.matscore, this.matpath, this.matsumdia, this.matsumvert, this.matsumhor,this.matsumtot, this.matseq[j], this.matseq[i], this.lenmax, this.place,this.gapplace,this.gapplace2,this.letters);
 			}
 			else{
-				needlemanwunsch.prototype.score(this.matrix,this.matscore, this.matpath, this.matsumdia, this.matsumvert, this.matsumhor,this.matsumtot, this.matseq[j], this.matseq[i], this.len2, this.place,this.j,this.gapplace,this.gapplace2,this.letters);
+				needlemanwunsch.prototype.score(this.matrix,this.matscore, this.matpath, this.matsumdia, this.matsumvert, this.matsumhor,this.matsumtot, this.matseq[j], this.matseq[i], this.lenmax, this.place,this.gapplace,this.gapplace2,this.letters);
 			}
 			this.place++;
 		}
@@ -150,10 +160,10 @@ function algorithm(sequence1,sequence2,matrix,type_seq,algo,gap)
 		}
 	}
 	if (this.algo == "smith_waterman") {
-		var result = smithwaterman.prototype.alignment(this.matpath, this.matscore,this.matsumtot, this.s1, this.s2, this.len1, this.len2, this.len2);
+		var result = smithwaterman.prototype.alignment(this.matpath, this.matscore,this.matsumtot, this.s1, this.s2, this.len1, this.len2, this.lenmax);
 	}
 	else{
-		var result = needlemanwunsch.prototype.alignment(this.matpath, this.matscore,this.matsumtot, this.s1, this.s2, this.len1, this.len2, this.len2);
+		var result = needlemanwunsch.prototype.alignment(this.matpath, this.matscore,this.matsumtot, this.s1, this.s2, this.len1, this.len2, this.lenmax);
 	}
 	if (result.length>2){
 		var cpt=1		

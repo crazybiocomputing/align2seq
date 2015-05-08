@@ -27,14 +27,13 @@
 @constructor
  */
  function display(){
- 		// console.log(matrixpath.childNodes);
  		matrixsum.childNodes=[]
  	while(matrixsum.hasChildNodes()) { 
   		matrixsum.removeChild( matrixsum.childNodes[0] );
 		}
-while(matrixpath.hasChildNodes()){
-	matrixpath.removeChild( matrixpath.childNodes[0] );
-}
+	while(matrixpath.hasChildNodes()){
+		matrixpath.removeChild( matrixpath.childNodes[0] );
+		}
  	// for (var i = 0; i <= matrixsum.childNodes.length; i++) {
  	// 			 	document.getElementById("matrixsum").removeChild(matrixsum.childNodes[i]);
  	// 	};
@@ -45,13 +44,12 @@ while(matrixpath.hasChildNodes()){
 
 	var matrixs=document.getElementById("matrixsum");
 
-	for (var i =0;i<=size1;i++){
+	for (var i =0;i<=(size2-1);i++){
 		matrixs.insertRow(i);
-		for(var j=0;j<=(size2-1);j++){
+		for(var j=0;j<=(size1);j++){
 			matrixs.rows[i].insertCell(j);
 		}
 	}
-	
  	
 	var matrix2=document.getElementById("matrixsum").rows;
 
@@ -60,7 +58,6 @@ while(matrixpath.hasChildNodes()){
 		var column = matrix2[i].cells; 
 		
 		for (var j = 0; j < column.length ; j++) {
-
 			if (i>=2 && j===0){ 
 				for(var column in s2){
 					matrixsum.rows[i].cells[j].innerHTML=s2[column];	
@@ -80,7 +77,7 @@ while(matrixpath.hasChildNodes()){
 				for (scoring in matscore){
 					matrixsum.rows[i].cells[j].innerHTML=matscore[scoring];
 					j++;
-					if(j%size2==0){
+					if(j%(size1+1)==0){
 						i++;
 						j=1;
 					}
@@ -96,9 +93,9 @@ while(matrixpath.hasChildNodes()){
 
 	var matrixp=document.getElementById("matrixpath");
 
-	for (var i =0;i<=size1;i++){
+	for (var i =0;i<=(size2-1);i++){
 		matrixp.insertRow(i);
-		for(var j=0;j<=(size2-1);j++){
+		for(var j=0;j<=(size1);j++){
 			matrixp.rows[i].insertCell(j);
 		}
 	}
@@ -159,7 +156,7 @@ while(matrixpath.hasChildNodes()){
 					// 	matrixpath.rows[i].cells[j].innerHTML="<object type=\"image/svg+xml\" data=\"..\/img\/tri.svg\" width=\"25 px\" height=\"25 px\">  error </object>";
 					// }
 					j++;
-					if(j%size2==0){
+					if(j%(size1+1)==0){
 						i++;
 						j=1;
 					}
