@@ -152,7 +152,7 @@ function algorithm(sequence1,sequence2,matrix,type_seq,algo,gap)
 		}
 	}
 	if (this.algo == "smith_waterman") {
-		var result = smithwaterman.prototype.alignment(this.matpath, this.matscore,this.matsumtot, this.s2, this.s1, this.len1, this.len2, this.len2);
+		var result = smithwaterman.prototype.alignment(this.matpath, this.matscore,this.matsumtot, this.s1, this.s2, this.len1, this.len2, this.len2);
 	}
 	else{
 		var result = needlemanwunsch.prototype.alignment(this.matpath, this.matscore,this.matsumtot, this.s2, this.s1, this.len1, this.len2, this.len2,this.listalign);

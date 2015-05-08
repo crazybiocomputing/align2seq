@@ -159,6 +159,7 @@
  	var valmax = 0;
  	var compt = 0;
  	var l = [];
+ 	var choice1,choice2,choice3;
 
  	var result = [];
  	for (val in matsumtot) {
@@ -185,9 +186,6 @@
  			listalign.push(deppos);
  			if (matsumtot[deppos] === 0) {
  				listalign.pop();
-			/*	align1.unshift(s1[posseq1]);
- 				console.log("Lettre : "+s1[posseq1]);
- 				align2.unshift(s2[len2]);*/
  				break;
  			}
  			if (matpath[deppos] === 1) {
@@ -195,15 +193,78 @@
  				align1.unshift(String(s1[posseq1]));
  				align2.unshift("-");
  			}
- 			else if (matpath[deppos] === 3 || matpath[deppos] === 4) {
-  				deppos = deppos - (lengthseq + 1);
- 				align1.unshift("-")
- 				align2.unshift(String(s2[posseq2]));
- 			}
- 			else {
+ 			else if(matpath[deppos] ===2){
  				deppos = deppos - (lengthseq + 2);
  				align1.unshift(String(s1[posseq1]));
  				align2.unshift(String(s2[posseq2]));
+ 			}
+ 			else if (matpath[deppos] === 3) {
+  				deppos = deppos - (lengthseq + 1);
+ 				align1.unshift("-");
+ 				align2.unshift(String(s2[posseq2]));
+ 			}
+ 			else if (matpath[deppos] === 4){
+ 				choice1=matsumtot[deppos-1];
+ 				choice2=matsumtot[deppos - (lengthseq + 1)]
+ 				if (choice1>choice2){
+ 					deppos = deppos - 1;
+ 					align1.unshift(String(s1[posseq1]));
+ 					align2.unshift("-");
+ 				}
+ 				else {
+   					deppos = deppos - (lengthseq + 1);
+ 					align1.unshift("-");
+ 					align2.unshift(String(s2[posseq2]));
+				}
+ 			}
+ 			else if (matpath[deppos] === 5){
+ 				choice1=matsumtot[deppos- 1];
+ 				choice2=matsumtot[deppos - (lengthseq + 2)];
+ 				if (choice1>choice2){
+ 					deppos = deppos - 1;
+ 					align1.unshift(String(s1[posseq1]));
+ 					align2.unshift("-"); 					
+ 				}
+ 				else{
+ 					deppos = deppos - (lengthseq + 2);
+ 					align1.unshift(String(s1[posseq1]));
+ 					align2.unshift(String(s2[posseq2])); 					
+ 				}
+ 			}
+ 			else if (matpath[deppos] === 6){
+ 				choice1=matsumtot[deppos - (lengthseq + 1)];
+ 				choice2=matsumtot[deppos - (lengthseq + 2)];
+ 				if (choice1>choice2){
+ 					deppos = deppos - (lengthseq + 1);
+ 					align1.unshift("-")
+ 					align2.unshift(String(s2[posseq2]));
+				}
+				else{
+ 					deppos = deppos - (lengthseq + 2);
+ 					align1.unshift(String(s1[posseq1]));
+ 					align2.unshift(String(s2[posseq2]));
+				}
+ 			}
+ 			else if (matpath[deppos] === 7){
+ 				choice1=matsumtot[deppos- 1];
+ 				choice2=matsumtot[deppos - (lengthseq + 2)];
+ 				choice3=matsumtot[deppos - (lengthseq + 1)];
+ 				var maxchoice=Math.max(choice1,choice2,choice3);
+ 				if (maxchoice === choice2){
+  					deppos = deppos - (lengthseq + 2);
+ 					align1.unshift(String(s1[posseq1]));
+ 					align2.unshift(String(s2[posseq2]));
+ 				}
+ 				else if (maxchoice === choice3){
+  					deppos = deppos - (lengthseq + 1);
+ 					align1.unshift("-")
+ 					align2.unshift(String(s2[posseq2]));
+ 				}
+ 				else{
+ 					deppos = deppos - 1;
+ 					align1.unshift(String(s1[posseq1]));
+ 					align2.unshift("-");
+ 				}
  			}
  		}
  		for(var el1 in align1){
