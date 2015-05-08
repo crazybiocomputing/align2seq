@@ -75,7 +75,6 @@ function algorithm(sequence1,sequence2,matrix,type_seq,algo,gap)
 	for (var elems2 = 0; elems2 < this.len2; elems2++) {
 		this.matseq.push(s2[elems2]);
 	}
-	console.log(matseq)
 	if (isNaN(this.gap) == false ){
 		var gapsimple=this.gap;
 		var gap =[];
@@ -111,12 +110,11 @@ function algorithm(sequence1,sequence2,matrix,type_seq,algo,gap)
 				smithwaterman.prototype.score(this.matrix,this.matscore, this.matpath, this.matsumdia, this.matsumvert, this.matsumhor,this.matsumtot, this.matseq[j], this.matseq[i], this.len2, this.place,this.gapplace,this.gapplace2,this.letters);
 			}
 			else{
-				needlemanwunsch.prototype.score(this.matrix,this.matscore, this.matpath, this.matsumdia, this.matsumvert, this.matsumhor,this.matsumtot, this.matseq[j], this.matseq[i], this.len2, this.place,this.i,this.gapplace,this.letters);
+				needlemanwunsch.prototype.score(this.matrix,this.matscore, this.matpath, this.matsumdia, this.matsumvert, this.matsumhor,this.matsumtot, this.matseq[j], this.matseq[i], this.len2, this.place,this.j,this.gapplace,this.gapplace2,this.letters);
 			}
 			this.place++;
 		}
 	}
-	console.log(place);
 	for (path in matpath){
 		if (matpath[path]===0){
 			matpatharrows[path]="";
@@ -155,7 +153,7 @@ function algorithm(sequence1,sequence2,matrix,type_seq,algo,gap)
 		var result = smithwaterman.prototype.alignment(this.matpath, this.matscore,this.matsumtot, this.s1, this.s2, this.len1, this.len2, this.len2);
 	}
 	else{
-		var result = needlemanwunsch.prototype.alignment(this.matpath, this.matscore,this.matsumtot, this.s2, this.s1, this.len1, this.len2, this.len2,this.listalign);
+		var result = needlemanwunsch.prototype.alignment(this.matpath, this.matscore,this.matsumtot, this.s1, this.s2, this.len1, this.len2, this.len2);
 	}
 	if (result.length>2){
 		var cpt=1		

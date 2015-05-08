@@ -50,7 +50,7 @@ function needlemanwunsch()
 @param {number} gapplace- Gap penality 
 @param letters - Letters used in subsitution matrices
  */
-needlemanwunsch.prototype.score = function (matrix,matscore, matpath, matsumdia, matsumvert, matsumhor,matsumtot,l1, l2, lengthseq, place,i,gap,letters) {
+needlemanwunsch.prototype.score = function (matrix,matscore, matpath, matsumdia, matsumvert, matsumhor,matsumtot,l1, l2, lengthseq, place,j,gap,gap2,letters) {
 	var currentscore;
 	var scorevert,scorehor,scoredia;
 	var sumvert,sumdia,sumhor;
@@ -59,7 +59,7 @@ needlemanwunsch.prototype.score = function (matrix,matscore, matpath, matsumdia,
 	var placehor=place-1;
 	var placedia=place-(lengthseq+2);
 	if (place===0){
-		matscore[place]=gap*place;
+		matscore[place]=gap;
 		matpath[place] = 0;
 		scorevert = 0;
 		scorehor = 0;
@@ -67,10 +67,10 @@ needlemanwunsch.prototype.score = function (matrix,matscore, matpath, matsumdia,
 		matsumdia[place]=0;
 		matsumvert[place]=0;
 		matsumhor[place]=0; 
-		matsumtot[place]=gap*place;		
+		matsumtot[place]=gap;		
 	}
 	else if(place<=lengthseq && place !== 0){
-		matscore[place]=gap*place;
+		matscore[place]=gap+matsumtot[place-1];
 		matpath[place] = 1;
 		scorevert = 0;
 		scorehor = 0;
@@ -78,10 +78,10 @@ needlemanwunsch.prototype.score = function (matrix,matscore, matpath, matsumdia,
 		matsumdia[place]=0;
 		matsumvert[place]=0;
 		matsumhor[place]=0; 
-		matsumtot[place]=gap*place;
+		matsumtot[place]=gap+matsumtot[place-1];
 	}
 	else if (place%(lengthseq+1)===0 ){
-		matscore[place]=gap*i;
+		matscore[place]=gap2+matsumtot[place-(lengthseq + 1)];
 		matpath[place] = 3;
 		scorevert = 0;
 		scorehor = 0;
@@ -89,7 +89,7 @@ needlemanwunsch.prototype.score = function (matrix,matscore, matpath, matsumdia,
 		matsumdia[place]=0;
 		matsumvert[place]=0;
 		matsumhor[place]=0;
-		matsumtot[place]=gap*i;
+		matsumtot[place]=gap2+matsumtot[place-(lengthseq + 1)];
 	}
 	else{
 		scorevert=matsumtot[placevert];
@@ -109,7 +109,7 @@ needlemanwunsch.prototype.score = function (matrix,matscore, matpath, matsumdia,
 		matscore[place]=currentscore;
 		sumdia=scoredia+currentscore;
 		sumvert=scorevert+gap;
-		sumhor=scorehor+gap;
+		sumhor=scorehor+gap2;
 		matsumdia[place]=sumdia;
 		matsumvert[place]=sumvert;
 		matsumhor[place]=sumhor;
@@ -151,7 +151,8 @@ needlemanwunsch.prototype.score = function (matrix,matscore, matpath, matsumdia,
 @param {number} len2 - Length of the second sequence
 @param {string} lengthseq - Length of the sequence
  */
-needlemanwunsch.prototype.alignment = function (matpath, matscore, matsumtot, s1, s2, len1, len2, lengthseq,listalign) {
+needlemanwunsch.prototype.alignment = function (matpath, matscore, matsumtot, s1, s2, len1, len2, lengthseq) {
+
 	var val,elem,valmaxpos;
 	var dep=(matsumtot.length)-1;
 	var compt=0;
@@ -164,25 +165,89 @@ needlemanwunsch.prototype.alignment = function (matpath, matscore, matsumtot, s1
 		var posseq1=(dep%(len1+1)-1);
  		var posseq2=Math.floor(dep/(len2+1)-1);
  		listalign.push(dep);
- 		if (matpath[dep] === 0) {
-			break;
+ 			if (matsumtot[dep] === 0) {
+ 				listalign.pop();
+ 				break;
+ 			}
+ 			if (matpath[dep] === 1) {
+ 				dep = dep - 1;
+ 				align1.unshift(String(s1[posseq1]));
+ 				align2.unshift("-");
+ 			}
+ 			else if(matpath[dep] ===2){
+ 				dep = dep - (lengthseq + 2);
+ 				align1.unshift(String(s1[posseq1]));
+ 				align2.unshift(String(s2[posseq2]));
+ 			}
+ 			else if (matpath[dep] === 3) {
+  				dep = dep - (lengthseq + 1);
+ 				align1.unshift("-");
+ 				align2.unshift(String(s2[posseq2]));
+ 			}
+ 			else if (matpath[dep] === 4){
+ 				choice1=matsumtot[dep-1];
+ 				choice2=matsumtot[dep - (lengthseq + 1)]
+ 				if (choice1>choice2){
+ 					dep = dep - 1;
+ 					align1.unshift(String(s1[posseq1]));
+ 					align2.unshift("-");
+ 				}
+ 				else {
+   					dep = dep - (lengthseq + 1);
+ 					align1.unshift("-");
+ 					align2.unshift(String(s2[posseq2]));
+				}
+ 			}
+ 			else if (matpath[dep] === 5){
+ 				choice1=matsumtot[dep- 1];
+ 				choice2=matsumtot[dep - (lengthseq + 2)];
+ 				if (choice1>choice2){
+ 					dep = dep - 1;
+ 					align1.unshift(String(s1[posseq1]));
+ 					align2.unshift("-"); 					
+ 				}
+ 				else{
+ 					dep = dep - (lengthseq + 2);
+ 					align1.unshift(String(s1[posseq1]));
+ 					align2.unshift(String(s2[posseq2])); 					
+ 				}
+ 			}
+ 			else if (matpath[dep] === 6){
+ 				choice1=matsumtot[dep - (lengthseq + 1)];
+ 				choice2=matsumtot[dep - (lengthseq + 2)];
+ 				if (choice1>choice2){
+ 					dep = dep - (lengthseq + 1);
+ 					align1.unshift("-")
+ 					align2.unshift(String(s2[posseq2]));
+				}
+				else{
+ 					dep = dep - (lengthseq + 2);
+ 					align1.unshift(String(s1[posseq1]));
+ 					align2.unshift(String(s2[posseq2]));
+				}
+ 			}
+ 			else if (matpath[dep] === 7){
+ 				choice1=matsumtot[dep- 1];
+ 				choice2=matsumtot[dep - (lengthseq + 2)];
+ 				choice3=matsumtot[dep - (lengthseq + 1)];
+ 				var maxchoice=Math.max(choice1,choice2,choice3);
+ 				if (maxchoice === choice2){
+  					dep = dep - (lengthseq + 2);
+ 					align1.unshift(String(s1[posseq1]));
+ 					align2.unshift(String(s2[posseq2]));
+ 				}
+ 				else if (maxchoice === choice3){
+  					dep = dep - (lengthseq + 1);
+ 					align1.unshift("-")
+ 					align2.unshift(String(s2[posseq2]));
+ 				}
+ 				else{
+ 					dep = dep - 1;
+ 					align1.unshift(String(s1[posseq1]));
+ 					align2.unshift("-");
+ 				}
+ 			}
  		}
- 		if (matpath[dep] === 1) {
- 			dep = dep - 1;
- 			align1.unshift(String(s1[posseq1]));
- 			align2.unshift("-");
- 		}
- 		else if (matpath[dep] === 3 || matpath[dep] === 4) {
-  			dep = dep - (lengthseq + 1);
- 			align1.unshift("-")
- 			align2.unshift(String(s2[posseq2]));
- 		}
- 		else {
- 			dep = dep - (lengthseq + 2);
- 			align1.unshift(String(s1[posseq1]));
- 			align2.unshift(String(s2[posseq2]));
- 		}
-	}
  		for(var el1 in align1){
 		align1string=align1string.concat(align1[el1]);
 		}

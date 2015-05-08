@@ -105,7 +105,6 @@
  		var lengthmat=letters.length;
  		var posmatrix=(lengthmat*pos1)+pos2;
  		currentscore=parseInt(matrix[posmatrix]);
- 		console.log ("Pos1 : "+l1+pos1+" Pos 2 : "+l2+pos2+ " Score : "+currentscore)
  		matscore[place]=currentscore;
  		sumdia=scoredia+currentscore;
  		sumvert=scorevert+gap;

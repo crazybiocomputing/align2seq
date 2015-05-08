@@ -27,8 +27,6 @@
 @constructor
  */
  function display(){
-
- 		console.log(matrixsum.childNodes);
  		// console.log(matrixpath.childNodes);
  		matrixsum.childNodes=[]
  	while(matrixsum.hasChildNodes()) { 
