@@ -56,41 +56,44 @@
 @constructor
 @param {string} sequence1 - The first sequence entered by the user, in the first line of the score matrix
 @param {string} sequence2 - The second sequence entered by the user, in the first column of the score matrix
-@param matrix - Substitution matrix chose by the user
+@param {array} matrix - Substitution matrix chosen by the user
 @param {string} type_seq - If the sequences are proteins or nucleotides
 @algo {string} - If the algorithm used is S&amp;W or N&amp;W (for the moment)
 @gap {number} - Gap penality */
 function algorithm(sequence1,sequence2,matrix,type_seq,algo,gap)
 {
+	//initialization of the values
 	this.seq1 = sequence1;
 	this.seq2 = sequence2;
 	this.len1 = this.seq1.length;
 	this.len2 = this.seq2.length;
+	this.lenmax= Math.max(this.len1,this.len2);
+	this.lenmin=Math.min(this.len1,this.len2);
 	this.matrix = matrix;
-	
+	this.type_seq=type_seq;
 	this.gap=gap;
-	console.log("gap algo ="+this.gap)
 	this.place = 0;
-	this.l1;
-	this.l2;
-	this.mat1;
-	this.mat2;
 	this.s1 = [];
 	this.s2 = [];
+	this.letters=[];
 	this.matseq = [];
 	this.matscore = [];
 	this.matpath = [];
+	this.matpatharrows = [];
+	this.matpatharrowsalign = [];
 	this.matsumdia=[];
 	this.matsumhor=[];
 	this.matsumvert=[];
+	this.matsumtot=[];
 	this.i;
 	this.j;
 	this.size1=len1+1;
 	this.size2=len2+2;
-	this.add;
-	this.maxi = Math.max(this.len1, this.len2);
 	this.algo = algo;
+	this.listalign=[];
 	this.matseq[0] = "-";
+
+	//division of the sequences into separate letters
 	s1 = this.seq1.split("");
 	for (var elems1 = 0; elems1 &lt;= this.len1; elems1++) {
 		this.matseq.push(s1[elems1]);
@@ -99,43 +102,115 @@ function algorithm(sequence1,sequence2,matrix,type_seq,algo,gap)
 	s2 = this.seq2.split("");
 	for (var elems2 = 0; elems2 &lt; this.len2; elems2++) {
 		this.matseq.push(s2[elems2]);
-
 	}
-	for (i = 0; i &lt;= this.len1; i++) {
-		for (j = this.len1 + 1; j &lt;= ((this.len1 + this.len2) + 1); j++) {
-			if (this.gap instanceof(Array)){
-				if (this.place&lt;this.maxi){
-					this.gapplace=this.gap[place];
-				}
-				else if(this.place%this.maxi === 0){
-					this.gapplace=this.gap[0];
+
+	//creation of the gap tables
+	if (isNaN(this.gap) === false ){
+		var gapsimple=this.gap;
+		var gap =[];
+		for(var i=0;i&lt;size1;i++){
+			gap.push(gapsimple);
+		}
+		this.gap=gap;
+	}
+	this.gap2=gap;
+	if (len1!=len2){
+		if (len2&lt;len1){
+			gap2=[];
+			for(var j=0;j&lt;(this.lenmin+1);j++){
+				gap2.push(gap[j]);
+			}
+		this.gap2=gap2;
+		}
+	}
+
+	//selection of the good gap for the each comparison and the letters depending the selected matrix, and calculation of the score
+	for (j = this.len1 + 1; j &lt;= ((this.len1 + this.len2) + 1); j++) {	
+		for (i = 0; i &lt;= this.len1; i++) {	
+			if ((this.place&lt;(this.len1+1))){
+				this.gapplace=this.gap[place];
+			}
+			else{
+				this.gapplace=this.gap[this.place%(this.len1+1)];
+				this.gapplace2=this.gap2[Math.floor(this.place/(this.len1+1))];
+			}
+			if (this.type_seq=="protein"){
+				this.letters=["A","R","N","D","C","Q","E","G","H","I","L","K","M","F","P","S","T","W","Y","V","B","Z","X", "*"];
+			}
+			else{
+				if (this.matrix=="EDNAFULL"){
+					this.letters=["A","T","G","C","S","W","R","Y","K","M","B","V","H","D","N","U"];	
 				}
 				else{
-					this.gapplace=this.gap[this.place%this.maxi];
+					this.letters=["A","B","C","D","G","H","K","M","N","R","S","T","U","V","W","X","Y"];
 				}
-		}
-			else{
-				this.gapplace=this.gap;
 			}
 			if (this.algo=="smith_waterman"){
-				smithwaterman.prototype.score(this.matrix,this.matscore, this.matpath, this.matsumdia, this.matsumvert, this.matsumhor, this.matseq[i], this.matseq[j], this.len2, this.place,this.gapplace);
+				smithwaterman.prototype.score(this.matrix,this.matscore, this.matpath, this.matsumdia, this.matsumvert, this.matsumhor,this.matsumtot, this.matseq[j], this.matseq[i], this.lenmax, this.place,this.gapplace,this.gapplace2,this.letters);
 			}
 			else{
-				needlemanwunsch.prototype.score(this.matrix,this.matscore, this.matpath, this.matsumdia, this.matsumvert, this.matsumhor, this.matseq[i], this.matseq[j], this.len2, this.place,this.i,this.gapplace);
+				needlemanwunsch.prototype.score(this.matrix,this.matscore, this.matpath, this.matsumdia, this.matsumvert, this.matsumhor,this.matsumtot, this.matseq[j], this.matseq[i], this.lenmax, this.place,this.gapplace,this.gapplace2,this.letters);
 			}
 			this.place++;
 		}
 	}
+
+	//substituton of the value of the path by the corresponding arrow for each case (in alignment or not)
+	for (path in matpath){
+		if (matpath[path]===0){
+			matpatharrows[path]="";
+			matpatharrowsalign[path]="";
+		}
+		else if (matpath[path]===1){
+			matpatharrows[path]="&lt;object type=\"image/svg+xml\" data=\"..\/img\/hori.svg\" width=\"25 px\" height=\"25\"> error &lt;/object>";
+			matpatharrowsalign[path]="&lt;object type=\"image/svg+xml\" data=\"..\/img\/horir.svg\" width=\"25 px\" height=\"25\"> error &lt;/object>";
+		}
+		else if (matpath[path]===2){
+			matpatharrows[path]="&lt;object type=\"image/svg+xml\" data=\"..\/img\/diag.svg\" width=\"25 px\" height=\"25 px\">  error &lt;/object>";
+			matpatharrowsalign[path]="&lt;object type=\"image/svg+xml\" data=\"..\/img\/diagr.svg\" width=\"25 px\" height=\"25 px\">  error &lt;/object>";
+		}
+		else if (matpath[path]===3){
+			matpatharrows[path]="&lt;object type=\"image/svg+xml\" data=\"..\/img\/vert.svg\" width=\"25 px\" height=×\"25 px\">  error &lt;/object>";
+			matpatharrowsalign[path]="&lt;object type=\"image/svg+xml\" data=\"..\/img\/vertr.svg\" width=\"25 px\" height=×\"25 px\">  error &lt;/object>";
+		}
+		else if (matpath[path]===4){
+			matpatharrows[path]="&lt;object type=\"image/svg+xml\" data=\"..\/img\/bihv.svg\" width=\"25 px\" height=\"25 px\">  error &lt;/object>";
+			matpatharrowsalign[path]="&lt;object type=\"image/svg+xml\" data=\"..\/img\/bihvr.svg\" width=\"25 px\" height=\"25 px\">  error &lt;/object>";
+		}
+		else if (matpath[path]===5){
+			matpatharrows[path]="&lt;object type=\"image/svg+xml\" data=\"..\/img\/bihd.svg\" width=\"25 px\" height=\"25 px\">  error &lt;/object>";
+			matpatharrowsalign[path]="&lt;object type=\"image/svg+xml\" data=\"..\/img\/bihdr.svg\" width=\"25 px\" height=\"25 px\">  error &lt;/object>";
+		}
+		else if (matpath[path]===6){
+			matpatharrows[path]="&lt;object type=\"image/svg+xml\" data=\"..\/img\/bidv.svg\" width=\"25 px\" height=\"25 px\">  error &lt;/object>";
+			matpatharrowsalign[path]="&lt;object type=\"image/svg+xml\" data=\"..\/img\/bidvr.svg\" width=\"25 px\" height=\"25 px\">  error &lt;/object>";
+		}
+		else if (matpath[path]===7){
+			matpatharrows[path]="&lt;object type=\"image/svg+xml\" data=\"..\/img\/tri.svg\" width=\"25 px\" height=\"25 px\">  error &lt;/object>";
+			matpatharrowsalign[path]="&lt;object type=\"image/svg+xml\" data=\"..\/img\/trir.svg\" width=\"25 px\" height=\"25 px\">  error &lt;/object>";
+		}
+	}
+
+	//calculation of the alignment(s)
 	if (this.algo == "smith_waterman") {
-		var result = smithwaterman.prototype.alignment(matpath, matscore, s1, s2, len1, len2, len2);
+		var result = smithwaterman.prototype.alignment(this.matpath, this.matscore,this.matsumtot, this.s1, this.s2, this.len1, this.lenmax);
 	}
 	else{
-		var result = needlemanwunsch.prototype.alignment(matpath, matscore, s1, s2, len1, len2, len2);
+		var result = needlemanwunsch.prototype.alignment(this.matpath, this.matscore,this.matsumtot, this.s1, this.s2, this.len1, this.lenmax);
 	}
-	document.getElementById('alignment').innerHTML +="&lt;h3>Alignement&lt;/h3>"+result[0]+"&lt;br>"+result[1];
-
-/*	console.log (matscore);
-	console.log (matpath);*/
+	
+	//display of the alignement(s)
+	if (result.length>2){
+		var cpt=1;	
+		document.getElementById('alignment').innerHTML="";
+		for(var alignseq=0;alignseq&lt;=(result.length-1);alignseq+=2){
+			document.getElementById('alignment').innerHTML +="&lt;div id=\"allalign\">&lt;h3>Alignment "+cpt+"&lt;/h3>&lt;br/>"+result[alignseq]+"&lt;br/>"+result[alignseq+1]+"&lt;br/>&lt;/div>";
+			cpt++;
+		}
+	}
+	else{
+		document.getElementById('alignment').innerHTML ="&lt;h3>Alignment&lt;/h3>&lt;br>"+result[0]+"&lt;br>"+result[1];
+	}
 }
 </code></pre>
         </article>
@@ -153,7 +228,7 @@ function algorithm(sequence1,sequence2,matrix,type_seq,algo,gap)
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-beta3</a> on Tue Apr 28 2015 19:30:07 GMT+0200 (CEST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-beta3</a> on Sat May 09 2015 10:51:20 GMT+0200 (CEST)
 </footer>
 
 <script> prettyPrint(); </script>
