@@ -23,7 +23,7 @@
     "Needleman et Wunsch",
     "Smith et Waterman"
   ],
-  "author": "Perdriau Aurore",
+  "author": "Anne Rudy","Beliard Aurelien","Duquenne Emeline","Perdriau Aurore"
   "license": "GNU",
   "bugs": {
     "url": "https://github.com/crazybiocomputing/align2seq/issues"
