@@ -76,7 +76,7 @@
 			} 
 		}
 	var title=document.getElementById("matrixsum").createCaption();
-	title.innerHTML="<b>Sum matrix</b>";	
+	title.innerHTML="<b>Score matrix</b>";	
 	}
 
 	//creation of path matrix
